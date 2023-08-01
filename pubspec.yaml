@@ -30,6 +30,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  flutter_dotenv: ^5.0.2
+  intl: ^0.18.0
+  crypto: ^3.0.2
+  pocketbase: ^0.8.0
+  flutter_svg: ^2.0.5
+  syncfusion_flutter_charts: ^21.1.41
+  fl_chart: ^0.62.0
+  hooks_riverpod: ^2.3.6
+  dio: ^5.2.1+1
+  flutter_slidable: ^3.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -39,6 +50,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  equatable: ^2.0.0-nullsafety.4
+  flutter_modular: ^3.2.2+1
+  http: ^0.13.0
+  dartz: ^0.10.0-nullsafety.1
+  youtube_player_iframe: ^2.1.0
+  shimmer: ^2.0.0-nullsafety.0
+  flutter_triple: ^1.2.2
+  url_launcher: ^6.0.7
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
