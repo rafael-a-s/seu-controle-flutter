@@ -1,6 +1,5 @@
-import 'package:clean_architeture_flutter/features/presenter/modules/exemplo/exemplo.module.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/controllers/home.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/pages/home.page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/drawer/drawer.module.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/pages/home_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeModule extends Module {
@@ -9,7 +8,7 @@ class HomeModule extends Module {
 
   @override
   final List<Bind> binds = [
-    Bind.factory((i) => HomeController()),
+    Bind.factory((i) => HomeModule()),
   ];
 
   @override
@@ -19,6 +18,6 @@ class HomeModule extends Module {
           child: (_, __) => const HomePage(),
           transition: TransitionType.leftToRight,
         ),
-        ModuleRoute('/exemplo', module: ExemploModule()),
+        ModuleRoute("/drawer", module: DrawerModule())
       ];
 }

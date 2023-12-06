@@ -1,5 +1,5 @@
 import 'package:clean_architeture_flutter/app_widget.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/home.module.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/onboarding/onboarding.module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AppModule extends Module {
@@ -10,6 +10,6 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute('/home', module: HomeModule()),
+        ModuleRoute('/onboarding', module: OnboardingModule()),
       ];
 }

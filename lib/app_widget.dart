@@ -1,6 +1,5 @@
 import 'package:clean_architeture_flutter/app_widget.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/base/base_widget.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/pages/home.page.dart';
+import 'package:clean_architeture_flutter/features/core/themes/app_themes.dart';
 import 'package:clean_architeture_flutter/features/presenter/theme/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -21,11 +20,11 @@ class AppWidgetState extends ConsumerState<AppWidget> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+      theme: AppTheme.defaultTheme,
       darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
       themeMode: themeMode,
       builder: (context, child) => child as Widget,
-      initialRoute: "/home",
+      initialRoute: "/onboarding",
     ).modular();
   }
 }
