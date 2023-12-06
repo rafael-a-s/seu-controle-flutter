@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 8, top: 4, bottom: 4),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.search);
+                      Modular.to.pushNamed("/onboarding/home/search");
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF2F6F3),
