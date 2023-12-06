@@ -1,4 +1,4 @@
-import 'package:clean_architeture_flutter/features/presenter/modules/drawer/drawer_page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/drawer/pages/drawer_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class DrawerModule extends Module {

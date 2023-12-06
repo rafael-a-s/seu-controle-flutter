@@ -1,7 +1,6 @@
 import 'package:clean_architeture_flutter/features/core/components/app_back_button.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/drawer/components/faq_item.dart';
 import 'package:flutter/material.dart';
-
-import 'components/faq_item.dart';
 
 class TermsAndConditionsPage extends StatelessWidget {
   const TermsAndConditionsPage({Key? key}) : super(key: key);

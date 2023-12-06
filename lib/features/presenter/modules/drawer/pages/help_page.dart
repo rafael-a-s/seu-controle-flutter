@@ -1,11 +1,10 @@
 import 'package:clean_architeture_flutter/features/core/components/app_back_button.dart';
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
 import 'package:clean_architeture_flutter/features/core/themes/app_themes.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/drawer/components/help_topics.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/drawer/components/top_questions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'components/help_topics.dart';
-import 'components/top_questions.dart';
 
 class HelpPage extends StatelessWidget {
   const HelpPage({Key? key}) : super(key: key);
