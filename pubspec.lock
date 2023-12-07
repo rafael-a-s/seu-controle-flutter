@@ -133,10 +133,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "9d6445da1caf8412070670c03c39ad5b12a78cc8c2361417b220905a2bcbdd2f"
+      sha256: "826fe22555382414f5b470479226891cddd4821295fd1de299276fe18844a60f"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.1"
+    version: "4.0.1"
   equatable:
     dependency: "direct dev"
     description:
@@ -169,14 +169,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
-  fl_chart:
-    dependency: "direct main"
-    description:
-      name: fl_chart
-      sha256: "48a1b69be9544e2b03d9a8e843affd89e43f3194c9248776222efcb4206bb1ec"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.62.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -266,18 +258,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_riverpod
-      sha256: b83ac5827baadefd331ea1d85110f34645827ea234ccabf53a655f41901a9bf4
+      sha256: da9591d1f8d5881628ccd5c25c40e74fc3eef50ba45e40c3905a06e1712412d5
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.6"
-  flutter_slidable:
-    dependency: "direct main"
-    description:
-      name: flutter_slidable
-      sha256: cc4231579e3eae41ae166660df717f4bad1359c87f4a4322ad8ba1befeb3d2be
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
+    version: "2.4.9"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -312,14 +296,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  google_fonts:
+    dependency: "direct main"
+    description:
+      name: google_fonts
+      sha256: f0b8d115a13ecf827013ec9fc883390ccc0e87a96ed5347a3114cac177ef18e8
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.0"
   hooks_riverpod:
     dependency: "direct main"
     description:
       name: hooks_riverpod
-      sha256: "117edbe7e5cfc02e31a94f97e2acd4581f54bc37fcda9dce1f606f8ac851ba24"
+      sha256: c12a456e03ef9be65b0be66963596650ad7a3220e96c7e7b0a048562ea32d6ae
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.7"
+    version: "2.4.9"
   html:
     dependency: transitive
     description:
@@ -329,13 +321,13 @@ packages:
     source: hosted
     version: "0.15.4"
   http:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: http
-      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
+      sha256: d4872660c46d929f6b8a9ef4e7a7eff7e49bbf0c4ec3f385ee32df5119175139
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.6"
+    version: "1.1.2"
   http_parser:
     dependency: transitive
     description:
@@ -368,14 +360,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
-  json_annotation:
-    dependency: transitive
-    description:
-      name: json_annotation
-      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.8.1"
   lints:
     dependency: transitive
     description:
@@ -504,14 +488,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.5"
-  pocketbase:
-    dependency: "direct main"
-    description:
-      name: pocketbase
-      sha256: e53161f274bfee0a0861fd4c956b393251b63d78f3bddafbb01e2f97e979431c
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.8.0"
   pointycastle:
     dependency: transitive
     description:
@@ -524,10 +500,10 @@ packages:
     dependency: transitive
     description:
       name: riverpod
-      sha256: "80e48bebc83010d5e67a11c9514af6b44bbac1ec77b4333c8ea65dbc79e2d8ef"
+      sha256: "942999ee48b899f8a46a860f1e13cee36f2f77609eb54c5b7a669bb20d550b11"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.6"
+    version: "2.4.9"
   rx_notifier:
     dependency: transitive
     description:
@@ -621,22 +597,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  syncfusion_flutter_charts:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_charts
-      sha256: "5f868f5a82380ef1b3de416b7812e1ac7acce6a629f9281618adee81d90716cc"
-      url: "https://pub.dev"
-    source: hosted
-    version: "21.2.10"
-  syncfusion_flutter_core:
-    dependency: transitive
-    description:
-      name: syncfusion_flutter_core
-      sha256: "8db8f55c77f56968681447d3837c10f27a9e861e238a898fda116c7531def979"
-      url: "https://pub.dev"
-    source: hosted
-    version: "21.2.10"
   synchronized:
     dependency: transitive
     description:
@@ -838,5 +798,5 @@ packages:
     source: hosted
     version: "2.3.0"
 sdks:
-  dart: ">=3.2.0-194.0.dev <4.0.0"
+  dart: ">=3.2.0 <4.0.0"
   flutter: ">=3.10.0"

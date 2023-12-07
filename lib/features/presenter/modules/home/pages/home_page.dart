@@ -1,8 +1,5 @@
-import 'package:clean_architeture_flutter/features/core/constants/app_icons.dart';
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
-import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,45 +8,78 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Modular.to.pushNamed("/onboarding/home/drawer/");
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF2F6F3),
-                    shape: const CircleBorder(),
-                  ),
-                  child: SvgPicture.asset(AppIcons.sidebarIcon),
+      backgroundColor: AppColors.second,
+      body: Padding(
+        padding: AppDefaults.padinngDefault,
+        child: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              const SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 10,
                 ),
               ),
-              floating: true,
-              title: Image.asset(
-                "assets/images/app_logo_seu_controle.png",
-                height: 32,
-              ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 8, top: 4, bottom: 4),
-                  child: ElevatedButton(
+              SliverAppBar(
+                backgroundColor: AppColors.second,
+                titleSpacing: 40,
+                leading: Image.asset(AppImages.user_default),
+                floating: true,
+                title: Padding(
+                  padding: EdgeInsets.only(
+                    top: 25,
+                  ),
+                  child: Text(
+                    "Olá, Rafael!",
+                    style: AppDefaults.textStyleHeader1,
+                  ),
+                ),
+                actions: [
+                  ElevatedButton(
                     onPressed: () {
                       Modular.to.pushNamed("/onboarding/home/search");
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF2F6F3),
+                      backgroundColor: AppColors.second,
                       shape: const CircleBorder(),
                     ),
-                    child: SvgPicture.asset(AppIcons.search),
+                    child: Icon(
+                      Icons.person,
+                      size: 35,
+                    ),
                   ),
+                ],
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 30,
                 ),
-              ],
-            ),
-          ],
+              ),
+              SliverToBoxAdapter(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Salário total",
+                          style: AppDefaults.textStyleHeader2,
+                        ),
+                        Text(
+                          "\$ 1320,00",
+                          style: AppDefaults.textStyleBalance,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                       width: 10,
+                    ),
+                    Icon(Icons.hide_source, color: AppColors.white,)
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

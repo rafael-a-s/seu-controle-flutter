@@ -20,6 +20,8 @@ class AppImages {
   static const numberVerfication = 'https://i.imgur.com/tCCmY3I.png';
   static const verified = 'https://i.imgur.com/vF1jB6b.png';
 
+  static const user_default = "assets/images/user_default.png";
+
   /* <---- Coupon Backgrounds -----> */
   static const couponBackgrounds = [
     'assets/images/coupon_background_1.png',

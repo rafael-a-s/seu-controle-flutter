@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class AppColors {
   /* <----------- Colors ------------> */
   /// Primary Color of this App
-  static const Color primary = Color(0xFF00AD48);
+  static const Color primary = Color(0xFF85FFBD);
+  static const Color second = Color(0xFF060606);
+  static const Color white = Color(0xFFFFFFFF);
 
   // Others Color
   static const Color scaffoldBackground = Color(0xFFFFFFFF);
@@ -14,6 +16,7 @@ class AppColors {
   static const Color coloredBackground = Color(0xFFE4F8EA);
   static const Color placeholder = Color(0xFF8B8B97);
   static const Color textInputBackground = Color(0xFFF7F7F7);
+  static const Color textInputBackgroundBlack = Color(0xFF000000);
   static const Color separator = Color(0xFFFAFAFA);
   static const Color gray = Color(0xFFE1E1E1);
 }
