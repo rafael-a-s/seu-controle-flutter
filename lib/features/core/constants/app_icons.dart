@@ -56,4 +56,12 @@ class AppIcons {
   static const contactMap = 'assets/icons/contact_map.svg';
 
   static const cardAdd = 'assets/icons/card_add.svg';
+
+  static const ocultar = "assets/images/ocultar.png";
+
+  static const graficBarras = "assets/images/grafico_barras.png";
+  static const estimativa = "assets/images/estimativa.png";
+  static const doar = "assets/images/doar.png";
+  static const spotify = "assets/images/spotify.png";
+  static const netflix = "assets/images/netflix.png";
 }

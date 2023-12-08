@@ -46,7 +46,7 @@ class AppDefaults {
   );
 
   static TextStyle textStyleHeader2 = const TextStyle(
-    color: AppColors.textInputBackground,
+    color: Color.fromARGB(255, 255, 255, 255),
     fontSize: 15,
     fontWeight: FontWeight.bold,
   );
@@ -57,10 +57,11 @@ class AppDefaults {
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle textPlaceholderStyleDefault = const TextStyle(
-    color: AppColors.placeholder,
-    fontSize: 15,
-    fontWeight: FontWeight.w500,
+  static TextStyle textPlaceholderStyleDefault = GoogleFonts.getFont(
+    'Poppins',
+    color: const Color.fromARGB(255, 2, 2, 2).withOpacity(.6),
+    fontWeight: FontWeight.bold,
+    fontSize: 17,
   );
 
   static TextStyle textStyleBalance = GoogleFonts.getFont(
@@ -68,6 +69,20 @@ class AppDefaults {
     color: AppColors.white,
     fontWeight: FontWeight.bold,
     fontSize: 30,
+  );
+
+  static TextStyle textStyleBalanceMinimun = GoogleFonts.getFont(
+    'Poppins',
+    color: AppColors.white,
+    fontWeight: FontWeight.bold,
+    fontSize: 17,
+  );
+
+  static TextStyle textStylePorcent = GoogleFonts.getFont(
+    'Poppins',
+    color: AppColors.white,
+    fontWeight: FontWeight.bold,
+    fontSize: 17,
   );
 
   static SizedBox sizedBox = const SizedBox(
