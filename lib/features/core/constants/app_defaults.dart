@@ -16,6 +16,8 @@ class AppDefaults {
   /// Used For Border Radius
   static BorderRadius borderRadius = BorderRadius.circular(radius);
 
+  static BorderRadius borderRadiusCircle = BorderRadius.circular(50);
+
   /// Used For Bottom Sheet
   static BorderRadius bottomSheetRadius = const BorderRadius.only(
     topLeft: Radius.circular(radius),
@@ -42,13 +44,33 @@ class AppDefaults {
     'Poppins',
     color: AppColors.white,
     fontWeight: FontWeight.bold,
-    fontSize: 20,
+    fontSize: 30,
   );
 
   static TextStyle textStyleHeader2 = const TextStyle(
     color: Color.fromARGB(255, 255, 255, 255),
-    fontSize: 15,
+    fontSize: 25,
     fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle textStyleHeader3 = const TextStyle(
+    color: Color.fromARGB(255, 255, 255, 255),
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle textParagraph = GoogleFonts.getFont(
+    'Poppins',
+    color:  AppColors.white,
+    fontWeight: FontWeight.w500,
+    fontSize: 15,
+  );
+
+  static TextStyle textParagraphOpacity = GoogleFonts.getFont(
+    'Poppins',
+    color:  AppColors.white.withOpacity(.6),
+    fontWeight: FontWeight.w500,
+    fontSize: 15,
   );
 
   static TextStyle textStyleDefault = const TextStyle(

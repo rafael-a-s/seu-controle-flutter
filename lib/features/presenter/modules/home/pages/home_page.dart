@@ -291,11 +291,11 @@ class HomePage extends StatelessWidget {
                   children: [
                     Text(
                       "Transações",
-                      style: AppDefaults.textStyleHeader1,
+                      style: AppDefaults.textStyleHeader2,
                     ),
                     Text(
                       "Ver tudo",
-                      style: AppDefaults.textStyleHeader1,
+                      style: AppDefaults.textStyleHeader2,
                     ),
                   ],
                 ),
@@ -335,7 +335,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Text(
                             "Spotify Premiun",
-                            style: AppDefaults.textStyleHeader2,
+                            style: AppDefaults.textStyleHeader3,
                           ),
                           Text(
                             "Música",
@@ -348,7 +348,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Text(
                             "- R\$ 11,99",
-                            style: AppDefaults.textStyleHeader2,
+                            style: AppDefaults.textStyleHeader3,
                           ),
                           Text(
                             "07/12 22:06",
@@ -395,7 +395,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Text(
                             "Netflix",
-                            style: AppDefaults.textStyleHeader2,
+                            style: AppDefaults.textStyleHeader3,
                           ),
                           Text(
                             "Entreterimento",
@@ -408,7 +408,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Text(
                             "- R\$ 11,99",
-                            style: AppDefaults.textStyleHeader2,
+                            style: AppDefaults.textStyleHeader3,
                           ),
                           Text(
                             "07/12 22:06",

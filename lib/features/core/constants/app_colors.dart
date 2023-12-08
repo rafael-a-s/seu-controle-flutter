@@ -4,6 +4,7 @@ class AppColors {
   /* <----------- Colors ------------> */
   /// Primary Color of this App
   static const Color primary = Color.fromARGB(255, 70, 214, 138);
+  static  Color primaryOpacity = Color.fromARGB(255, 70, 214, 138).withOpacity(.6);
   static const Color second = Color(0xFF060606);
   static const Color white = Color(0xFFFFFFFF);
 
