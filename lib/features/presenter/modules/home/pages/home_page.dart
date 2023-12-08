@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                 actions: [
                   ElevatedButton(
                     onPressed: () {
-                      Modular.to.pushNamed("/onboarding/home/search");
+                      Modular.to.pushNamed("/onboarding/home/profile");
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.second,

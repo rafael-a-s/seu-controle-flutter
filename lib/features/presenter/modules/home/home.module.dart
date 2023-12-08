@@ -1,6 +1,5 @@
-import 'package:clean_architeture_flutter/features/presenter/modules/drawer/drawer.module.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/pages/home_page.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/pages/search_page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/profile/profile.module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeModule extends Module {
@@ -19,11 +18,6 @@ class HomeModule extends Module {
           child: (_, __) => const HomePage(),
           transition: TransitionType.leftToRight,
         ),
-        ChildRoute(
-          "/search",
-          child: (_, __) => const SearchPage(),
-          transition: TransitionType.leftToRight,
-        ),
-        ModuleRoute("/drawer", module: DrawerModule())
+        ModuleRoute("/profile", module: ProfileModule())
       ];
 }
