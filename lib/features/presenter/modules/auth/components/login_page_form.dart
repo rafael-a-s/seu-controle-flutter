@@ -45,18 +45,19 @@ class _LoginPageFormState extends State<LoginPageForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Phone Field
-              const Text("Phone Number"),
+              const Text("Cpf"),
+
               const SizedBox(height: 8),
+
               TextFormField(
                 keyboardType: TextInputType.number,
-                validator: Validators.requiredWithFieldName('Phone'),
+                validator: Validators.requiredWithFieldName('Cpf'),
                 textInputAction: TextInputAction.next,
               ),
               const SizedBox(height: AppDefaults.padding),
 
-              // Password Field
-              const Text("Password"),
+              const Text("Senha"),
+
               const SizedBox(height: 8),
               TextFormField(
                 validator: Validators.password,
@@ -84,7 +85,7 @@ class _LoginPageFormState extends State<LoginPageForm> {
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoutes.forgotPassword);
                   },
-                  child: const Text('Forget Password?'),
+                  child: const Text('Esqueceu sua senha?'),
                 ),
               ),
 
