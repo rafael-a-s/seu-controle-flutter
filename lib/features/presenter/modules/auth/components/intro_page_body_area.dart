@@ -43,8 +43,7 @@ class IntroPageBodyArea extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () =>
-                        Modular.to.pushNamed("/onboarding/auth/login"),
+                    onPressed: () => Modular.to.pushNamed("/auth/login"),
                     child: const Text('Continue com seu email'),
                   ),
                 ),
@@ -52,8 +51,7 @@ class IntroPageBodyArea extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, AppRoutes.signup),
+                    onPressed: () => Modular.to.pushNamed("/auth/sign-up"),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black,
                       backgroundColor: Colors.white,

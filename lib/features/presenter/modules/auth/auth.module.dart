@@ -1,29 +1,18 @@
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/intro_login_page.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/login_page.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/home.module.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/sign_up_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AuthModule extends Module {
-  @override
-  List<Module> get imports => [];
+  AuthModule();
 
   @override
-  final List<Bind> binds = [
-    Bind.factory((i) => AuthModule()),
-  ];
+  void binds(Injector i) {}
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          "/",
-          child: (_, __) => const IntroLoginPage(),
-          transition: TransitionType.leftToRight,
-        ),
-        ChildRoute(
-          "/login",
-          child: (_, __) => const LoginPage(),
-          transition: TransitionType.leftToRight,
-        ),
-        ModuleRoute("/home", module: HomeModule())
-      ];
+  void routes(r) {
+    r.child("/", child: (_) => const IntroLoginPage());
+    r.child("/login", child: (_) => const LoginPage());
+    r.child("/sign-up", child: (_) => const SignUpPage());
+  }
 }

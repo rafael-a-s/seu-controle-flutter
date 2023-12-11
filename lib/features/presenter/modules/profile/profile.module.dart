@@ -2,20 +2,13 @@ import 'package:clean_architeture_flutter/features/presenter/modules/profile/pag
 import 'package:flutter_modular/flutter_modular.dart';
 
 class ProfileModule extends Module {
-  @override
-  List<Module> get imports => [];
+  ProfileModule();
 
   @override
-  final List<Bind> binds = [
-    Bind.factory((i) => ProfileModule()),
-  ];
+  void binds(Injector i) {}
 
   @override
-  List<ModularRoute> get routes => [
-    ChildRoute(
-      "/",
-      child: (_, __) => const ProfilePage(),
-      transition: TransitionType.leftToRight,
-    ),
-  ];
+  void routes(RouteManager r) {
+    r.child("/", child: (_) => const ProfilePage());
+  }
 }

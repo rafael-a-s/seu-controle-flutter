@@ -7,17 +7,11 @@ class HomeModule extends Module {
   List<Module> get imports => [];
 
   @override
-  final List<Bind> binds = [
-    Bind.factory((i) => HomeModule()),
-  ];
+  void binds(Injector i) {}
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          "/",
-          child: (_, __) => const HomePage(),
-          transition: TransitionType.leftToRight,
-        ),
-        ModuleRoute("/profile", module: ProfileModule())
-      ];
+  void routes(RouteManager r) {
+    r.child("/", child: (_) => const HomePage());
+    r.module("/profile", module: ProfileModule());
+  }
 }
