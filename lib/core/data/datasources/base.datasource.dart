@@ -15,8 +15,8 @@ abstract class BaseDatasource<T extends BaseEntity, ID>
       final data = response.data as List;
       final JsonModelConvert<T> convert = getJsonConvert();
       return data.map((value) => convert.fromJson(value)).toList();
-    } on DioException catch (e) {
-      throw DioException(requestOptions: RequestOptions(), error: e.error);
+    } on DioError catch (e) {
+      throw DioError(requestOptions: RequestOptions(path: ''), error: e.error);
     }
   }
 
@@ -27,8 +27,8 @@ abstract class BaseDatasource<T extends BaseEntity, ID>
       final data = response.data;
       final JsonModelConvert<T> convert = getJsonConvert();
       return convert.fromJson(data);
-    } on DioException catch (e) {
-      throw DioException(requestOptions: RequestOptions(), error: e.error);
+    } on DioError catch (e) {
+      throw DioError(requestOptions: RequestOptions(path: ""), error: e.error);
     }
   }
 
@@ -41,8 +41,8 @@ abstract class BaseDatasource<T extends BaseEntity, ID>
       final data = response.data;
 
       return convert.fromJson(data);
-    } on DioException catch (e) {
-      throw DioException(requestOptions: RequestOptions(), error: e.error);
+    } on DioError catch (e) {
+      throw DioError(requestOptions: RequestOptions(path: ""), error: e.error);
     }
   }
 
@@ -54,8 +54,8 @@ abstract class BaseDatasource<T extends BaseEntity, ID>
           await client.put('$api/${model.id}', data: convert.toJson(model));
       final data = response.data;
       return convert.fromJson(data);
-    } on DioException catch (e) {
-      throw DioException(requestOptions: RequestOptions(), error: e.error);
+    } on DioError catch (e) {
+      throw DioError(requestOptions: RequestOptions(path: ""), error: e.error);
     }
   }
 
@@ -63,8 +63,8 @@ abstract class BaseDatasource<T extends BaseEntity, ID>
   Future<void> delete(ID id) async {
     try {
       await client.delete('$api/$id');
-    } on DioException catch (e) {
-      throw DioException(requestOptions: RequestOptions(), error: e.error);
+    } on DioError catch (e) {
+      throw DioError(requestOptions: RequestOptions(path: ""), error: e.error);
     }
   }
 }
