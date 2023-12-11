@@ -8,7 +8,8 @@ class AppImages {
   static const illustrations404 = 'https://i.imgur.com/SGTzEiC.png';
 
   /* <---- INTRO LOGIN BACKGROUND IMAGES -----> */
-  static const introBackground1 = 'https://i.imgur.com/YQ9twZx.png';
+  static const introBackground1 =
+      "https://i.pinimg.com/originals/3a/ea/99/3aea998326c14f2551621b36396da33c.jpg";
   static const introBackground2 = 'https://i.imgur.com/3hgB1or.png';
 
   /* <---- ONBOARDING IMAGES -----> */

@@ -21,12 +21,12 @@ class IntroPageBodyArea extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Welcome to our',
+                    'Bem Vindo, ao',
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold, color: Colors.black),
+                        fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   Text(
-                    'E-Grocery',
+                    'Seu Controle',
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.w700, color: AppColors.primary),
                   ),
