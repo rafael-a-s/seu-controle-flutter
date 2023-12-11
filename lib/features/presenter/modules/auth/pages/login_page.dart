@@ -1,10 +1,10 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'components/dont_have_account_row.dart';
-import 'components/login_header.dart';
-import 'components/login_page_form.dart';
-import 'components/social_logins.dart';
+import '../components/dont_have_account_row.dart';
+import '../components/login_header.dart';
+import '../components/login_page_form.dart';
+import '../components/social_logins.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

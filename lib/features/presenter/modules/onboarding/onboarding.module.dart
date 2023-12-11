@@ -1,3 +1,4 @@
+import 'package:clean_architeture_flutter/features/presenter/modules/auth/auth.module.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/home.module.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/onboarding/pages/onboarding_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -18,6 +19,6 @@ class OnboardingModule extends Module {
           child: (_, __) => const OnboardingPage(),
           transition: TransitionType.leftToRight,
         ),
-        ModuleRoute("/home", module: HomeModule())
+        ModuleRoute("/auth", module: AuthModule())
       ];
 }

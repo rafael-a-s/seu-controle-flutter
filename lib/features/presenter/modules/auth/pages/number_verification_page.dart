@@ -3,7 +3,7 @@ import 'package:clean_architeture_flutter/features/core/constants/constants.dart
 import 'package:clean_architeture_flutter/features/core/themes/app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'dialogs/verified_dialogs.dart';
+import '../dialogs/verified_dialogs.dart';
 
 class NumberVerificationPage extends StatelessWidget {
   const NumberVerificationPage({Key? key}) : super(key: key);

@@ -1,6 +1,7 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class IntroPageBodyArea extends StatelessWidget {
   const IntroPageBodyArea({
@@ -43,8 +44,8 @@ class IntroPageBodyArea extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () =>
-                        Navigator.pushNamed(context, AppRoutes.loginOrSignup),
-                    child: const Text('Continue with Email or Phone'),
+                        Modular.to.pushNamed("/onboarding/auth/login"),
+                    child: const Text('Continue com seu email'),
                   ),
                 ),
                 const SizedBox(height: AppDefaults.padding),
@@ -57,7 +58,7 @@ class IntroPageBodyArea extends StatelessWidget {
                       foregroundColor: Colors.black,
                       backgroundColor: Colors.white,
                     ),
-                    child: const Text('Create an account'),
+                    child: const Text('Crie sua conta'),
                   ),
                 )
               ],
