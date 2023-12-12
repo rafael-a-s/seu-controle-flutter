@@ -2,7 +2,8 @@ class AppRoutesApi {
   static const String baseUrl = "http://10.0.2.2/:8080";
 
   //AUTH
-  static const authLogin = "/auth/token";
+  static const auth = "/auth";
+  static const authLogin = "$auth/token";
 
   //USER
   static const user = "/user";
