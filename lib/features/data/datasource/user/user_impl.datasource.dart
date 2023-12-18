@@ -1,7 +1,7 @@
 import 'package:clean_architeture_flutter/core/data/datasources/base.datasource.dart';
 import 'package:clean_architeture_flutter/core/domain/base_json.convert.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/user/user.datasource.dart';
-import 'package:clean_architeture_flutter/features/data/model/user.model.dart';
+import 'package:clean_architeture_flutter/features/data/model/user/user.model.dart';
 
 class UserDatasourceImpl extends BaseDatasource<UserModel, dynamic>
     implements UserDatasource {
