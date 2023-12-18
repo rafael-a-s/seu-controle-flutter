@@ -15,8 +15,6 @@ class LoginUsecase extends Usecase<AuthUser, TwoInputParams<String, String>> {
     final cpf = params.input1;
     final password = params.input2;
 
-    return params.props.isNotEmpty
-        ? await authRepository.token(cpf, password)
-        : Left(NullParamFailure());
+    return await authRepository.token(cpf, password);
   }
 }

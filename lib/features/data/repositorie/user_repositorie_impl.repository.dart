@@ -1,7 +1,7 @@
 import 'package:clean_architeture_flutter/core/data/repositories/base.repository.dart';
 import 'package:clean_architeture_flutter/core/domain/base_model.convert.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/user/user.datasource.dart';
-import 'package:clean_architeture_flutter/features/data/model/user.model.dart';
+import 'package:clean_architeture_flutter/features/data/model/user/user.model.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/user.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/repositories/user_repository.dart';
 
