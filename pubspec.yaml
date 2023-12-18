@@ -43,6 +43,7 @@ dependencies:
   flutter_credit_card: ^3.0.3
   google_fonts: ^6.1.0
   flutter_modular: ^6.3.2
+  hive: ^2.2.3
 
 
   # The following adds the Cupertino Icons font to your application.
