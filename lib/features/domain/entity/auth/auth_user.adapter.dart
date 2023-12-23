@@ -17,7 +17,7 @@ class AuthUserAdapter extends TypeAdapter<AuthUser> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    Set<String> roles = (fields[4] as List)?.cast<String>()?.toSet() ?? {};
+    Set<String> roles = (fields[4] as List).cast<String>().toSet();
     return AuthUser(
       id: fields[0] as String,
       name: fields[1] as String,
