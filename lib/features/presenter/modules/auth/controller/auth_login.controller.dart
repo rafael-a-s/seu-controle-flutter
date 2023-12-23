@@ -1,6 +1,6 @@
 import 'package:clean_architeture_flutter/core/state/base_state.dart';
 import 'package:clean_architeture_flutter/core/usecase/usecase.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/auth_user.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/auth/login.usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -1,4 +1,4 @@
-import 'package:clean_architeture_flutter/features/domain/entity/auth_user.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
 
 class AuthUserModel extends AuthUser {
   AuthUserModel({
@@ -10,7 +10,8 @@ class AuthUserModel extends AuthUser {
   });
 
   factory AuthUserModel.fromJson(Map<String, dynamic> json) {
-    Set<String> roles = json['roles'].map((value) => value).toSet();
+    Set<String> roles =
+        json['roles'].map<String>((value) => value.toString()).toSet();
 
     return AuthUserModel(
       id: json['id'],

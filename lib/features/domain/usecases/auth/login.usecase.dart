@@ -1,6 +1,6 @@
 import 'package:clean_architeture_flutter/core/erros/failures.dart';
 import 'package:clean_architeture_flutter/core/usecase/usecase.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/auth_user.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
 import 'package:clean_architeture_flutter/features/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 

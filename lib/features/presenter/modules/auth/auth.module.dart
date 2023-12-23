@@ -1,4 +1,5 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_routes_api.dart';
+import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/auth/auth.datasource.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/auth/auth_impl.datasource.dart';
 import 'package:clean_architeture_flutter/features/data/repositorie/auth_impl.repository.dart';
@@ -8,6 +9,7 @@ import 'package:clean_architeture_flutter/features/presenter/modules/auth/contro
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/intro_login_page.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/login_page.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/sign_up_page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/home.module.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -20,8 +22,8 @@ class AuthModule extends Module {
       () => Dio(
         BaseOptions(
           baseUrl: AppRoutesApi.baseUrl,
-          connectTimeout: const Duration(seconds: 20).inSeconds,
-          receiveTimeout: const Duration(seconds: 20).inSeconds,
+          connectTimeout: 20000,
+          receiveTimeout: 20000,
         ),
       ),
       config: BindConfig(
@@ -40,5 +42,6 @@ class AuthModule extends Module {
     r.child("/", child: (_) => const IntroLoginPage());
     r.child("/login", child: (_) => const LoginPage());
     r.child("/sign-up", child: (_) => const SignUpPage());
+    r.module(AppRoutes.home, module: HomeModule());
   }
 }

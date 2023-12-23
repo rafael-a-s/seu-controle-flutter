@@ -3,7 +3,7 @@ import 'package:clean_architeture_flutter/features/core/constants/constants.dart
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/core/themes/app_themes.dart';
 import 'package:clean_architeture_flutter/features/core/utils/validators.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/auth_user.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/controller/auth_login.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -33,18 +33,18 @@ class _LoginPageFormState extends ConsumerState<LoginPageForm> {
     setState(() {});
   }
 
-  onLogin() {
+  onLogin() async {
     final bool isFormOkay = _key.currentState?.validate() ?? false;
     if (isFormOkay) {
-      ref
+      await ref
           .read(authLoginStateProvider.notifier)
           .login(_cpf.text, _password.text);
 
       final authUser = ref.read(authLoginStateProvider.notifier).state.authUser;
 
       if (authUser != null) {
-        saveUserLogged(authUser);
         Modular.to.pushNamed(AppRoutes.home);
+        saveUserLogged(authUser);
       }
     }
   }

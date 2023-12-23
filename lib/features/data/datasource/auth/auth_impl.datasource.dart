@@ -28,7 +28,6 @@ class AuthDatasourceImpl implements AuthDatasource {
       data: authRequestJson,
     );
 
-    debugPrint(authUserResponse.data);
     return getConvert().fromJson(authUserResponse.data);
   }
 
