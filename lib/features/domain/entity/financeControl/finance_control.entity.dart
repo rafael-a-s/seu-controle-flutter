@@ -1,8 +1,8 @@
 import 'package:clean_architeture_flutter/core/domain/base.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/expense.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/monthly_contribution.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/remuneration.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/user.entity.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/monthlyContribution/monthly_contribution.entity.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/remuneration/remuneration.entity.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/user/user.entity.dart';
 
 class FinanceControl extends BaseEntity {
   final List<Remuneration> remunerations;

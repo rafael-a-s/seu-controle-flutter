@@ -1,5 +1,5 @@
 import 'package:clean_architeture_flutter/core/domain/base.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/type_remuneration_provider.enum.dart';
+import 'package:clean_architeture_flutter/features/domain/enum/type_remuneration_provider.enum.dart';
 
 class Remuneration extends BaseEntity {
   final String provider;

@@ -1,5 +1,5 @@
 import 'package:clean_architeture_flutter/core/domain/base.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/type_expense.entity.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/typeExpense/type_expense.entity.dart';
 
 class Expense extends BaseEntity {
   final String name;

@@ -1,5 +1,5 @@
 import 'package:clean_architeture_flutter/core/domain/base.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/finance_control.entity.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/financeControl/finance_control.entity.dart';
 
 class User extends BaseEntity {
   final String firstName;
