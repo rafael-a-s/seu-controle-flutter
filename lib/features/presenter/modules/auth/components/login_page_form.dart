@@ -10,6 +10,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import 'login_button.dart';
 
@@ -59,6 +60,8 @@ class _LoginPageFormState extends ConsumerState<LoginPageForm> {
   Widget build(BuildContext context) {
     final loading =
         ref.watch(authLoginStateProvider.select((value) => value.isLoading));
+
+    loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
 
     return Theme(
       data: AppTheme.defaultTheme.copyWith(
