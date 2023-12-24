@@ -24,8 +24,8 @@ class LoginPageForm extends StatefulHookConsumerWidget {
 
 class _LoginPageFormState extends ConsumerState<LoginPageForm> {
   final _key = GlobalKey<FormState>();
-  final _cpf = TextEditingController();
-  final _password = TextEditingController();
+  final _cpf = TextEditingController(text: '070.860.363-74');
+  final _password = TextEditingController(text: 'R@f@el123123');
 
   bool isPasswordShown = false;
   onPassShowClicked() {
@@ -59,9 +59,6 @@ class _LoginPageFormState extends ConsumerState<LoginPageForm> {
   Widget build(BuildContext context) {
     final loading =
         ref.watch(authLoginStateProvider.select((value) => value.isLoading));
-
-    final authUserLogged =
-        ref.watch(authLoginStateProvider.select((value) => value.authUser));
 
     return Theme(
       data: AppTheme.defaultTheme.copyWith(
