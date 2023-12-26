@@ -21,8 +21,6 @@ class AuthDatasourceImpl implements AuthDatasource {
     final authRequest = AuthRequest(cpf, password);
     final authRequestJson = authRequest.toJson();
 
-    debugPrint(authRequestJson.toString());
-
     final authUserResponse = await client.post(
       AppRoutesApi.authLogin,
       data: authRequestJson,
