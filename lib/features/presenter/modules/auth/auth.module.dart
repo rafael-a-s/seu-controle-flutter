@@ -5,7 +5,9 @@ import 'package:clean_architeture_flutter/features/data/datasource/auth/auth_imp
 import 'package:clean_architeture_flutter/features/data/repositorie/auth_impl.repository.dart';
 import 'package:clean_architeture_flutter/features/domain/repositories/auth_repository.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/auth/login.usecase.dart';
+import 'package:clean_architeture_flutter/features/domain/usecases/auth/sing_up.usecase.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/controller/auth_login.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/auth/controller/auth_sing_up.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/intro_login_page.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/login_page.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/sign_up_page.dart';
@@ -34,7 +36,9 @@ class AuthModule extends Module {
     i.addSingleton<AuthDatasource>(AuthDatasourceImpl.new);
     i.addSingleton<AuthRepository>(AuthRepositoryImpl.new);
     i.add<LoginUsecase>(LoginUsecase.new);
+    i.add<SingUpUsecase>(SingUpUsecase.new);
     i.add<AuthLoginController>(AuthLoginController.new);
+    i.add<AuthSingUpController>(AuthSingUpController.new);
   }
 
   @override

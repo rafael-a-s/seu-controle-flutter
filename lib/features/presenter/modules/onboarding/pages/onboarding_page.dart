@@ -36,7 +36,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   _gotoLoginSignUp() {
-    Modular.to.navigate("/auth/");
+    Modular.to.navigate("/auth");
   }
 
   @override

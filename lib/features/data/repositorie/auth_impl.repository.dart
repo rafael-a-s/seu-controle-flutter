@@ -3,10 +3,10 @@ import 'package:clean_architeture_flutter/core/erros/exceptions.dart';
 import 'package:clean_architeture_flutter/core/erros/failures.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/auth/auth.datasource.dart';
 import 'package:clean_architeture_flutter/features/data/model/auth/auth_user.model.dart';
+import 'package:clean_architeture_flutter/features/data/model/user/user_sing_up.model.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
 import 'package:clean_architeture_flutter/features/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final ModelConvert<AuthUser, AuthUserModel> modelConvert = ModelConvert(
@@ -37,6 +37,17 @@ class AuthRepositoryImpl implements AuthRepository {
       AuthUser authUserEntity = modelConvert.fromEntity(authUser);
 
       return Right(authUserEntity);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> singUp(UserSingUpModel userModel) async {
+    try {
+      String location = await datasource.singUp(userModel);
+
+      return Right(location);
     } on ServerException {
       return Left(ServerFailure());
     }
