@@ -1,13 +1,38 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/controller/home.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulHookConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  _HomePage createState() => _HomePage();
+}
+
+class _HomePage extends ConsumerState<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      ref.read(homeStateProvider.notifier).getUserLogged();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final loading =
+        ref.watch(homeStateProvider.select((value) => value.isLoading));
+
+    final authUser =
+        ref.watch(homeStateProvider.select((value) => value.authUser));
+
+    loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
+
     return Scaffold(
       backgroundColor: AppColors.second,
       body: Padding(
@@ -30,7 +55,7 @@ class HomePage extends StatelessWidget {
                     top: 25,
                   ),
                   child: Text(
-                    "Olá, Rafael!",
+                    authUser!.name,
                     style: AppDefaults.textStyleHeader1,
                   ),
                 ),
