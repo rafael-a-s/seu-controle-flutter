@@ -14,9 +14,12 @@ final homeStateProvider =
 class HomeState extends BaseState {
   AuthUser? authUser;
 
-  HomeState({required super.isLoading, this.authUser, super.error});
+  HomeState({required super.isLoading, required this.authUser, super.error});
 
-  factory HomeState.inital() => HomeState(isLoading: false);
+  factory HomeState.inital() => HomeState(
+      isLoading: false,
+      authUser: AuthUser(
+          id: '', name: '', cpf: '', acessToken: '', roles: <String>{}));
 
   HomeState copyWith({
     AuthUser? authUser,

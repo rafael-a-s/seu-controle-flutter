@@ -1,4 +1,5 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
+import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/controller/home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -62,7 +63,7 @@ class _HomePage extends ConsumerState<HomePage> {
                 actions: [
                   ElevatedButton(
                     onPressed: () {
-                      Modular.to.pushNamed("/onboarding/home/profile");
+                      Modular.to.pushNamed(AppRoutes.profile);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.second,

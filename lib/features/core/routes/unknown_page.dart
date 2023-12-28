@@ -61,9 +61,7 @@ class UnknownPage extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.entryPoint);
-                },
+                onPressed: () {},
                 child: const Text('Try Again'),
               ),
             ),
