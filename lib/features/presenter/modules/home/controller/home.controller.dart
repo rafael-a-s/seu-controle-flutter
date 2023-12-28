@@ -1,7 +1,6 @@
 import 'package:clean_architeture_flutter/core/state/base_state.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_key_hiver.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
-import 'package:clean_architeture_flutter/features/domain/usecases/auth/sing_up.usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
