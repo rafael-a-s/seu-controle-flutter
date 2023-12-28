@@ -1,8 +1,10 @@
 import 'package:clean_architeture_flutter/core/state/base_state.dart';
+import 'package:clean_architeture_flutter/features/core/constants/app_key_hiver.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/financeControl/finance_control.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/user/user.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/user/get_user.usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final profileStateProvider =
@@ -53,6 +55,22 @@ class ProfileController extends StateNotifier<ProfileState> {
           (r) => state = state.copyWith(user: r),
         ),
       );
+
+      state = state.copyWith(isLoading: false);
+    } catch (e) {
+      state = state.copyWith(isLoading: false);
+      rethrow;
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      state = state.copyWith(isLoading: true);
+
+      var userLoggedBox = await Hive.openBox(AppKeyHive.userLogged);
+      userLoggedBox.delete(AppKeyHive.getUserLogged);
+      userLoggedBox.clear();
+      userLoggedBox.close();
 
       state = state.copyWith(isLoading: false);
     } catch (e) {
