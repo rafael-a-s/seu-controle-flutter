@@ -1,18 +1,39 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_images.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/profile/controller/profile.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+class ProfilePage extends StatefulHookConsumerWidget {
+  final String id;
+
+  const ProfilePage({required this.id, super.key});
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfilePageState extends ConsumerState<ProfilePage> {
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      ref.read(profileStateProvider.notifier).getUser(widget.id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final loading =
+        ref.watch(profileStateProvider.select((value) => value.isLoading));
+
+    final user = ref.watch(profileStateProvider.select((value) => value.user));
+
+    loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
+
     return Scaffold(
       backgroundColor: AppColors.second,
       appBar: AppBar(
@@ -44,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           color: AppColors.primary,
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                         ),
-                        child: Icon(Icons.edit),
+                        child: const Icon(Icons.edit),
                       ),
                     )
                   ],
@@ -59,11 +80,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   children: [
                     Text(
-                      "Rafael Aguiar",
+                      '${user!.firstName} ${user.lastName}',
                       style: AppDefaults.textStyleHeader1,
                     ),
                     Text(
-                      "rafaelaguiar@gmail.com",
+                      user.email,
                       style: AppDefaults.textParagraphOpacity,
                     ),
                     const SizedBox(

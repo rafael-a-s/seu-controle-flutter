@@ -7,7 +7,7 @@ class User extends BaseEntity {
   final String cpf;
   final String email;
   final Set<String> roles;
-  final FinanceControl financeControl;
+  final FinanceControl? financeControl;
 
   User(
       {dynamic id,
@@ -16,7 +16,7 @@ class User extends BaseEntity {
       required this.cpf,
       required this.email,
       required this.roles,
-      required this.financeControl})
+      this.financeControl})
       : super(id: id);
 
   List<Object> get props => [
@@ -26,6 +26,6 @@ class User extends BaseEntity {
         cpf,
         email,
         roles,
-        financeControl,
+        financeControl!,
       ];
 }

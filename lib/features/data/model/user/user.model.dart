@@ -8,10 +8,11 @@ class UserModel extends User {
       required super.cpf,
       required super.email,
       required super.roles,
-      required super.financeControl});
+      super.financeControl});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    Set<String> roles = json['roles'].map((value) => value).toSet();
+    Set<String> roles =
+        json['roles'].map<String>((value) => value.toString()).toSet();
 
     return UserModel(
       id: json['id'],

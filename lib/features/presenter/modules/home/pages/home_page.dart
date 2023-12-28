@@ -63,7 +63,8 @@ class _HomePage extends ConsumerState<HomePage> {
                 actions: [
                   ElevatedButton(
                     onPressed: () {
-                      Modular.to.pushNamed(AppRoutes.profile);
+                      Modular.to
+                          .pushNamed('${AppRoutes.profile}/${authUser.id}');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.second,
