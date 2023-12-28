@@ -37,12 +37,14 @@ class AuthSingUpController extends StateNotifier<AuthSingUpState> {
   Future<void> singUp(Map<String, dynamic> user) async {
     try {
       state = state.copyWith(isLoading: true);
-      singUpUsecase(user).then((value) => value.fold(
+      await singUpUsecase(user).then((value) => value.fold(
             (l) => {
               state = state.copyWith(error: l.toString()),
             },
-            (r) => state = state.copyWith(isLoading: false, uri: r),
+            (r) => state = state.copyWith(uri: r),
           ));
+
+      state = state.copyWith(isLoading: false);
     } catch (e) {
       state = state.copyWith(isLoading: false);
       rethrow;

@@ -1,4 +1,5 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_mask.dart';
+import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/core/utils/validators.dart';
@@ -8,6 +9,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import 'already_have_accout.dart';
 import 'sign_up_button.dart';
@@ -46,6 +49,13 @@ class _SingUpForm extends ConsumerState<SignUpForm> {
       final location = ref.read(authSingUpStateProvider.notifier).state.uri;
 
       if (location!.isNotEmpty) {
+        showTopSnackBar(
+          Overlay.of(context),
+          const CustomSnackBar.success(
+            message: AppMessage.userCreated,
+            backgroundColor: AppColors.primary,
+          ),
+        );
         Modular.to.pushNamed('/auth${AppRoutes.login}');
       }
     }
