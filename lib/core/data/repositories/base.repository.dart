@@ -25,9 +25,9 @@ abstract class BaseRepository<T extends BaseEntity, M extends BaseEntity, ID>
   }
 
   @override
-  Future<Either<Failure, T>> get() async {
+  Future<Either<Failure, T>> get(ID id) async {
     try {
-      final result = await datasource.get(ID);
+      final result = await datasource.get(id);
       final ModelConvert<T, M> convert = getModelConvert();
       return Right(convert.fromEntity(result as M));
     } on ServerException {
