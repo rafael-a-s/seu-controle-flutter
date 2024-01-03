@@ -1,10 +1,14 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
-import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/components/app_bar_home.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_expense.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_monthly_contribution.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_sub_total_monthly.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_total_spend_week.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_transaction.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/components/wage_info.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/controller/home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -46,201 +50,35 @@ class _HomePage extends ConsumerState<HomePage> {
                   height: 10,
                 ),
               ),
-              SliverAppBar(
-                backgroundColor: AppColors.second,
-                titleSpacing: 40,
-                leading: Image.asset(AppImages.user_default),
-                floating: true,
-                title: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 25,
-                  ),
-                  child: Text(
-                    authUser!.name,
-                    style: AppDefaults.textStyleHeader1,
-                  ),
-                ),
-                actions: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Modular.to
-                          .pushNamed('${AppRoutes.profile}/${authUser.id}');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.second,
-                      shape: const CircleBorder(),
-                    ),
-                    child: const Icon(
-                      Icons.person,
-                      size: 35,
-                    ),
-                  ),
-                ],
+              AppBarHomeComponent(
+                id: authUser!.id,
+                name: authUser.name,
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(
                   height: 30,
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Salário total",
-                          style: AppDefaults.textStyleHeader2,
-                        ),
-                        Text(
-                          "\$ 1320,00",
-                          style: AppDefaults.textStyleBalance,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 6,
-                      ),
-                      child: Image.asset(AppIcons.ocultar),
-                    ),
-                  ],
-                ),
+              const SliverToBoxAdapter(
+                child: WageInfoComponent(),
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(
                   height: 30,
                 ),
               ),
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 300,
-                      width: 170,
-                      decoration: const BoxDecoration(
-                        color: AppColors.primary,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Image.asset(
-                            AppIcons.graficBarras,
-                            width: 130,
-                          ),
-                          Text(
-                            "R\$ 150,86",
-                            style: AppDefaults.textStyleBalanceMinimun,
-                          ),
-                          Text(
-                            "Despesas",
-                            style: AppDefaults.textPlaceholderStyleDefault,
-                          ),
-                        ],
-                      ),
-                    ),
+                    CardExpenseComponent(),
                     Column(
                       children: [
-                        Container(
-                          height: 145,
-                          width: 170,
-                          padding: const EdgeInsets.all(15),
-                          decoration: const BoxDecoration(
-                            color: AppColors.primary,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.asset(
-                                    AppIcons.estimativa,
-                                    height: 30,
-                                  ),
-                                  Text(
-                                    "Total \nSemanal",
-                                    style:
-                                        AppDefaults.textPlaceholderStyleDefault,
-                                  ),
-                                  Text(
-                                    "R\$ 150,86",
-                                    style: AppDefaults.textStyleBalanceMinimun,
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    "15%",
-                                    style: AppDefaults.textStylePorcent,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
+                        CardTotalSpendWeekComponent(),
+                        SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          height: 145,
-                          width: 170,
-                          padding: const EdgeInsets.all(15),
-                          decoration: const BoxDecoration(
-                            color: AppColors.primary,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.asset(
-                                    AppIcons.doar,
-                                    height: 30,
-                                  ),
-                                  Text(
-                                    "Aporte \nMensal",
-                                    style:
-                                        AppDefaults.textPlaceholderStyleDefault,
-                                  ),
-                                  Text(
-                                    "R\$ 150,86",
-                                    style: AppDefaults.textStyleBalanceMinimun,
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    "15%",
-                                    style: AppDefaults.textStylePorcent,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
+                        CardMonthlyContributionComponent(),
                       ],
                     )
                   ],
@@ -251,61 +89,8 @@ class _HomePage extends ConsumerState<HomePage> {
                   height: 30,
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Container(
-                  height: 145,
-                  width: 170,
-                  padding: const EdgeInsets.all(15),
-                  decoration: const BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Sub Total",
-                            style: AppDefaults.textPlaceholderStyleDefault,
-                          ),
-                          Text(
-                            "Quanto te \nsobra esse mês",
-                            style: GoogleFonts.getFont(
-                              'Poppins',
-                              color: const Color.fromARGB(255, 0, 0, 0)
-                                  .withOpacity(.6),
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            "R\$ 700,00",
-                            style: AppDefaults.textStyleBalance,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "15%",
-                            style: AppDefaults.textStylePorcent,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+              const SliverToBoxAdapter(
+                child: CardSubTotalMonthlyComponent(),
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(
@@ -332,120 +117,16 @@ class _HomePage extends ConsumerState<HomePage> {
                   height: 30,
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Container(
-                  height: 90,
-                  width: 170,
-                  padding: const EdgeInsets.all(15),
-                  decoration: const BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: 70,
-                        height: 70,
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 205, 233, 205)
-                                .withOpacity(.8),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Image.asset(AppIcons.spotify),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Spotify Premiun",
-                            style: AppDefaults.textStyleHeader3,
-                          ),
-                          Text(
-                            "Música",
-                            style: AppDefaults.textPlaceholderStyleDefault,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "- R\$ 11,99",
-                            style: AppDefaults.textStyleHeader3,
-                          ),
-                          Text(
-                            "07/12 22:06",
-                            style: AppDefaults.textPlaceholderStyleDefault,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+              const SliverToBoxAdapter(
+                child: CardTransactionComponent(),
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(
                   height: 20,
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Container(
-                  height: 90,
-                  width: 170,
-                  padding: const EdgeInsets.all(15),
-                  decoration: const BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: 70,
-                        height: 70,
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 205, 233, 205)
-                                .withOpacity(.8),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Image.asset(AppIcons.netflix),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Netflix",
-                            style: AppDefaults.textStyleHeader3,
-                          ),
-                          Text(
-                            "Entreterimento",
-                            style: AppDefaults.textPlaceholderStyleDefault,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "- R\$ 11,99",
-                            style: AppDefaults.textStyleHeader3,
-                          ),
-                          Text(
-                            "07/12 22:06",
-                            style: AppDefaults.textPlaceholderStyleDefault,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+              const SliverToBoxAdapter(
+                child: CardTransactionComponent(),
               ),
             ],
           ),
