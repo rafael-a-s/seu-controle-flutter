@@ -1,6 +1,7 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/components/card_contribution.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/pages/form_monthly_contribution.page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -14,6 +15,15 @@ class MonthlyContributionPage extends StatefulHookConsumerWidget {
 
 class _MonthlyContributionPageState
     extends ConsumerState<MonthlyContributionPage> {
+  void _showModalNewContribution(context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return FormMonthlyContributionPage();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
