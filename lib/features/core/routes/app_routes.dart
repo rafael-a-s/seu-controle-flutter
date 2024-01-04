@@ -14,6 +14,9 @@ class AppRoutes {
   /* <---- home -----> */
   static const home = '/home';
 
+  /* <---- home -----> */
+  static const monthlyContribution = '/monthlyContribution';
+
   /* <---- Profile & Settings -----> */
   static const profile = '/profile';
 }

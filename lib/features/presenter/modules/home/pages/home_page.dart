@@ -1,4 +1,5 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
+import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/components/app_bar_home.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_expense.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_monthly_contribution.component.dart';
@@ -9,6 +10,7 @@ import 'package:clean_architeture_flutter/features/presenter/modules/home/compon
 import 'package:clean_architeture_flutter/features/presenter/modules/home/controller/home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -67,18 +69,22 @@ class _HomePage extends ConsumerState<HomePage> {
                   height: 30,
                 ),
               ),
-              const SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CardExpenseComponent(),
+                    const CardExpenseComponent(),
                     Column(
                       children: [
-                        CardTotalSpendWeekComponent(),
-                        SizedBox(
+                        const CardTotalSpendWeekComponent(),
+                        const SizedBox(
                           height: 10,
                         ),
-                        CardMonthlyContributionComponent(),
+                        GestureDetector(
+                          onTap: () => Modular.to
+                              .pushNamed(AppRoutes.monthlyContribution),
+                          child: const CardMonthlyContributionComponent(),
+                        ),
                       ],
                     )
                   ],

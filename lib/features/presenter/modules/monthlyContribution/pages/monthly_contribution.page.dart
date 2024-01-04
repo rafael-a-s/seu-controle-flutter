@@ -24,7 +24,8 @@ class _MonthlyContributionPageState
       body: Padding(
         padding: AppDefaults.padinngDefault,
         child: const SafeArea(
-          child: CustomScrollView(slivers: []),
+          child: CustomScrollView(
+              slivers: [SliverToBoxAdapter(child: Text('aporte mensal'))]),
         ),
       ),
     );

@@ -3,8 +3,8 @@ import 'package:clean_architeture_flutter/features/presenter/modules/monthlyCont
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class MonthlyContribution extends Module {
-  MonthlyContribution();
+class MonthlyContributionModule extends Module {
+  MonthlyContributionModule();
 
   @override
   void binds(Injector i) {
