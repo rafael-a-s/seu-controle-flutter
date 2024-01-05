@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../components/app_back_button.dart';
 import '../components/network_image.dart';
 import '../constants/constants.dart';
-import 'app_routes.dart';
 
 class UnknownPage extends StatelessWidget {
   const UnknownPage({Key? key}) : super(key: key);

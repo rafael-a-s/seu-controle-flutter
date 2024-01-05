@@ -26,11 +26,11 @@ class SignUpForm extends StatefulHookConsumerWidget {
 
 class _SingUpForm extends ConsumerState<SignUpForm> {
   final _key = GlobalKey<FormState>();
-  final _firstName = TextEditingController(text: 'Hemilly');
-  final _lastName = TextEditingController(text: 'Christinne');
+  final _firstName = TextEditingController(text: 'Rafael');
+  final _lastName = TextEditingController(text: 'Aguiar');
   final _cpf = TextEditingController(text: '070.860.363-74');
-  final _email = TextEditingController(text: 'hemi@gmail.com');
-  final _password = TextEditingController(text: 'R@fael123fd');
+  final _email = TextEditingController(text: 'rafael@gmail.com');
+  final _password = TextEditingController(text: 'R@f@el123123');
 
   singUp() async {
     final bool isFormOkay = _key.currentState!.validate();

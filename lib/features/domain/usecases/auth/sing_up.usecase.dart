@@ -1,7 +1,7 @@
 import 'package:clean_architeture_flutter/core/erros/failures.dart';
 import 'package:clean_architeture_flutter/core/usecase/usecase.dart';
 import 'package:clean_architeture_flutter/features/data/model/user/user_sing_up.model.dart';
-import 'package:clean_architeture_flutter/features/domain/repositories/auth_repository.dart';
+import 'package:clean_architeture_flutter/features/domain/repository/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class SingUpUsecase extends Usecase<String, Map<String, dynamic>> {

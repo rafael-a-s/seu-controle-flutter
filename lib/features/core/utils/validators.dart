@@ -11,6 +11,13 @@ class Validators {
         errorText: 'A primeira letra deve ser maiúscula')
   ]);
 
+  //Positive Number With Dot
+  static final positiveNumberWithDot = MultiValidator([
+    RequiredValidator(errorText: 'Campo obrigatório'),
+    PatternValidator(r'^\d*\.?\d+$',
+        errorText: 'Insira um número positivo válido')
+  ]);
+
   /// Cpf Validator
   static final cpf = MultiValidator([
     RequiredValidator(errorText: 'Campo obrigatório'),

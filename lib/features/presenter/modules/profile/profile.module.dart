@@ -1,8 +1,8 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_routes_api.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/user/user.datasource.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/user/user_impl.datasource.dart';
-import 'package:clean_architeture_flutter/features/data/repositorie/user_repositorie_impl.repository.dart';
-import 'package:clean_architeture_flutter/features/domain/repositories/user_repository.dart';
+import 'package:clean_architeture_flutter/features/data/repository/user_repositorie_impl.repository.dart';
+import 'package:clean_architeture_flutter/features/domain/repository/user_repository.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/user/get_user.usecase.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/profile/controller/profile.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/profile/pages/profile.page.dart';

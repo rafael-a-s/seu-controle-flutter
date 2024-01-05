@@ -2,8 +2,8 @@ import 'package:clean_architeture_flutter/features/core/constants/app_routes_api
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/auth/auth.datasource.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/auth/auth_impl.datasource.dart';
-import 'package:clean_architeture_flutter/features/data/repositorie/auth_impl.repository.dart';
-import 'package:clean_architeture_flutter/features/domain/repositories/auth_repository.dart';
+import 'package:clean_architeture_flutter/features/data/repository/auth_impl.repository.dart';
+import 'package:clean_architeture_flutter/features/domain/repository/auth_repository.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/auth/login.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/auth/sing_up.usecase.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/controller/auth_login.controller.dart';

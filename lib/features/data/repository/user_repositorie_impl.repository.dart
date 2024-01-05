@@ -3,7 +3,7 @@ import 'package:clean_architeture_flutter/core/domain/base_model.convert.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/user/user.datasource.dart';
 import 'package:clean_architeture_flutter/features/data/model/user/user.model.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/user/user.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/repositories/user_repository.dart';
+import 'package:clean_architeture_flutter/features/domain/repository/user_repository.dart';
 
 class UserRepositoryImpl extends BaseRepository<User, UserModel, dynamic>
     implements UserRepository {

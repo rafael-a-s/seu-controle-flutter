@@ -5,7 +5,7 @@ import 'package:clean_architeture_flutter/features/data/datasource/auth/auth.dat
 import 'package:clean_architeture_flutter/features/data/model/auth/auth_user.model.dart';
 import 'package:clean_architeture_flutter/features/data/model/user/user_sing_up.model.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
-import 'package:clean_architeture_flutter/features/domain/repositories/auth_repository.dart';
+import 'package:clean_architeture_flutter/features/domain/repository/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class AuthRepositoryImpl implements AuthRepository {

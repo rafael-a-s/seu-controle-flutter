@@ -17,9 +17,12 @@ class _MonthlyContributionPageState
     extends ConsumerState<MonthlyContributionPage> {
   void _showModalNewContribution(context) {
     showModalBottomSheet(
+      backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return FormMonthlyContributionPage();
+        return FormMonthlyContributionPage(
+          parentContext: bc,
+        );
       },
     );
   }
@@ -54,16 +57,19 @@ class _MonthlyContributionPageState
               SliverToBoxAdapter(
                 child: Row(
                   children: [
-                    Container(
-                      height: 70,
-                      width: 90,
-                      decoration: const BoxDecoration(
-                        color: AppColors.primary,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    GestureDetector(
+                      onTap: () => _showModalNewContribution(context),
+                      child: Container(
+                        height: 70,
+                        width: 90,
+                        decoration: const BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
+                        child: const Icon(Icons.add, size: 40),
                       ),
-                      child: const Icon(Icons.add, size: 40),
                     ),
                   ],
                 ),
