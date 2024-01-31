@@ -35,11 +35,11 @@ class _FormMonthlyContributionPageState
           value: double.parse(_valueContribution.text));
 
       await ref
-          .read(monthlyContributionStateProvider.notifier)
+          .read(formMonthlyContributionStateProvider.notifier)
           .createMonthlyContribution(monthlyContribution);
 
       final resultMonthlyContribution = ref
-          .read(monthlyContributionStateProvider.notifier)
+          .read(formMonthlyContributionStateProvider.notifier)
           .state
           .monthlyContribution;
 
@@ -59,8 +59,8 @@ class _FormMonthlyContributionPageState
 
   @override
   Widget build(BuildContext context) {
-    final loading = ref.watch(
-        monthlyContributionStateProvider.select((value) => value.isLoading));
+    final loading = ref.watch(formMonthlyContributionStateProvider
+        .select((value) => value.isLoading));
 
     loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
     return Scaffold(

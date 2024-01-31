@@ -1,10 +1,13 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/monthlyContribution/monthly_contribution.entity.dart';
 import 'package:flutter/material.dart';
 
 class CardContributionComponent extends StatefulWidget {
   final int id;
-  const CardContributionComponent({required this.id, super.key});
+  final MonthlyContribution monthlyContribution;
+  const CardContributionComponent(
+      {required this.id, required this.monthlyContribution, super.key});
 
   @override
   State<CardContributionComponent> createState() =>
@@ -16,7 +19,6 @@ class _CardContributionComponentState extends State<CardContributionComponent> {
   Widget build(BuildContext context) {
     return Container(
       height: 90,
-      width: 170,
       margin: const EdgeInsets.only(top: 25),
       padding: const EdgeInsets.all(15),
       decoration: const BoxDecoration(
@@ -42,11 +44,11 @@ class _CardContributionComponentState extends State<CardContributionComponent> {
             ),
           ),
           Text(
-            "Spotify Premiun",
+            widget.monthlyContribution.nameInvestiment,
             style: AppDefaults.textStyleHeader3,
           ),
           Text(
-            "R\$ 11,99",
+            "R\$ ${widget.monthlyContribution.value}",
             style: AppDefaults.textStyleHeader3,
           ),
         ],

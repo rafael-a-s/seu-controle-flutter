@@ -4,32 +4,32 @@ import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContri
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final monthlyContributionStateProvider = StateNotifierProvider.autoDispose<
-    FormMonthlyContributionController, MonthlyContributionState>((ref) {
+final formMonthlyContributionStateProvider = StateNotifierProvider.autoDispose<
+    FormMonthlyContributionController, FormMonthlyContributionState>((ref) {
   return Modular.get<FormMonthlyContributionController>();
 });
 
-class MonthlyContributionState extends BaseState {
+class FormMonthlyContributionState extends BaseState {
   MonthlyContribution? monthlyContribution;
 
-  MonthlyContributionState(
+  FormMonthlyContributionState(
       {required super.isLoading,
       required this.monthlyContribution,
       super.error});
 
-  factory MonthlyContributionState.inital() => MonthlyContributionState(
+  factory FormMonthlyContributionState.inital() => FormMonthlyContributionState(
       isLoading: false,
       monthlyContribution: MonthlyContribution(
         nameInvestiment: '',
         value: 0,
       ));
 
-  MonthlyContributionState copyWith({
+  FormMonthlyContributionState copyWith({
     MonthlyContribution? monthlyContribution,
     bool? isLoading,
     String? error,
   }) {
-    return MonthlyContributionState(
+    return FormMonthlyContributionState(
         monthlyContribution: monthlyContribution ?? this.monthlyContribution,
         isLoading: isLoading ?? this.isLoading,
         error: error ?? this.error);
@@ -37,11 +37,11 @@ class MonthlyContributionState extends BaseState {
 }
 
 class FormMonthlyContributionController
-    extends StateNotifier<MonthlyContributionState> {
+    extends StateNotifier<FormMonthlyContributionState> {
   CreateMonthlyContributionUsecase createMonthlyContributionUsecase;
 
   FormMonthlyContributionController(this.createMonthlyContributionUsecase)
-      : super(MonthlyContributionState.inital());
+      : super(FormMonthlyContributionState.inital());
 
   Future<void> createMonthlyContribution(
       MonthlyContribution monthlyContribution) async {

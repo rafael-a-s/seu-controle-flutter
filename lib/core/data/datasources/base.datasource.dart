@@ -11,7 +11,7 @@ abstract class BaseDatasource<T extends BaseEntity, ID>
   @override
   Future<List<T>> getAll() async {
     try {
-      final response = await client.get(api);
+      final response = await client.get('${api}/all');
       final data = response.data as List;
       final JsonModelConvert<T> convert = getJsonConvert();
       return data.map((value) => convert.fromJson(value)).toList();
