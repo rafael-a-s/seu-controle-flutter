@@ -9,26 +9,19 @@ import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContri
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/controller/form_monthly_contribution.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/pages/monthly_contribution.page.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
 
 class MonthlyContributionModule extends Module {
   MonthlyContributionModule();
 
-  final token = Hive.openBox(AppKeyHive.userLogged);
-
   @override
   void binds(Injector i) {
     i.addLazySingleton<Dio>(
-      () async {
-        var box = await Hive.openBox(AppKeyHive.userLogged);
-        AuthUser token = box.get(AppKeyHive.getUserLogged);
-
+      () {
         return Dio(BaseOptions(
           baseUrl: AppRoutesApi.baseUrl,
-          headers: {
-            "Authorization": "Bearer ${token.acessToken}",
-          },
           connectTimeout: 20000,
           receiveTimeout: 20000,
         ));
