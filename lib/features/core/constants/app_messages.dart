@@ -4,4 +4,6 @@ class AppMessage {
 
   static const String monthlyContributionCreated =
       "Aporte Mensal cadastrado com sucesso!";
+
+  static const String monthlyContributionDelete = "Aporte Removido!";
 }

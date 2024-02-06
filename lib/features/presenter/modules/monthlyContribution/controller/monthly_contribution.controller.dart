@@ -1,6 +1,7 @@
 import 'package:clean_architeture_flutter/core/state/base_state.dart';
 import 'package:clean_architeture_flutter/core/usecase/usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/monthlyContribution/monthly_contribution.entity.dart';
+import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/delete_monthly_contribution.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/get_all_monthly_contribution.usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -12,33 +13,45 @@ final monthlyContributionStateProvider = StateNotifierProvider.autoDispose<
 
 class MonthlyContributionState extends BaseState {
   List<MonthlyContribution>? monthlyContributions;
+  int? statusCodeNoContent;
 
-  MonthlyContributionState(
-      {required super.isLoading,
-      required this.monthlyContributions,
-      super.error});
+  MonthlyContributionState({
+    required super.isLoading,
+    required this.monthlyContributions,
+    required this.statusCodeNoContent,
+    super.error,
+  });
 
   factory MonthlyContributionState.inital() => MonthlyContributionState(
-      isLoading: false, monthlyContributions: <MonthlyContribution>[]);
+        isLoading: false,
+        monthlyContributions: <MonthlyContribution>[],
+        statusCodeNoContent: 0,
+      );
 
   MonthlyContributionState copyWith({
     List<MonthlyContribution>? monthlyContributions,
     bool? isLoading,
     String? error,
+    int? statusCodeNoContent,
   }) {
     return MonthlyContributionState(
-        monthlyContributions: monthlyContributions ?? this.monthlyContributions,
-        isLoading: isLoading ?? this.isLoading,
-        error: error ?? this.error);
+      monthlyContributions: monthlyContributions ?? this.monthlyContributions,
+      isLoading: isLoading ?? this.isLoading,
+      statusCodeNoContent: statusCodeNoContent ?? this.statusCodeNoContent,
+      error: error ?? this.error,
+    );
   }
 }
 
 class MonthlyContributionController
     extends StateNotifier<MonthlyContributionState> {
   GetAllMonthlyContributionUsecase getAllMonthlyContributionUsecase;
+  DeleteMonthlyContributionUsecase deleteMonthlyContributionUsecase;
 
-  MonthlyContributionController(this.getAllMonthlyContributionUsecase)
-      : super(MonthlyContributionState.inital());
+  MonthlyContributionController(
+    this.getAllMonthlyContributionUsecase,
+    this.deleteMonthlyContributionUsecase,
+  ) : super(MonthlyContributionState.inital());
 
   Future<void> getAllMonthlyContribution() async {
     try {
@@ -52,6 +65,31 @@ class MonthlyContributionController
       );
 
       state = state.copyWith(isLoading: false);
+    } catch (e) {
+      state = state.copyWith(isLoading: false);
+      rethrow;
+    }
+  }
+
+  Future<void> deleteMonthlyContribution(String id) async {
+    try {
+      state = state.copyWith(isLoading: true);
+
+      await deleteMonthlyContributionUsecase(id).then(
+        (value) => value.fold(
+          (l) => state = state.copyWith(error: l.toString()),
+          (r) => state = state.copyWith(statusCodeNoContent: r),
+        ),
+      );
+
+      await getAllMonthlyContributionUsecase(NoParams()).then(
+        (value) => value.fold(
+          (l) => state = state.copyWith(error: l.toString()),
+          (r) => state = state.copyWith(monthlyContributions: r),
+        ),
+      );
+
+      state = state.copyWith(isLoading: false, statusCodeNoContent: 0);
     } catch (e) {
       state = state.copyWith(isLoading: false);
       rethrow;

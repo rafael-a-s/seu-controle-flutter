@@ -1,19 +1,16 @@
-import 'package:clean_architeture_flutter/features/core/constants/app_key_hiver.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_routes_api.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/monthlyContribution/monthly_contribution.datasource.dart';
 import 'package:clean_architeture_flutter/features/data/datasource/monthlyContribution/monthly_contribution_impl.datasource.dart';
 import 'package:clean_architeture_flutter/features/data/repository/monthly_contribution_impl.repository.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
 import 'package:clean_architeture_flutter/features/domain/repository/monthly_contribution.repository.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/create_monthly_contribution.usecase.dart';
+import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/delete_monthly_contribution.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/get_all_monthly_contribution.usecase.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/controller/form_monthly_contribution.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/controller/monthly_contribution.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/pages/monthly_contribution.page.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hive/hive.dart';
 
 class MonthlyContributionModule extends Module {
   MonthlyContributionModule();
@@ -41,6 +38,8 @@ class MonthlyContributionModule extends Module {
         CreateMonthlyContributionUsecase.new);
     i.add<GetAllMonthlyContributionUsecase>(
         GetAllMonthlyContributionUsecase.new);
+    i.add<DeleteMonthlyContributionUsecase>(
+        DeleteMonthlyContributionUsecase.new);
     i.add<FormMonthlyContributionController>(
         FormMonthlyContributionController.new);
     i.add<MonthlyContributionController>(MonthlyContributionController.new);

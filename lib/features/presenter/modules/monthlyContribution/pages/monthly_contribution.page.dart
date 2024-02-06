@@ -1,5 +1,6 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
+import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/components/card_contribution.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/controller/monthly_contribution.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/pages/form_monthly_contribution.page.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class MonthlyContributionPage extends StatefulHookConsumerWidget {
   const MonthlyContributionPage({super.key});
@@ -29,6 +32,27 @@ class _MonthlyContributionPageState
         );
       },
     );
+  }
+
+  void onDelete(String id) async {
+    await ref
+        .read(monthlyContributionStateProvider.notifier)
+        .deleteMonthlyContributionUsecase(id);
+
+    final statusCodeNoContent = ref
+        .watch(monthlyContributionStateProvider.notifier)
+        .state
+        .statusCodeNoContent;
+
+    if (statusCodeNoContent == 204) {
+      showTopSnackBar(
+        Overlay.of(context),
+        const CustomSnackBar.success(
+          message: AppMessage.monthlyContributionDelete,
+          backgroundColor: AppColors.primary,
+        ),
+      );
+    }
   }
 
   @override
@@ -106,13 +130,10 @@ class _MonthlyContributionPageState
                     (BuildContext context, int index) {
                   return Slidable(
                     key: ValueKey(index),
-
-                    endActionPane: ActionPane(
-
+                    startActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       children: [
                         SlidableAction(
-                          // An action can be bigger than the others.
                           flex: 2,
                           onPressed: (context) {},
                           backgroundColor: AppColors.second,
@@ -120,8 +141,13 @@ class _MonthlyContributionPageState
                           icon: Icons.edit,
                           label: 'Editar',
                         ),
+                      ],
+                    ),
+                    endActionPane: ActionPane(
+                      motion: const ScrollMotion(),
+                      children: [
                         SlidableAction(
-                          onPressed: (context) {},
+                          onPressed: (context) => onDelete(list[index].id),
                           backgroundColor: AppColors.second,
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
