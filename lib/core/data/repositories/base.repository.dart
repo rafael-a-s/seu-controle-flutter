@@ -58,11 +58,12 @@ abstract class BaseRepository<T extends BaseEntity, M extends BaseEntity, ID>
   }
 
   @override
-  Future<void> delete(ID id) async {
+  Future<Either<Failure, int?>> delete(ID id) async {
     try {
-      await datasource.delete(id);
+      final statusCodeNoContent = await datasource.delete(id);
+      return Right(statusCodeNoContent);
     } on ServerException {
-      Left(ServerFailure());
+      return Left(ServerFailure());
     }
   }
 }

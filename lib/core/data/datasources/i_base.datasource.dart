@@ -14,7 +14,7 @@ abstract class IBaseDatasource<T extends BaseEntity, ID> {
 
   Future<T> update(T model);
 
-  Future<void> delete(ID id);
+  Future<int?> delete(ID id);
 
   JsonModelConvert<T> getJsonConvert();
 }

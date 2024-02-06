@@ -60,9 +60,12 @@ abstract class BaseDatasource<T extends BaseEntity, ID>
   }
 
   @override
-  Future<void> delete(ID id) async {
+  Future<int?> delete(ID id) async {
     try {
-      await client.delete('$api/$id');
+      final response = await client.delete('$api/$id');
+      final statusCodeNoContent = response.statusCode;
+
+      return statusCodeNoContent;
     } on DioError catch (e) {
       throw DioError(requestOptions: RequestOptions(path: ""), error: e.error);
     }

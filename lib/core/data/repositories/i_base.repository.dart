@@ -8,6 +8,6 @@ abstract class IBaseRepository<T extends BaseEntity, M extends BaseEntity, ID> {
   Future<Either<Failure, T>> get(ID id);
   Future<Either<Failure, T>> create(T t);
   Future<Either<Failure, T>> update(T t);
-  Future<void> delete(ID id);
+  Future<Either<Failure, int?>> delete(ID id);
   ModelConvert<T, M> getModelConvert();
 }
