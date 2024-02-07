@@ -11,7 +11,7 @@ class FinanceControlModel extends FinanceControl {
     required super.remunerations,
   }) : super(id: id);
 
-  FinanceControlModel fromJson(Map<String, dynamic> json) {
+  factory FinanceControlModel.fromJson(Map<String, dynamic> json) {
     final monthlyContributionsConvert = json['monthlyContributions']
         .map((value) => MonthlyContributionModel.fromJson(value));
 
@@ -28,4 +28,6 @@ class FinanceControlModel extends FinanceControl {
       remunerations: remunerationConvert,
     );
   }
+
+  Map<String, dynamic> toJson() => {};
 }
