@@ -5,7 +5,9 @@ class MonthlyContributionModel extends MonthlyContribution {
     String? id,
     required super.nameInvestiment,
     required super.value,
-  });
+  }) : super(
+          id: id,
+        );
 
   factory MonthlyContributionModel.fromJson(Map<String, dynamic> json) {
     return MonthlyContributionModel(

@@ -48,7 +48,7 @@ class _CardContributionComponentState extends State<CardContributionComponent> {
             style: AppDefaults.textStyleHeader3,
           ),
           Text(
-            "R\$ ${widget.monthlyContribution.id}",
+            "R\$ ${widget.monthlyContribution.value}",
             style: AppDefaults.textStyleHeader3,
           ),
         ],
