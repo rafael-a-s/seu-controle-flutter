@@ -24,8 +24,8 @@ class FormMonthlyContributionPage extends StatefulHookConsumerWidget {
 class _FormMonthlyContributionPageState
     extends ConsumerState<FormMonthlyContributionPage> {
   final _key = GlobalKey<FormState>();
-  final _nameInvestiment = TextEditingController(text: 'Mxrf11');
-  final _valueContribution = TextEditingController(text: '1000.00');
+  final _nameInvestiment = TextEditingController();
+  final _valueContribution = TextEditingController();
 
   onSubmit() async {
     final bool isFormOkay = _key.currentState!.validate();
