@@ -12,7 +12,7 @@ class MonthlyContributionDatasourceImpl
   final JsonModelConvert<MonthlyContributionModel> jsonModelConvert =
       JsonModelConvert(
     fromJson: (data) => MonthlyContributionModel.fromJson(data),
-    toJson: (convert) => convert.toJson(),
+    toJson: (data) => data.toJson(),
   );
 
   void configureDio() async {

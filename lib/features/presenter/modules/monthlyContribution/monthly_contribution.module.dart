@@ -5,6 +5,7 @@ import 'package:clean_architeture_flutter/features/data/repository/monthly_contr
 import 'package:clean_architeture_flutter/features/domain/repository/monthly_contribution.repository.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/create_monthly_contribution.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/delete_monthly_contribution.usecase.dart';
+import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/edit_monthly_contribution.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/get_all_monthly_contribution.usecase.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/controller/form_monthly_contribution.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/controller/monthly_contribution.controller.dart';
@@ -40,6 +41,7 @@ class MonthlyContributionModule extends Module {
         GetAllMonthlyContributionUsecase.new);
     i.add<DeleteMonthlyContributionUsecase>(
         DeleteMonthlyContributionUsecase.new);
+    i.add<EditMonthlyContributionUsecase>(EditMonthlyContributionUsecase.new);
     i.add<FormMonthlyContributionController>(
         FormMonthlyContributionController.new);
     i.add<MonthlyContributionController>(MonthlyContributionController.new);

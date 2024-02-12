@@ -13,8 +13,10 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class FormMonthlyContributionPage extends StatefulHookConsumerWidget {
   final BuildContext parentContext;
+  final MonthlyContribution? monthlyContribution;
 
-  const FormMonthlyContributionPage({required this.parentContext, super.key});
+  const FormMonthlyContributionPage(
+      {required this.parentContext, this.monthlyContribution, super.key});
 
   @override
   _FormMonthlyContributionPageState createState() =>
@@ -27,27 +29,67 @@ class _FormMonthlyContributionPageState
   final _nameInvestiment = TextEditingController();
   final _valueContribution = TextEditingController();
 
-  onSubmit() async {
+  onSubmit() {
     final bool isFormOkay = _key.currentState!.validate();
     if (isFormOkay) {
-      final monthlyContribution = MonthlyContribution(
-          nameInvestiment: _nameInvestiment.text,
-          value: double.parse(_valueContribution.text));
-
-      await ref
-          .read(formMonthlyContributionStateProvider.notifier)
-          .createMonthlyContribution(monthlyContribution);
-
-      showTopSnackBar(
-        Overlay.of(context),
-        const CustomSnackBar.success(
-          message: AppMessage.monthlyContributionCreated,
-          backgroundColor: AppColors.primary,
-        ),
-      );
-      // ignore: use_build_context_synchronously
-      Navigator.pop(widget.parentContext);
+      widget.monthlyContribution != null ? onEdit() : onCreate();
     }
+  }
+
+  void onCreate() async {
+    final monthlyContribution = MonthlyContribution(
+        nameInvestiment: _nameInvestiment.text,
+        value: double.parse(_valueContribution.text));
+
+    await ref
+        .read(formMonthlyContributionStateProvider.notifier)
+        .createMonthlyContribution(monthlyContribution);
+
+    showTopSnackBar(
+      Overlay.of(context),
+      const CustomSnackBar.success(
+        message: AppMessage.monthlyContributionCreated,
+        backgroundColor: AppColors.primary,
+      ),
+    );
+
+    // ignore: use_build_context_synchronously
+    Navigator.pop(widget.parentContext);
+  }
+
+  void onEdit() async {
+    final monthlyForEdit = MonthlyContribution(
+        id: widget.monthlyContribution!.id,
+        nameInvestiment: _nameInvestiment.text,
+        value: double.parse(_valueContribution.text));
+
+    await ref
+        .read(formMonthlyContributionStateProvider.notifier)
+        .editMonthlyContribution(monthlyForEdit);
+
+    showTopSnackBar(
+      Overlay.of(context),
+      const CustomSnackBar.success(
+        message: AppMessage.MonthlyContributionEdited,
+        backgroundColor: AppColors.primary,
+      ),
+    );
+
+    // ignore: use_build_context_synchronously
+    Navigator.pop(widget.parentContext);
+  }
+
+  void mountForm() {
+    if (widget.monthlyContribution != null) {
+      _nameInvestiment.text = widget.monthlyContribution!.nameInvestiment;
+      _valueContribution.text = widget.monthlyContribution!.value.toString();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    mountForm();
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/monthlyContribution/monthly_contribution.entity.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/components/card_contribution.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/controller/monthly_contribution.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/pages/form_monthly_contribution.page.dart';
@@ -29,6 +30,22 @@ class _MonthlyContributionPageState
       builder: (BuildContext bc) {
         return FormMonthlyContributionPage(
           parentContext: bc,
+        );
+      },
+    ).whenComplete(() => ref
+        .read(monthlyContributionStateProvider.notifier)
+        .getAllMonthlyContribution());
+  }
+
+  void _showModalEditContribution(
+      context, MonthlyContribution monthlyContribution) {
+    showModalBottomSheet(
+      backgroundColor: AppColors.scaffoldWithBoxBackground,
+      context: context,
+      builder: (BuildContext bc) {
+        return FormMonthlyContributionPage(
+          parentContext: bc,
+          monthlyContribution: monthlyContribution,
         );
       },
     ).whenComplete(() => ref
@@ -132,7 +149,8 @@ class _MonthlyContributionPageState
                       children: [
                         SlidableAction(
                           flex: 2,
-                          onPressed: (context) {},
+                          onPressed: (context) =>
+                              _showModalEditContribution(context, list[index]),
                           backgroundColor: AppColors.second,
                           foregroundColor: Colors.white,
                           icon: Icons.edit,

@@ -1,6 +1,7 @@
 import 'package:clean_architeture_flutter/core/state/base_state.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/monthlyContribution/monthly_contribution.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/create_monthly_contribution.usecase.dart';
+import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/edit_monthly_contribution.usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -39,8 +40,10 @@ class FormMonthlyContributionState extends BaseState {
 class FormMonthlyContributionController
     extends StateNotifier<FormMonthlyContributionState> {
   CreateMonthlyContributionUsecase createMonthlyContributionUsecase;
+  EditMonthlyContributionUsecase editMonthlyContributionUsecase;
 
-  FormMonthlyContributionController(this.createMonthlyContributionUsecase)
+  FormMonthlyContributionController(this.createMonthlyContributionUsecase,
+      this.editMonthlyContributionUsecase)
       : super(FormMonthlyContributionState.inital());
 
   Future<void> createMonthlyContribution(
@@ -49,6 +52,25 @@ class FormMonthlyContributionController
       state = state.copyWith(isLoading: true);
 
       await createMonthlyContributionUsecase(monthlyContribution).then(
+        (value) => value.fold(
+          (l) => state = state.copyWith(error: l.toString()),
+          (r) => state = state.copyWith(monthlyContribution: r),
+        ),
+      );
+
+      state = state.copyWith(isLoading: false);
+    } catch (e) {
+      state = state.copyWith(isLoading: false);
+      rethrow;
+    }
+  }
+
+  Future<void> editMonthlyContribution(
+      MonthlyContribution monthlyContribution) async {
+    try {
+      state = state.copyWith(isLoading: true);
+
+      await editMonthlyContributionUsecase(monthlyContribution).then(
         (value) => value.fold(
           (l) => state = state.copyWith(error: l.toString()),
           (r) => state = state.copyWith(monthlyContribution: r),
