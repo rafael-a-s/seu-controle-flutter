@@ -49,7 +49,7 @@ abstract class BaseDatasource<T extends BaseEntity, ID>
   @override
   Future<T> update(T model) async {
     try {
-      JsonModelConvert convert = getJsonConvert();
+      JsonModelConvert<T> convert = getJsonConvert();
       final response =
           await client.put('$api/${model.id}', data: convert.toJson(model));
       final data = response.data;
