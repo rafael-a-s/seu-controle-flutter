@@ -38,22 +38,15 @@ class _FormMonthlyContributionPageState
           .read(formMonthlyContributionStateProvider.notifier)
           .createMonthlyContribution(monthlyContribution);
 
-      final resultMonthlyContribution = ref
-          .read(formMonthlyContributionStateProvider.notifier)
-          .state
-          .monthlyContribution;
-
-      if (resultMonthlyContribution != null) {
-        showTopSnackBar(
-          Overlay.of(context),
-          const CustomSnackBar.success(
-            message: AppMessage.monthlyContributionCreated,
-            backgroundColor: AppColors.primary,
-          ),
-        );
-        // ignore: use_build_context_synchronously
-        Navigator.pop(widget.parentContext);
-      }
+      showTopSnackBar(
+        Overlay.of(context),
+        const CustomSnackBar.success(
+          message: AppMessage.monthlyContributionCreated,
+          backgroundColor: AppColors.primary,
+        ),
+      );
+      // ignore: use_build_context_synchronously
+      Navigator.pop(widget.parentContext);
     }
   }
 

@@ -13,31 +13,26 @@ final monthlyContributionStateProvider = StateNotifierProvider.autoDispose<
 
 class MonthlyContributionState extends BaseState {
   List<MonthlyContribution>? monthlyContributions;
-  int? statusCodeNoContent;
 
   MonthlyContributionState({
     required super.isLoading,
     required this.monthlyContributions,
-    required this.statusCodeNoContent,
     super.error,
   });
 
   factory MonthlyContributionState.inital() => MonthlyContributionState(
         isLoading: false,
         monthlyContributions: <MonthlyContribution>[],
-        statusCodeNoContent: 0,
       );
 
   MonthlyContributionState copyWith({
     List<MonthlyContribution>? monthlyContributions,
     bool? isLoading,
     String? error,
-    int? statusCodeNoContent,
   }) {
     return MonthlyContributionState(
       monthlyContributions: monthlyContributions ?? this.monthlyContributions,
       isLoading: isLoading ?? this.isLoading,
-      statusCodeNoContent: statusCodeNoContent ?? this.statusCodeNoContent,
       error: error ?? this.error,
     );
   }
@@ -75,12 +70,7 @@ class MonthlyContributionController
     try {
       state = state.copyWith(isLoading: true);
 
-      await deleteMonthlyContributionUsecase(id).then(
-        (value) => value.fold(
-          (l) => state = state.copyWith(error: l.toString()),
-          (r) => state = state.copyWith(statusCodeNoContent: r),
-        ),
-      );
+      await deleteMonthlyContributionUsecase(id);
 
       await getAllMonthlyContributionUsecase(NoParams()).then(
         (value) => value.fold(
@@ -89,7 +79,7 @@ class MonthlyContributionController
         ),
       );
 
-      state = state.copyWith(isLoading: false, statusCodeNoContent: 0);
+      state = state.copyWith(isLoading: false);
     } catch (e) {
       state = state.copyWith(isLoading: false);
       rethrow;

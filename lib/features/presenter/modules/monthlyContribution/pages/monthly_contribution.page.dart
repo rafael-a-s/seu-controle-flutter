@@ -31,20 +31,17 @@ class _MonthlyContributionPageState
           parentContext: bc,
         );
       },
-    );
+    ).whenComplete(() => ref
+        .read(monthlyContributionStateProvider.notifier)
+        .getAllMonthlyContribution());
   }
 
   void onDelete(String id) async {
-    await ref
-        .read(monthlyContributionStateProvider.notifier)
-        .deleteMonthlyContributionUsecase(id);
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      ref
+          .read(monthlyContributionStateProvider.notifier)
+          .deleteMonthlyContribution(id);
 
-    final statusCodeNoContent = ref
-        .watch(monthlyContributionStateProvider.notifier)
-        .state
-        .statusCodeNoContent;
-
-    if (statusCodeNoContent == 204) {
       showTopSnackBar(
         Overlay.of(context),
         const CustomSnackBar.success(
@@ -52,7 +49,7 @@ class _MonthlyContributionPageState
           backgroundColor: AppColors.primary,
         ),
       );
-    }
+    });
   }
 
   @override
