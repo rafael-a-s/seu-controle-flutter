@@ -1,4 +1,5 @@
 import 'package:clean_architeture_flutter/features/data/model/expense/expense.model.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/typeExpense/type_expense.entity.dart';
 
 class TypeExpenseModel extends TypeExpense {
@@ -9,8 +10,10 @@ class TypeExpenseModel extends TypeExpense {
   }) : super(id: id);
 
   factory TypeExpenseModel.fromJson(Map<String, dynamic> json) {
-    final listExpenses =
-        json['expenses'].map((value) => ExpenseModel.fromJson(value)).toList();
+    final listExpenses = json['expenses']
+        .map((value) => ExpenseModel.fromJson(value))
+        .toList()
+        .cast<Expense>();
 
     return TypeExpenseModel(
       id: json['id'],
