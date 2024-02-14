@@ -14,8 +14,14 @@ class AppRoutes {
   /* <---- home -----> */
   static const home = '/home';
 
-  /* <---- home -----> */
+  /* <---- monthly contribution -----> */
   static const monthlyContribution = '/monthlyContribution';
+
+  /* <---- expense -----> */
+  static const expense = '/expense';
+
+  /* <---- type expense -----> */
+  static const typeExpense = '/typeExpense';
 
   /* <---- Profile & Settings -----> */
   static const profile = '/profile';

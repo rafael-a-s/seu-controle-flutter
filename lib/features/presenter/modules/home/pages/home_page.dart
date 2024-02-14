@@ -73,7 +73,10 @@ class _HomePage extends ConsumerState<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const CardExpenseComponent(),
+                    GestureDetector(
+                      onTap: () => Modular.to.pushNamed(AppRoutes.typeExpense),
+                      child: const CardExpenseComponent(),
+                    ),
                     Column(
                       children: [
                         const CardTotalSpendWeekComponent(),
