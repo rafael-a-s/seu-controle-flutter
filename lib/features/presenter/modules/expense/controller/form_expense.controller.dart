@@ -1,6 +1,5 @@
 import 'package:clean_architeture_flutter/core/state/base_state.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/typeExpense/type_expense.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/expense/create_expense.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/expense/edit_expense.usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -24,7 +23,7 @@ class FormExpenseState extends BaseState {
           name: '',
           value: 0,
           dayDiscount: '',
-          typeExpense: TypeExpense(expenses: <Expense>[], nameOfExpense: '')));
+  ));
 
   FormExpenseState copyWith({
     Expense? expense,

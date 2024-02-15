@@ -6,7 +6,6 @@ class ExpenseModel extends Expense {
     required super.name,
     required super.dayDiscount,
     required super.value,
-    required super.typeExpense,
   }) : super(id: id);
 
   factory ExpenseModel.fromJson(Map<String, dynamic> json) => ExpenseModel(
@@ -14,13 +13,11 @@ class ExpenseModel extends Expense {
         name: json['name'],
         dayDiscount: json['dayDiscount'],
         value: json['value'],
-        typeExpense: json['typeExpense'],
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'dayDiscount': value,
-        'typeExpense': typeExpense,
       };
 }

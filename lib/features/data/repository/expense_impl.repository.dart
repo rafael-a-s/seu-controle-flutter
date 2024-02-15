@@ -14,13 +14,13 @@ class ExpenseRepositoryImpl
         name: data.name,
         value: data.value,
         dayDiscount: data.dayDiscount,
-        typeExpense: data.typeExpense),
+        ),
     toModel: ((entity) => ExpenseModel(
         id: entity.id,
         name: entity.name,
         value: entity.value,
         dayDiscount: entity.dayDiscount,
-        typeExpense: entity.typeExpense)),
+        )),
   );
 
   final ExpenseDatasource _datasource;
