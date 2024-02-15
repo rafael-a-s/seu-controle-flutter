@@ -19,7 +19,6 @@ class FinanceControlRepositoryImpl
                 name: e.name,
                 dayDiscount: e.dayDiscount,
                 value: e.value,
-                typeExpense: e.typeExpense,
               ))
           .toList(),
       monthlyContributions: data.monthlyContributions

@@ -10,10 +10,14 @@ class TypeExpenseModel extends TypeExpense {
   }) : super(id: id);
 
   factory TypeExpenseModel.fromJson(Map<String, dynamic> json) {
-    final listExpenses = json['expenses']
+     List<Expense> listExpenses = [];
+    if(json.containsKey('expenses')) {
+     listExpenses = json['expenses']
         .map((value) => ExpenseModel.fromJson(value))
         .toList()
         .cast<Expense>();
+    }
+    
 
     return TypeExpenseModel(
       id: json['id'],

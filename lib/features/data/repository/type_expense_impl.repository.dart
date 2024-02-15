@@ -9,11 +9,7 @@ class TypeExpenseRepositoryImpl
     extends BaseRepository<TypeExpense, TypeExpenseModel, dynamic>
     implements TypeExpenseRepository {
   final ModelConvert<TypeExpense, TypeExpenseModel> modelConvert = ModelConvert(
-    fromEntity: (data) => TypeExpense(
-      id: data.id,
-      nameOfExpense: data.nameOfExpense,
-      expenses: data.expenses,
-    ),
+    fromEntity: (data) => data,
     toModel: ((entity) => TypeExpenseModel(
           id: entity.id,
           nameOfExpense: entity.nameOfExpense,
