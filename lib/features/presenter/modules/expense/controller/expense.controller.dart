@@ -1,8 +1,7 @@
 import 'package:clean_architeture_flutter/core/state/base_state.dart';
-import 'package:clean_architeture_flutter/core/usecase/usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/expense/delete_expense.usecase.dart';
-import 'package:clean_architeture_flutter/features/domain/usecases/expense/get_all_expense.usecase.dart';
+import 'package:clean_architeture_flutter/features/domain/usecases/expense/get_all_of_type_expense.usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -39,19 +38,19 @@ class ExpenseState extends BaseState {
 }
 
 class ExpenseController extends StateNotifier<ExpenseState> {
-  GetAllExpenseUsecase getAllExpenseUsecase;
+  GetAllOfTypeExpense getAllOfTypeExpense;
   DeleteExpenseUsecase deleteExpenseUsecase;
 
   ExpenseController(
-    this.getAllExpenseUsecase,
+    this.getAllOfTypeExpense,
     this.deleteExpenseUsecase,
   ) : super(ExpenseState.inital());
 
-  Future<void> getAllExpense() async {
+  Future<void> getAllExpense(String idTypeExpense) async {
     try {
       state = state.copyWith(isLoading: true);
 
-      await getAllExpenseUsecase(NoParams()).then(
+      await getAllOfTypeExpense(idTypeExpense).then(
         (value) => value.fold(
           (l) => state = state.copyWith(error: l.toString()),
           (r) => state = state.copyWith(expense: r),
@@ -65,13 +64,13 @@ class ExpenseController extends StateNotifier<ExpenseState> {
     }
   }
 
-  Future<void> deleteExpense(String id) async {
+  Future<void> deleteExpense(String id, String idTypeExpense) async {
     try {
       state = state.copyWith(isLoading: true);
 
       await deleteExpenseUsecase(id);
 
-      await getAllExpenseUsecase(NoParams()).then(
+      await getAllOfTypeExpense(idTypeExpense).then(
         (value) => value.fold(
           (l) => state = state.copyWith(error: l.toString()),
           (r) => state = state.copyWith(expense: r),

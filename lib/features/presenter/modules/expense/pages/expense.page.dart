@@ -37,8 +37,9 @@ class _ExpensePageState extends ConsumerState<ExpensePage> {
           parentContext: bc,
         );
       },
-    ).whenComplete(
-        () => ref.read(expenseStateProvider.notifier).getAllExpense());
+    ).whenComplete(() => ref
+        .read(expenseStateProvider.notifier)
+        .getAllExpense(widget.typeExpense.id));
   }
 
   void _showModalEditContribution(context, Expense expense) {
@@ -51,13 +52,16 @@ class _ExpensePageState extends ConsumerState<ExpensePage> {
           expense: expense,
         );
       },
-    ).whenComplete(
-        () => ref.read(expenseStateProvider.notifier).getAllExpense());
+    ).whenComplete(() => ref
+        .read(expenseStateProvider.notifier)
+        .getAllExpense(widget.typeExpense.id));
   }
 
   void onDelete(String id) async {
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(expenseStateProvider.notifier).deleteExpense(id);
+      ref
+          .read(expenseStateProvider.notifier)
+          .deleteExpense(id, widget.typeExpense.id);
 
       showTopSnackBar(
         Overlay.of(context),
@@ -73,7 +77,9 @@ class _ExpensePageState extends ConsumerState<ExpensePage> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(expenseStateProvider.notifier).getAllExpense();
+      ref
+          .read(expenseStateProvider.notifier)
+          .getAllExpense(widget.typeExpense.id);
     });
   }
 

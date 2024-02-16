@@ -4,4 +4,6 @@ import 'package:clean_architeture_flutter/features/data/model/expense/expense.mo
 abstract class ExpenseDatasource
     extends IBaseDatasource<ExpenseModel, dynamic> {
   ExpenseDatasource({required super.api});
+
+  Future<List<ExpenseModel>> getAllOfTypeExpense(String idTypeExpense);
 }

@@ -15,6 +15,7 @@ class AppRoutesApi {
   //EXPENSE
   static const expense = "/expense";
   static var expenseFindAll = "$expense/all";
+  static var expenseGetAllOfTypeExpense = "$expense/v1/find-all-of-type-expense";
 
   //FINANCE CONTROL
   static const financeControl = "/finance-control";

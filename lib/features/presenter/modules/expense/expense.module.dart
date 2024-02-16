@@ -6,7 +6,7 @@ import 'package:clean_architeture_flutter/features/domain/repository/expense.rep
 import 'package:clean_architeture_flutter/features/domain/usecases/expense/create_expense.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/expense/delete_expense.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/expense/edit_expense.usecase.dart';
-import 'package:clean_architeture_flutter/features/domain/usecases/expense/get_all_expense.usecase.dart';
+import 'package:clean_architeture_flutter/features/domain/usecases/expense/get_all_of_type_expense.usecase.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/expense/controller/expense.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/expense/controller/form_expense.controller.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/expense/pages/expense.page.dart';
@@ -34,7 +34,7 @@ class ExpenseModule extends Module {
         () => ExpenseDatasourceImpl(client: i.get<Dio>(), api: '/expense'));
     i.addSingleton<ExpenseRepository>(ExpenseRepositoryImpl.new);
     i.add<CreateExpenseUsecase>(CreateExpenseUsecase.new);
-    i.add<GetAllExpenseUsecase>(GetAllExpenseUsecase.new);
+    i.add<GetAllOfTypeExpense>(GetAllOfTypeExpense.new);
     i.add<DeleteExpenseUsecase>(DeleteExpenseUsecase.new);
     i.add<EditExpenseUsecase>(EditExpenseUsecase.new);
     i.add<FormExpenseController>(FormExpenseController.new);
