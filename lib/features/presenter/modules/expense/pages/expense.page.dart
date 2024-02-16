@@ -35,6 +35,12 @@ class _ExpensePageState extends ConsumerState<ExpensePage> {
       builder: (BuildContext bc) {
         return FormExpensePage(
           parentContext: bc,
+          expense: Expense(
+              dayDiscount: '',
+              name: '',
+              value: 0,
+              typeExpense: TypeExpense(
+                  expenses: [], nameOfExpense: '', id: widget.typeExpense.id)),
         );
       },
     ).whenComplete(() => ref

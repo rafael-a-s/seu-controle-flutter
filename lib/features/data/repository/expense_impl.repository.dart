@@ -12,16 +12,17 @@ class ExpenseRepositoryImpl
     implements ExpenseRepository {
   final ModelConvert<Expense, ExpenseModel> modelConvert = ModelConvert(
     fromEntity: (data) => Expense(
-        id: data.id,
-        name: data.name,
-        value: data.value,
-        dayDiscount: data.dayDiscount,
-        ),
+      id: data.id,
+      name: data.name,
+      value: data.value,
+      dayDiscount: data.dayDiscount,
+    ),
     toModel: ((entity) => ExpenseModel(
-        id: entity.id,
-        name: entity.name,
-        value: entity.value,
-        dayDiscount: entity.dayDiscount,
+          id: entity.id,
+          name: entity.name,
+          value: entity.value,
+          dayDiscount: entity.dayDiscount,
+          typeExpense: entity.typeExpense,
         )),
   );
 
@@ -38,17 +39,14 @@ class ExpenseRepositoryImpl
   ExpenseDatasource get datasource => _datasource;
 
   @override
-  Future<Either<Failure, List<Expense>>> getAllOfTypeExpense(String idTypeExpense) async {
+  Future<Either<Failure, List<Expense>>> getAllOfTypeExpense(
+      String idTypeExpense) async {
     try {
       var expenses = await datasource.getAllOfTypeExpense(idTypeExpense);
       final convert = getModelConvert();
-      return Right(
-        expenses.map((e) => convert.fromEntity(e)).toList());
-
+      return Right(expenses.map((e) => convert.fromEntity(e)).toList());
     } on ServerFailure {
       return Left(ServerFailure());
-
     }
-    
   }
 }

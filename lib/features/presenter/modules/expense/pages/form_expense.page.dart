@@ -4,8 +4,10 @@ import 'package:clean_architeture_flutter/features/core/constants/app_defaults.d
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/core/utils/validators.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/expense/controller/form_expense.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -24,19 +26,24 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
   final _key = GlobalKey<FormState>();
   final _nameExpense = TextEditingController();
   final _valueExpense = TextEditingController();
+  final _dayDiscount = TextEditingController();
 
   onSubmit() {
     final bool isFormOkay = _key.currentState!.validate();
     if (isFormOkay) {
-      widget.expense != null ? onEdit() : onCreate();
+      widget.expense!.id != null ? onEdit() : onCreate();
     }
   }
 
   void onCreate() async {
-    // final expense = Expense(
-    //     name: _nameExpense.text, value: double.parse(_valueExpense.text));
+    final expense = Expense(
+      name: _nameExpense.text,
+      value: double.parse(_valueExpense.text),
+      dayDiscount: _dayDiscount.text,
+      typeExpense: widget.expense!.typeExpense,
+    );
 
-    //await ref.read(formExpenseStateProvider.notifier).createExpense(expense);
+    await ref.read(formExpenseStateProvider.notifier).createExpense(expense);
 
     showTopSnackBar(
       Overlay.of(context),
@@ -51,16 +58,18 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
   }
 
   void onEdit() async {
-    // final monthlyForEdit = Expense(
-    //     id: widget.expense!.id,
-    //     nameInvestiment: _nameExpense.text,
-    //     value: double.parse(_valueExpense.text));
+    final monthlyForEdit = Expense(
+        id: widget.expense!.id,
+        name: _nameExpense.text,
+        value: double.parse(_valueExpense.text),
+        dayDiscount: _dayDiscount.text);
 
-    // await ref
-    //     .read(formExpenseStateProvider.notifier)
-    //     .editExpense(monthlyForEdit);
+    await ref
+        .read(formExpenseStateProvider.notifier)
+        .editExpense(monthlyForEdit);
 
     showTopSnackBar(
+      // ignore: use_build_context_synchronously
       Overlay.of(context),
       const CustomSnackBar.success(
         message: AppMessage.expenseEdited,
@@ -87,10 +96,10 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
 
   @override
   Widget build(BuildContext context) {
-    // final loading =
-    //     ref.watch(formExpenseStateProvider.select((value) => value.isLoading));
+    final loading =
+        ref.watch(formExpenseStateProvider.select((value) => value.isLoading));
 
-    // loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
+    loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
     return Scaffold(
         backgroundColor: AppColors.scaffoldWithBoxBackground.withOpacity(.0),
         body: Padding(
@@ -139,7 +148,7 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
                           const Text("Dia do desconto"),
                           const SizedBox(height: 8),
                           TextFormField(
-                            controller: _valueExpense,
+                            controller: _dayDiscount,
                             validator: Validators.positiveNumberWithDot,
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.number,

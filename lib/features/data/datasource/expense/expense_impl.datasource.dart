@@ -12,7 +12,7 @@ class ExpenseDatasourceImpl extends BaseDatasource<ExpenseModel, dynamic>
     implements ExpenseDatasource {
   final JsonModelConvert<ExpenseModel> jsonModelConvert = JsonModelConvert(
     fromJson: (data) => ExpenseModel.fromJson(data),
-    toJson: (data) => data.toJson(),
+    toJson: (data) => data.id != null ? data.toJson() : data.toJsonCreate(),
   );
 
   void configureDio() async {
@@ -27,15 +27,16 @@ class ExpenseDatasourceImpl extends BaseDatasource<ExpenseModel, dynamic>
   ExpenseDatasourceImpl({required super.client, required super.api}) {
     configureDio();
   }
-  
+
   @override
   Future<List<ExpenseModel>> getAllOfTypeExpense(String idTypeExpense) async {
     try {
-      var response = await client.get("${AppRoutesApi.expenseGetAllOfTypeExpense}/$idTypeExpense");
+      var response = await client
+          .get("${AppRoutesApi.expenseGetAllOfTypeExpense}/$idTypeExpense");
       var data = response.data as List;
       final convert = getJsonConvert();
       return data.map((e) => convert.fromJson(e)).toList();
-    } on DioError catch(e) {
+    } on DioError catch (e) {
       throw DioError(requestOptions: RequestOptions(path: ''), error: e.error);
     }
   }
