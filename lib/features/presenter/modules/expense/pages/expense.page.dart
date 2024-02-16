@@ -181,8 +181,7 @@ class _ExpensePageState extends ConsumerState<ExpensePage> {
                         ),
                       ],
                     ),
-                    child:
-                        CardExpenseComponent(id: index, expense: list[index]),
+                    child: CardExpenseComponent(expense: list[index]),
                   );
                 }, childCount: list!.length),
               ),

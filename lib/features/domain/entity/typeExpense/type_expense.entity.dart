@@ -3,7 +3,7 @@ import 'package:clean_architeture_flutter/features/domain/entity/expense/expense
 
 class TypeExpense extends BaseEntity {
   final String nameOfExpense;
-  final List<Expense> expenses;
+  final List<Expense>? expenses;
 
   TypeExpense({
     dynamic id,
@@ -14,6 +14,5 @@ class TypeExpense extends BaseEntity {
   List<Object> get props => [
         id,
         nameOfExpense,
-        expenses,
       ];
 }

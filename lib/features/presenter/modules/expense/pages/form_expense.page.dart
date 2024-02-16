@@ -59,10 +59,12 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
 
   void onEdit() async {
     final monthlyForEdit = Expense(
-        id: widget.expense!.id,
-        name: _nameExpense.text,
-        value: double.parse(_valueExpense.text),
-        dayDiscount: _dayDiscount.text);
+      id: widget.expense!.id,
+      name: _nameExpense.text,
+      value: double.parse(_valueExpense.text),
+      dayDiscount: _dayDiscount.text,
+      typeExpense: widget.expense!.typeExpense,
+    );
 
     await ref
         .read(formExpenseStateProvider.notifier)
@@ -82,9 +84,10 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
   }
 
   void mountForm() {
-    if (widget.expense != null) {
+    if (widget.expense!.id != null) {
       _nameExpense.text = widget.expense!.name;
       _valueExpense.text = widget.expense!.value.toString();
+      _dayDiscount.text = widget.expense!.dayDiscount;
     }
   }
 

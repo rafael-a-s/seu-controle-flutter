@@ -6,23 +6,29 @@ class TypeExpenseModel extends TypeExpense {
   TypeExpenseModel({
     String? id,
     required super.nameOfExpense,
-    required super.expenses,
+    super.expenses,
   }) : super(id: id);
 
   factory TypeExpenseModel.fromJson(Map<String, dynamic> json) {
-     List<Expense> listExpenses = [];
-    if(json.containsKey('expenses')) {
-     listExpenses = json['expenses']
-        .map((value) => ExpenseModel.fromJson(value))
-        .toList()
-        .cast<Expense>();
+    List<Expense> listExpenses = [];
+    if (json.containsKey('expenses')) {
+      listExpenses = json['expenses']
+          .map((value) => ExpenseModel.fromJsonNoTypeExpense(value))
+          .toList()
+          .cast<Expense>();
     }
-    
 
     return TypeExpenseModel(
       id: json['id'],
       nameOfExpense: json['nameOfExpense'],
       expenses: listExpenses,
+    );
+  }
+
+  factory TypeExpenseModel.fromJsonNoExpense(Map<String, dynamic> json) {
+    return TypeExpenseModel(
+      id: json['id'],
+      nameOfExpense: json['nameOfExpense'] ?? '',
     );
   }
 

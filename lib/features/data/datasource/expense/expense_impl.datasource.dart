@@ -12,7 +12,7 @@ class ExpenseDatasourceImpl extends BaseDatasource<ExpenseModel, dynamic>
     implements ExpenseDatasource {
   final JsonModelConvert<ExpenseModel> jsonModelConvert = JsonModelConvert(
     fromJson: (data) => ExpenseModel.fromJson(data),
-    toJson: (data) => data.id != null ? data.toJson() : data.toJsonCreate(),
+    toJson: (data) => data.toJson(),
   );
 
   void configureDio() async {

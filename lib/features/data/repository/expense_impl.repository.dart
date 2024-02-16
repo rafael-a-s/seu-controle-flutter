@@ -16,6 +16,7 @@ class ExpenseRepositoryImpl
       name: data.name,
       value: data.value,
       dayDiscount: data.dayDiscount,
+      typeExpense: data.typeExpense,
     ),
     toModel: ((entity) => ExpenseModel(
           id: entity.id,

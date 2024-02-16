@@ -4,10 +4,8 @@ import 'package:clean_architeture_flutter/features/domain/entity/expense/expense
 import 'package:flutter/material.dart';
 
 class CardExpenseComponent extends StatefulWidget {
-  final int id;
   final Expense expense;
-  const CardExpenseComponent(
-      {required this.id, required this.expense, super.key});
+  const CardExpenseComponent({required this.expense, super.key});
 
   @override
   State<CardExpenseComponent> createState() => _CardExpenseComponentState();
@@ -29,22 +27,12 @@ class _CardExpenseComponentState extends State<CardExpenseComponent> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 70,
-            height: 70,
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 0, 0).withOpacity(.15),
-                borderRadius: const BorderRadius.all(Radius.circular(10))),
+          Flexible(
             child: Text(
-              (widget.id + 1).toString(),
-              style: AppDefaults.textStyleHeader2,
+              widget.expense.name,
+              style: AppDefaults.textStyleHeader3,
+              overflow: TextOverflow.ellipsis,
             ),
-          ),
-          Text(
-            widget.expense.name,
-            style: AppDefaults.textStyleHeader3,
           ),
           Text(
             "R\$ ${widget.expense.value}",

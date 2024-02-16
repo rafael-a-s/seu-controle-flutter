@@ -1,3 +1,4 @@
+import 'package:clean_architeture_flutter/features/data/model/typeExpense/type_expense.model.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
 
 class ExpenseModel extends Expense {
@@ -14,15 +15,19 @@ class ExpenseModel extends Expense {
         name: json['name'],
         dayDiscount: json['dayDiscount'],
         value: json['value'],
+        typeExpense: TypeExpenseModel.fromJsonNoExpense(json['typeExpense']),
+      );
+
+  factory ExpenseModel.fromJsonNoTypeExpense(Map<String, dynamic> json) =>
+      ExpenseModel(
+        id: json['id'],
+        name: json['name'],
+        dayDiscount: json['dayDiscount'],
+        value: json['value'],
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'name': name,
-        'dayDiscount': value,
-      };
-
-  Map<String, dynamic> toJsonCreate() => {
         'name': name,
         'value': value,
         'dayDiscount': dayDiscount,
