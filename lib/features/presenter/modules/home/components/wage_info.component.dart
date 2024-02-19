@@ -1,6 +1,5 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
-import 'package:clean_architeture_flutter/features/core/constants/app_icons.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class WageInfoComponent extends StatefulWidget {
   const WageInfoComponent({super.key});
@@ -23,19 +22,13 @@ class _WageInfoComponentState extends State<WageInfoComponent> {
               style: AppDefaults.textStyleHeader2,
             ),
             Text(
-              "\$ 1320,00",
+              "R\$ 1320,00",
               style: AppDefaults.textStyleBalance,
             ),
           ],
         ),
         const SizedBox(
           width: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            bottom: 6,
-          ),
-          child: Image.asset(AppIcons.ocultar),
         ),
       ],
     );

@@ -111,11 +111,11 @@ class _HomePage extends ConsumerState<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Transações",
+                      "Fontes de renda",
                       style: AppDefaults.textStyleHeader2,
                     ),
                     Text(
-                      "Ver tudo",
+                      "Gerenciar",
                       style: AppDefaults.textStyleHeader2,
                     ),
                   ],
