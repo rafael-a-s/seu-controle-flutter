@@ -5,6 +5,7 @@ import 'package:clean_architeture_flutter/features/presenter/modules/home/home.m
 import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/monthly_contribution.module.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/onboarding/onboarding.module.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/profile/profile.module.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/remuneration.module.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/typeExpense/type_expense.module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -24,5 +25,6 @@ class AppModule extends Module {
         module: MonthlyContributionModule());
     r.module(AppRoutes.expense, module: ExpenseModule());
     r.module(AppRoutes.typeExpense, module: TypeExpenseModule());
+    r.module(AppRoutes.remuneration, module: RemunerationModule());
   }
 }

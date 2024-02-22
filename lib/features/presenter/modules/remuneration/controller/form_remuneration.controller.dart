@@ -1,4 +1,5 @@
 import 'package:clean_architeture_flutter/core/state/base_state.dart';
+import 'package:clean_architeture_flutter/features/core/models/check_box.model.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/remuneration/remuneration.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/enum/type_remuneration_provider.enum.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/remuneration/create_remuneration.usecase.dart';
@@ -13,12 +14,20 @@ final formRemunerationStateProvider = StateNotifierProvider.autoDispose<
 
 class FormRemunerationState extends BaseState {
   Remuneration? remuneration;
+  List<CheckBoxModel>? listaCheck;
 
   FormRemunerationState(
-      {required super.isLoading, required this.remuneration, super.error});
+      {required super.isLoading,
+      required this.remuneration,
+      required this.listaCheck,
+      super.error});
 
   factory FormRemunerationState.inital() => FormRemunerationState(
       isLoading: false,
+      listaCheck: TypeRemunerationProvider.values
+          .map((e) => CheckBoxModel(
+              name: e.name, isSelect: e == TypeRemunerationProvider.other))
+          .toList(),
       remuneration: Remuneration(
         typeRemunerationProvider: TypeRemunerationProvider.internship,
         provider: '',
@@ -27,11 +36,13 @@ class FormRemunerationState extends BaseState {
 
   FormRemunerationState copyWith({
     Remuneration? remuneration,
+    List<CheckBoxModel>? listaCheck,
     bool? isLoading,
     String? error,
   }) {
     return FormRemunerationState(
         remuneration: remuneration ?? this.remuneration,
+        listaCheck: listaCheck ?? this.listaCheck,
         isLoading: isLoading ?? this.isLoading,
         error: error ?? this.error);
   }
@@ -44,6 +55,15 @@ class FormRemunerationController extends StateNotifier<FormRemunerationState> {
   FormRemunerationController(
       this.createRemunerationUsecase, this.editRemunerationUsecase)
       : super(FormRemunerationState.inital());
+
+  checkItem(int index) {
+    var list = TypeRemunerationProvider.values
+        .map((e) => CheckBoxModel(name: e.name, isSelect: false))
+        .toList();
+    list[index].isSelect = true;
+
+    state = state.copyWith(listaCheck: list);
+  }
 
   Future<void> createRemuneration(Remuneration remuneration) async {
     try {

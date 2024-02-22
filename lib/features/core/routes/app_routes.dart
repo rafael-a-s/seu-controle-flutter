@@ -17,6 +17,9 @@ class AppRoutes {
   /* <---- monthly contribution -----> */
   static const monthlyContribution = '/monthlyContribution';
 
+  /* <---- remuneration -----> */
+  static const remuneration = '/remuneration';
+
   /* <---- expense -----> */
   static const expense = '/expense';
 

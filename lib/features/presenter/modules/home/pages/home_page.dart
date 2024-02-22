@@ -114,9 +114,12 @@ class _HomePage extends ConsumerState<HomePage> {
                       "Fontes de renda",
                       style: AppDefaults.textStyleHeader2,
                     ),
-                    Text(
-                      "Gerenciar",
-                      style: AppDefaults.textStyleHeader2,
+                    GestureDetector(
+                      onTap: () => Modular.to.pushNamed(AppRoutes.remuneration),
+                      child: Text(
+                        "Gerenciar",
+                        style: AppDefaults.textStyleHeader2,
+                      ),
                     ),
                   ],
                 ),

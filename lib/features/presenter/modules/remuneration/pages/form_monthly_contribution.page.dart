@@ -1,4 +1,5 @@
 import 'package:clean_architeture_flutter/features/core/components/button.component.dart';
+import 'package:clean_architeture_flutter/features/core/components/check_box.component.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
@@ -25,8 +26,10 @@ class FormRemunerationPage extends StatefulHookConsumerWidget {
 
 class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
   final _key = GlobalKey<FormState>();
-  final _nameInvestiment = TextEditingController();
-  final _valueContribution = TextEditingController();
+  final _provider = TextEditingController();
+  final _value = TextEditingController();
+
+  final typesProviders = TypeRemunerationProvider.values;
 
   onSubmit() {
     final bool isFormOkay = _key.currentState!.validate();
@@ -37,8 +40,8 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
 
   void onCreate() async {
     final remuneration = Remuneration(
-        provider: _nameInvestiment.text,
-        value: double.parse(_valueContribution.text),
+        provider: _provider.text,
+        value: double.parse(_value.text),
         typeRemunerationProvider: TypeRemunerationProvider.clt);
 
     await ref
@@ -60,8 +63,8 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
   void onEdit() async {
     final monthlyForEdit = Remuneration(
         id: widget.remuneration!.id,
-        provider: _nameInvestiment.text,
-        value: double.parse(_valueContribution.text),
+        provider: _provider.text,
+        value: double.parse(_value.text),
         typeRemunerationProvider: TypeRemunerationProvider.clt);
 
     await ref
@@ -82,8 +85,8 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
 
   void mountForm() {
     if (widget.remuneration != null) {
-      _nameInvestiment.text = widget.remuneration!.provider;
-      _valueContribution.text = widget.remuneration!.value.toString();
+      _provider.text = widget.remuneration!.provider;
+      _value.text = widget.remuneration!.value.toString();
     }
   }
 
@@ -97,6 +100,8 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
   Widget build(BuildContext context) {
     final loading = ref.watch(
         formRemunerationStateProvider.select((value) => value.isLoading));
+    final listType = ref.watch(
+        formRemunerationStateProvider.select((value) => value.listaCheck));
 
     loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
     return Scaffold(
@@ -108,7 +113,7 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
               child: Container(
                 margin: const EdgeInsets.all(AppDefaults.margin),
                 padding: const EdgeInsets.all(AppDefaults.padding),
-                height: MediaQuery.of(context).size.height * 0.50,
+                height: MediaQuery.of(context).size.height * 0.70,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: AppDefaults.boxShadow,
@@ -122,26 +127,46 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("Nome do Investimento"),
-                          const SizedBox(height: 8),
-                          TextFormField(
-                            controller: _nameInvestiment,
-                            validator: Validators.requiredWithFieldName(
-                                'Nome do Investimento'),
-                            textInputAction: TextInputAction.next,
-                            decoration:
-                                const InputDecoration(hintText: 'Ex: Mxr11'),
+                          SizedBox(
+                            height: 160,
+                            child: GridView.count(
+                              padding: EdgeInsets.zero,
+                              crossAxisCount: 2,
+                              childAspectRatio: 3,
+                              children: List.generate(
+                                typesProviders.length,
+                                (index) => GestureDetector(
+                                  onTap: () => ref
+                                      .watch(formRemunerationStateProvider
+                                          .notifier)
+                                      .checkItem(index),
+                                  child: CheckBoxComponent(
+                                      checkBoxModel: listType![index]),
+                                ),
+                              ),
+                            ),
                           ),
                           const SizedBox(height: 8),
-                          const Text("Valor do Aporte"),
+                          const Text("Nome do Provedor"),
                           const SizedBox(height: 8),
                           TextFormField(
-                            controller: _valueContribution,
+                            controller: _provider,
+                            validator: Validators.requiredWithFieldName(
+                                'Nome do Provedor'),
+                            textInputAction: TextInputAction.next,
+                            decoration: const InputDecoration(
+                                hintText: 'Ex: TNG Shopping'),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text("Valor recebido"),
+                          const SizedBox(height: 8),
+                          TextFormField(
+                            controller: _value,
                             validator: Validators.positiveNumberWithDot,
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.number,
                             decoration:
-                                const InputDecoration(hintText: 'Ex: 100'),
+                                const InputDecoration(hintText: 'Ex: 1320'),
                           ),
                           const SizedBox(height: 8),
                         ],

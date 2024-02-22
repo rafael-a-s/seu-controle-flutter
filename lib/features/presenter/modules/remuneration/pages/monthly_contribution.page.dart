@@ -23,11 +23,23 @@ class RemunerationPage extends StatefulHookConsumerWidget {
 class _RemunerationPageState extends ConsumerState<RemunerationPage> {
   void _showModalNewContribution(context) {
     showModalBottomSheet(
+      isScrollControlled: true,
+      useSafeArea: true,
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return FormRemunerationPage(
-          parentContext: bc,
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.75,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25.0),
+              topRight: Radius.circular(25.0),
+            ),
+          ),
+          child: FormRemunerationPage(
+            parentContext: bc,
+          ),
         );
       },
     ).whenComplete(() =>
@@ -95,7 +107,7 @@ class _RemunerationPageState extends ConsumerState<RemunerationPage> {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Aporte Mensal',
+                    'Suas Fontes de renda',
                     style: AppDefaults.textStyleHeader1,
                   ),
                 ),
