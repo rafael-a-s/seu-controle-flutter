@@ -1,5 +1,5 @@
 import 'package:clean_architeture_flutter/features/core/components/button.component.dart';
-import 'package:clean_architeture_flutter/features/core/components/check_box.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/components/check_box.component.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';

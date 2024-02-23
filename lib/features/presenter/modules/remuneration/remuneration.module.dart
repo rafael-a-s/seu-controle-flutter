@@ -8,8 +8,8 @@ import 'package:clean_architeture_flutter/features/domain/usecases/remuneration/
 import 'package:clean_architeture_flutter/features/domain/usecases/remuneration/edit_remuneration.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/remuneration/get_all_remuneration.usecase.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/controller/form_remuneration.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/controller/monthly_contribution.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/pages/monthly_contribution.page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/controller/remuneration.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/pages/remuneration.page.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

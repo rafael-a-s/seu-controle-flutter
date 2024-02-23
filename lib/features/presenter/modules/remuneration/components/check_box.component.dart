@@ -19,23 +19,27 @@ class _CheckBoxComponentState extends State<CheckBoxComponent> {
     return Center(
       child: Container(
         constraints: const BoxConstraints(maxHeight: 50, maxWidth: 150),
-        decoration: const BoxDecoration(
-            color: AppColors.cardColor,
-            borderRadius: BorderRadius.all(Radius.circular(15))),
+        height: 50,
+        decoration: BoxDecoration(
+            color: widget.checkBoxModel.isSelect
+                ? AppColors.primary
+                : AppColors.cardColor,
+            border: widget.checkBoxModel.isSelect
+                ? const Border()
+                : const Border(bottom: BorderSide(color: Colors.black)),
+            borderRadius:
+                const BorderRadius.all(Radius.circular(AppDefaults.radius))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
               widget.checkBoxModel.name,
-              style: const TextStyle(
-                color: Colors.black,
+              style: TextStyle(
+                color: widget.checkBoxModel.isSelect
+                    ? AppColors.white
+                    : Colors.black,
                 fontWeight: FontWeight.w600,
               ),
-            ),
-            Checkbox(
-              value: widget.checkBoxModel.isSelect ?? false,
-              shape: const CircleBorder(),
-              onChanged: (value) {},
             ),
           ],
         ),
