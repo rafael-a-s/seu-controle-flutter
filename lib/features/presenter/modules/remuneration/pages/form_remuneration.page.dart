@@ -8,6 +8,7 @@ import 'package:clean_architeture_flutter/features/domain/entity/remuneration/re
 import 'package:clean_architeture_flutter/features/domain/enum/type_remuneration_provider.enum.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/controller/form_remuneration.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -39,10 +40,12 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
   }
 
   void onCreate() async {
+    final typeProvider = getTypeRemunerationSelected();
+
     final remuneration = Remuneration(
         provider: _provider.text,
         value: double.parse(_value.text),
-        typeRemunerationProvider: TypeRemunerationProvider.clt);
+        typeRemunerationProvider: typeProvider);
 
     await ref
         .read(formRemunerationStateProvider.notifier)
@@ -61,11 +64,13 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
   }
 
   void onEdit() async {
+    final typeProvider = getTypeRemunerationSelected();
+
     final monthlyForEdit = Remuneration(
         id: widget.remuneration!.id,
         provider: _provider.text,
         value: double.parse(_value.text),
-        typeRemunerationProvider: TypeRemunerationProvider.clt);
+        typeRemunerationProvider: typeProvider);
 
     await ref
         .read(formRemunerationStateProvider.notifier)
@@ -83,17 +88,36 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
     Navigator.pop(widget.parentContext);
   }
 
+  TypeRemunerationProvider getTypeRemunerationSelected() {
+    final checkModel = ref.watch(formRemunerationStateProvider.notifier.select(
+        // ignore: invalid_use_of_protected_member
+        (value) => value.state.listaCheck!
+            .firstWhere((element) => element.isSelect == true)));
+
+    final typeProvider = TypeRemunerationProvider.values
+        .firstWhere((element) => element.name == checkModel.name);
+    return typeProvider;
+  }
+
   void mountForm() {
     if (widget.remuneration != null) {
       _provider.text = widget.remuneration!.provider;
       _value.text = widget.remuneration!.value.toString();
+      final index = TypeRemunerationProvider.values
+          .firstWhere((element) =>
+              element == widget.remuneration!.typeRemunerationProvider)
+          .index;
+      ref.watch(formRemunerationStateProvider.notifier).checkItem(index);
     }
   }
 
   @override
   void initState() {
     super.initState();
-    mountForm();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      mountForm();
+    });
   }
 
   @override
