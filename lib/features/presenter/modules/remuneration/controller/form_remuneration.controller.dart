@@ -65,6 +65,9 @@ class FormRemunerationController extends StateNotifier<FormRemunerationState> {
     state = state.copyWith(listaCheck: list);
   }
 
+  get getItemSelect =>
+      state.listaCheck!.firstWhere((element) => element.isSelect == true);
+
   Future<void> createRemuneration(Remuneration remuneration) async {
     try {
       state = state.copyWith(isLoading: true);

@@ -89,10 +89,8 @@ class _FormRemunerationPageState extends ConsumerState<FormRemunerationPage> {
   }
 
   TypeRemunerationProvider getTypeRemunerationSelected() {
-    final checkModel = ref.watch(formRemunerationStateProvider.notifier.select(
-        // ignore: invalid_use_of_protected_member
-        (value) => value.state.listaCheck!
-            .firstWhere((element) => element.isSelect == true)));
+    final checkModel =
+        ref.watch(formRemunerationStateProvider.notifier).getItemSelect;
 
     final typeProvider = TypeRemunerationProvider.values
         .firstWhere((element) => element.name == checkModel.name);
