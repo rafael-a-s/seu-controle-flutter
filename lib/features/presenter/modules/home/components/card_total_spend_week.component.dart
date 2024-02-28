@@ -42,7 +42,7 @@ class _CardTotalSpendWeekComponentState
                 style: AppDefaults.textPlaceholderStyleDefault,
               ),
               Text(
-                "R\$ 150,86",
+                widget.totalSpendForWeek.toStringAsFixed(2),
                 style: AppDefaults.textStyleBalanceMinimun,
               ),
             ],
