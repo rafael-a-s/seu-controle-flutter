@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardSubTotalMonthlyComponent extends StatefulWidget {
-  const CardSubTotalMonthlyComponent({super.key});
+  final double subTotal;
+  const CardSubTotalMonthlyComponent({required this.subTotal, super.key});
 
   @override
   State<CardSubTotalMonthlyComponent> createState() =>
@@ -51,7 +52,7 @@ class _CardSubTotalMonthlyComponentState
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                "R\$ 700,00",
+                widget.subTotal.toString(),
                 style: AppDefaults.textStyleBalance,
               ),
             ],

@@ -4,7 +4,9 @@ import 'package:clean_architeture_flutter/features/core/constants/app_icons.dart
 import 'package:flutter/cupertino.dart';
 
 class CardMonthlyContributionComponent extends StatefulWidget {
-  const CardMonthlyContributionComponent({super.key});
+  final double totalContribution;
+  const CardMonthlyContributionComponent(
+      {required this.totalContribution, super.key});
 
   @override
   State<CardMonthlyContributionComponent> createState() =>
@@ -40,7 +42,7 @@ class _CardMonthlyContributionComponentState
                 style: AppDefaults.textPlaceholderStyleDefault,
               ),
               Text(
-                "R\$ 150,86",
+                widget.totalContribution.toString(),
                 style: AppDefaults.textStyleBalanceMinimun,
               ),
             ],

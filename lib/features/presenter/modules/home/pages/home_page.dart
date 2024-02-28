@@ -26,7 +26,7 @@ class _HomePage extends ConsumerState<HomePage> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(homeStateProvider.notifier).getUserLogged();
+      ref.read(homeStateProvider.notifier).loadingPage();
     });
   }
 
@@ -37,6 +37,9 @@ class _HomePage extends ConsumerState<HomePage> {
 
     final authUser =
         ref.watch(homeStateProvider.select((value) => value.authUser));
+
+    final financeControlMetrics = ref
+        .watch(homeStateProvider.select((value) => value.financeControlMetric));
 
     loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
 
@@ -61,8 +64,10 @@ class _HomePage extends ConsumerState<HomePage> {
                   height: 30,
                 ),
               ),
-              const SliverToBoxAdapter(
-                child: WageInfoComponent(),
+              SliverToBoxAdapter(
+                child: WageInfoComponent(
+                  wage: financeControlMetrics!.totalRemuneration ?? 0.0,
+                ),
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(
@@ -75,18 +80,26 @@ class _HomePage extends ConsumerState<HomePage> {
                   children: [
                     GestureDetector(
                       onTap: () => Modular.to.pushNamed(AppRoutes.typeExpense),
-                      child: const CardExpenseComponent(),
+                      child: CardExpenseComponent(
+                        totalExpense:
+                            financeControlMetrics.totalExpenses ?? 0.0,
+                      ),
                     ),
                     Column(
                       children: [
-                        const CardTotalSpendWeekComponent(),
+                        CardTotalSpendWeekComponent(
+                            totalSpendForWeek:
+                                financeControlMetrics.totalSpendForWeek ?? 0.0),
                         const SizedBox(
                           height: 10,
                         ),
                         GestureDetector(
                           onTap: () => Modular.to
                               .pushNamed(AppRoutes.monthlyContribution),
-                          child: const CardMonthlyContributionComponent(),
+                          child: CardMonthlyContributionComponent(
+                              totalContribution:
+                                  financeControlMetrics.totalInvestimentMonth ??
+                                      0.0),
                         ),
                       ],
                     )
@@ -98,8 +111,9 @@ class _HomePage extends ConsumerState<HomePage> {
                   height: 30,
                 ),
               ),
-              const SliverToBoxAdapter(
-                child: CardSubTotalMonthlyComponent(),
+              SliverToBoxAdapter(
+                child: CardSubTotalMonthlyComponent(
+                    subTotal: financeControlMetrics.subTotalForMonth ?? 0.0),
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(

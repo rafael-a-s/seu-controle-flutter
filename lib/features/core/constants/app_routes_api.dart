@@ -15,12 +15,14 @@ class AppRoutesApi {
   //EXPENSE
   static const expense = "/expense";
   static var expenseFindAll = "$expense/all";
-  static var expenseGetAllOfTypeExpense = "$expense/v1/find-all-of-type-expense";
+  static var expenseGetAllOfTypeExpense =
+      "$expense/v1/find-all-of-type-expense";
 
   //FINANCE CONTROL
   static const financeControl = "/finance-control";
   static var financeControlFindAll = "$financeControl/all";
   static var financeControlInitialize = "$financeControl/v1/initialize";
+  static var financeControlMetrics = "$financeControl/v1/metrics";
 
   //MONTHLY CONTRIBUTION
   static const monthlyContribution = "/monthly-contribution";

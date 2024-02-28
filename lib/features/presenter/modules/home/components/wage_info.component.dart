@@ -2,7 +2,9 @@ import 'package:clean_architeture_flutter/features/core/constants/app_defaults.d
 import 'package:flutter/material.dart';
 
 class WageInfoComponent extends StatefulWidget {
-  const WageInfoComponent({super.key});
+  final double wage;
+
+  const WageInfoComponent({required this.wage, super.key});
 
   @override
   State<WageInfoComponent> createState() => _WageInfoComponentState();
@@ -22,7 +24,7 @@ class _WageInfoComponentState extends State<WageInfoComponent> {
               style: AppDefaults.textStyleHeader2,
             ),
             Text(
-              "R\$ 1320,00",
+              widget.wage.toString(),
               style: AppDefaults.textStyleBalance,
             ),
           ],

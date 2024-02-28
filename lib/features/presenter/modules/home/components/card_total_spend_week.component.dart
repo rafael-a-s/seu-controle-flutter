@@ -4,7 +4,9 @@ import 'package:clean_architeture_flutter/features/core/constants/app_icons.dart
 import 'package:flutter/cupertino.dart';
 
 class CardTotalSpendWeekComponent extends StatefulWidget {
-  const CardTotalSpendWeekComponent({super.key});
+  final double totalSpendForWeek;
+  const CardTotalSpendWeekComponent(
+      {required this.totalSpendForWeek, super.key});
 
   @override
   State<CardTotalSpendWeekComponent> createState() =>

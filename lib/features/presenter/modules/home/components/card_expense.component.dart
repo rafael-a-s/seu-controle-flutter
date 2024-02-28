@@ -4,7 +4,8 @@ import 'package:clean_architeture_flutter/features/core/constants/app_icons.dart
 import 'package:flutter/cupertino.dart';
 
 class CardExpenseComponent extends StatefulWidget {
-  const CardExpenseComponent({super.key});
+  final double totalExpense;
+  const CardExpenseComponent({required this.totalExpense, super.key});
 
   @override
   State<CardExpenseComponent> createState() => _CardExpenseComponentState();
@@ -33,7 +34,7 @@ class _CardExpenseComponentState extends State<CardExpenseComponent> {
             width: 130,
           ),
           Text(
-            "R\$ 150,86",
+            widget.totalExpense.toString(),
             style: AppDefaults.textStyleBalanceMinimun,
           ),
           Text(
