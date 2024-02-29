@@ -1,6 +1,7 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class AppDefaults {
   static const double radius = 15;
@@ -61,14 +62,14 @@ class AppDefaults {
 
   static TextStyle textParagraph = GoogleFonts.getFont(
     'Poppins',
-    color:  AppColors.white,
+    color: AppColors.white,
     fontWeight: FontWeight.w500,
     fontSize: 15,
   );
 
   static TextStyle textParagraphOpacity = GoogleFonts.getFont(
     'Poppins',
-    color:  AppColors.white.withOpacity(.6),
+    color: AppColors.white.withOpacity(.6),
     fontWeight: FontWeight.w500,
     fontSize: 15,
   );
@@ -110,6 +111,10 @@ class AppDefaults {
   static SizedBox sizedBox = const SizedBox(
     height: 30,
   );
+
+  static moneyFormattReal(value) =>
+      NumberFormat.currency(locale: "pt_BR", name: "BRL", symbol: "R\$")
+          .format(value);
 
   static Duration duration = const Duration(milliseconds: 300);
 }

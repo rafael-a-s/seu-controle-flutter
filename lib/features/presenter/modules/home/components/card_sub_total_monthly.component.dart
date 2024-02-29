@@ -1,7 +1,9 @@
+import 'package:animated_text_lerp/animated_text_lerp.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class CardSubTotalMonthlyComponent extends StatefulWidget {
   final double subTotal;
@@ -51,9 +53,14 @@ class _CardSubTotalMonthlyComponentState
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
-                widget.subTotal.toString(),
+              AnimatedNumberText<double>(
+                widget.subTotal, // int or double
+                curve: Curves.easeIn,
+                duration: const Duration(seconds: 1),
                 style: AppDefaults.textStyleBalance,
+                formatter: (value) => NumberFormat.currency(
+                        locale: "pt_BR", name: "BRL", symbol: "R\$")
+                    .format(value),
               ),
             ],
           ),

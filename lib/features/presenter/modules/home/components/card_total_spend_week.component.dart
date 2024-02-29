@@ -1,7 +1,9 @@
+import 'package:animated_text_lerp/animated_text_lerp.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_icons.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 
 class CardTotalSpendWeekComponent extends StatefulWidget {
   final double totalSpendForWeek;
@@ -41,9 +43,14 @@ class _CardTotalSpendWeekComponentState
                 "Total \nSemanal",
                 style: AppDefaults.textPlaceholderStyleDefault,
               ),
-              Text(
-                widget.totalSpendForWeek.toStringAsFixed(2),
+              AnimatedNumberText<double>(
+                widget.totalSpendForWeek, // int or double
+                curve: Curves.easeIn,
+                duration: const Duration(seconds: 1),
                 style: AppDefaults.textStyleBalanceMinimun,
+                formatter: (value) => NumberFormat.currency(
+                        locale: "pt_BR", name: "BRL", symbol: "R\$")
+                    .format(value),
               ),
             ],
           ),
