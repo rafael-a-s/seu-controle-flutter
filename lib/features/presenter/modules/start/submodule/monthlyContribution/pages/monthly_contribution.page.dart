@@ -1,11 +1,10 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/typeExpense/type_expense.entity.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/expense/components/card_expense.component.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/expense/controller/expense.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/expense/pages/form_expense.page.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/monthlyContribution/monthly_contribution.entity.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/monthlyContribution/components/card_contribution.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/monthlyContribution/controller/monthly_contribution.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/monthlyContribution/pages/form_monthly_contribution.page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -14,65 +13,56 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class ExpensePage extends StatefulHookConsumerWidget {
-  const ExpensePage({
-    super.key,
-    required this.typeExpense,
-  });
-
-  final TypeExpense typeExpense;
+class MonthlyContributionPage extends StatefulHookConsumerWidget {
+  const MonthlyContributionPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _ExpensePageState createState() => _ExpensePageState();
+  _MonthlyContributionPageState createState() =>
+      _MonthlyContributionPageState();
 }
 
-class _ExpensePageState extends ConsumerState<ExpensePage> {
+class _MonthlyContributionPageState
+    extends ConsumerState<MonthlyContributionPage> {
   void _showModalNewContribution(context) {
     showModalBottomSheet(
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return FormExpensePage(
+        return FormMonthlyContributionPage(
           parentContext: bc,
-          expense: Expense(
-              dayDiscount: '',
-              name: '',
-              value: 0,
-              typeExpense: TypeExpense(
-                  expenses: [], nameOfExpense: '', id: widget.typeExpense.id)),
         );
       },
     ).whenComplete(() => ref
-        .read(expenseStateProvider.notifier)
-        .getAllExpense(widget.typeExpense.id));
+        .read(monthlyContributionStateProvider.notifier)
+        .getAllMonthlyContribution());
   }
 
-  void _showModalEditContribution(context, Expense expense) {
+  void _showModalEditContribution(
+      context, MonthlyContribution monthlyContribution) {
     showModalBottomSheet(
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return FormExpensePage(
+        return FormMonthlyContributionPage(
           parentContext: bc,
-          expense: expense,
+          monthlyContribution: monthlyContribution,
         );
       },
     ).whenComplete(() => ref
-        .read(expenseStateProvider.notifier)
-        .getAllExpense(widget.typeExpense.id));
+        .read(monthlyContributionStateProvider.notifier)
+        .getAllMonthlyContribution());
   }
 
   void onDelete(String id) async {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       ref
-          .read(expenseStateProvider.notifier)
-          .deleteExpense(id, widget.typeExpense.id);
+          .read(monthlyContributionStateProvider.notifier)
+          .deleteMonthlyContribution(id);
 
       showTopSnackBar(
         Overlay.of(context),
         const CustomSnackBar.success(
-          message: AppMessage.expenseDelete,
+          message: AppMessage.monthlyContributionDelete,
           backgroundColor: AppColors.primary,
         ),
       );
@@ -84,18 +74,18 @@ class _ExpensePageState extends ConsumerState<ExpensePage> {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
       ref
-          .read(expenseStateProvider.notifier)
-          .getAllExpense(widget.typeExpense.id);
+          .read(monthlyContributionStateProvider.notifier)
+          .getAllMonthlyContribution();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final list =
-        ref.watch(expenseStateProvider.select((value) => value.expense));
+    final list = ref.watch(monthlyContributionStateProvider
+        .select((value) => value.monthlyContributions));
 
-    final loading =
-        ref.watch(expenseStateProvider.select((value) => value.isLoading));
+    final loading = ref.watch(
+        monthlyContributionStateProvider.select((value) => value.isLoading));
 
     loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
 
@@ -114,7 +104,7 @@ class _ExpensePageState extends ConsumerState<ExpensePage> {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    widget.typeExpense.nameOfExpense,
+                    'Aporte Mensal',
                     style: AppDefaults.textStyleHeader1,
                   ),
                 ),
@@ -126,7 +116,6 @@ class _ExpensePageState extends ConsumerState<ExpensePage> {
               ),
               SliverToBoxAdapter(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () => _showModalNewContribution(context),
@@ -181,7 +170,8 @@ class _ExpensePageState extends ConsumerState<ExpensePage> {
                         ),
                       ],
                     ),
-                    child: CardExpenseComponent(expense: list[index]),
+                    child: CardContributionComponent(
+                        id: index, monthlyContribution: list[index]),
                   );
                 }, childCount: list!.length),
               ),

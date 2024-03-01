@@ -7,9 +7,9 @@ import 'package:clean_architeture_flutter/features/domain/usecases/typeExpense/c
 import 'package:clean_architeture_flutter/features/domain/usecases/typeExpense/delete_type_expense.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/typeExpense/edit_type_expense.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/typeExpense/get_all_type_expense.usecase.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/typeExpense/controller/form_type_expense.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/typeExpense/controller/type_expense.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/typeExpense/pages/type_expense.page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/typeExpense/controller/form_type_expense.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/typeExpense/controller/type_expense.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/typeExpense/pages/type_expense.page.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

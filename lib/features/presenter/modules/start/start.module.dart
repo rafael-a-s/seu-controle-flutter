@@ -4,12 +4,12 @@ import 'package:clean_architeture_flutter/features/data/datasource/financeContro
 import 'package:clean_architeture_flutter/features/data/repository/finance_control.repository_impl.dart';
 import 'package:clean_architeture_flutter/features/domain/repository/finance_control.repository.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/financeControl/finance_control_metrics.usecase.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/controller/home.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/pages/home_page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/controller/home.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/pages/start.page.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class HomeModule extends Module {
+class StartModule extends Module {
   @override
   List<Module> get imports => [];
 
@@ -36,6 +36,6 @@ class HomeModule extends Module {
 
   @override
   void routes(RouteManager r) {
-    r.child("/", child: (_) => const HomePage());
+    r.child("/", child: (_) => const StartPage());
   }
 }

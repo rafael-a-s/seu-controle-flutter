@@ -7,9 +7,9 @@ import 'package:clean_architeture_flutter/features/domain/usecases/expense/creat
 import 'package:clean_architeture_flutter/features/domain/usecases/expense/delete_expense.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/expense/edit_expense.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/expense/get_all_of_type_expense.usecase.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/expense/controller/expense.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/expense/controller/form_expense.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/expense/pages/expense.page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/expense/controller/expense.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/expense/controller/form_expense.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/expense/pages/expense.page.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

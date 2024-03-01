@@ -2,9 +2,9 @@ import 'package:clean_architeture_flutter/features/core/constants/app_colors.dar
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/remuneration/remuneration.entity.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/components/card_remuneration.component.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/controller/remuneration.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/pages/form_remuneration.page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/components/card_remuneration.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/controller/remuneration.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/pages/form_remuneration.page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';

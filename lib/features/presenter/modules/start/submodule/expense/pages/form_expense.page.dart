@@ -4,7 +4,7 @@ import 'package:clean_architeture_flutter/features/core/constants/app_defaults.d
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/core/utils/validators.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/expense/controller/form_expense.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/expense/controller/form_expense.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';

@@ -11,6 +11,9 @@ class AppRoutes {
   static const forgotPassword = '/forgotPassword';
   static const passwordReset = '/passwordReset';
 
+  /* <---- start -----> */
+  static const start = '/start';
+
   /* <---- home -----> */
   static const home = '/home';
 

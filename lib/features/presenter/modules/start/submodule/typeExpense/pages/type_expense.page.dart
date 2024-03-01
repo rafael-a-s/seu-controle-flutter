@@ -1,68 +1,63 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/monthlyContribution/monthly_contribution.entity.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/components/card_contribution.component.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/controller/monthly_contribution.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/monthlyContribution/pages/form_monthly_contribution.page.dart';
+import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/typeExpense/type_expense.entity.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/typeExpense/components/card_type_expense.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/typeExpense/controller/type_expense.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/typeExpense/pages/form_type_expense.page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class MonthlyContributionPage extends StatefulHookConsumerWidget {
-  const MonthlyContributionPage({super.key});
+class TypeExpensePage extends StatefulHookConsumerWidget {
+  const TypeExpensePage({super.key});
 
   @override
-  _MonthlyContributionPageState createState() =>
-      _MonthlyContributionPageState();
+  _TypeExpensePageState createState() => _TypeExpensePageState();
 }
 
-class _MonthlyContributionPageState
-    extends ConsumerState<MonthlyContributionPage> {
+class _TypeExpensePageState extends ConsumerState<TypeExpensePage> {
   void _showModalNewContribution(context) {
     showModalBottomSheet(
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return FormMonthlyContributionPage(
+        return FormTypeExpensePage(
           parentContext: bc,
         );
       },
-    ).whenComplete(() => ref
-        .read(monthlyContributionStateProvider.notifier)
-        .getAllMonthlyContribution());
+    ).whenComplete(
+        () => ref.read(typeExpenseStateProvider.notifier).getAllTypeExpense());
   }
 
-  void _showModalEditContribution(
-      context, MonthlyContribution monthlyContribution) {
+  void _showModalEditContribution(context, TypeExpense typeExpense) {
     showModalBottomSheet(
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return FormMonthlyContributionPage(
+        return FormTypeExpensePage(
           parentContext: bc,
-          monthlyContribution: monthlyContribution,
+          typeExpense: typeExpense,
         );
       },
-    ).whenComplete(() => ref
-        .read(monthlyContributionStateProvider.notifier)
-        .getAllMonthlyContribution());
+    ).whenComplete(
+        () => ref.read(typeExpenseStateProvider.notifier).getAllTypeExpense());
   }
 
   void onDelete(String id) async {
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(monthlyContributionStateProvider.notifier)
-          .deleteMonthlyContribution(id);
+      ref.read(typeExpenseStateProvider.notifier).deleteTypeExpense(id);
 
       showTopSnackBar(
         Overlay.of(context),
         const CustomSnackBar.success(
-          message: AppMessage.monthlyContributionDelete,
+          message: AppMessage.expenseDelete,
           backgroundColor: AppColors.primary,
         ),
       );
@@ -73,19 +68,17 @@ class _MonthlyContributionPageState
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(monthlyContributionStateProvider.notifier)
-          .getAllMonthlyContribution();
+      ref.read(typeExpenseStateProvider.notifier).getAllTypeExpense();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final list = ref.watch(monthlyContributionStateProvider
-        .select((value) => value.monthlyContributions));
+    final list = ref
+        .watch(typeExpenseStateProvider.select((value) => value.typeExpense));
 
-    final loading = ref.watch(
-        monthlyContributionStateProvider.select((value) => value.isLoading));
+    final loading =
+        ref.watch(typeExpenseStateProvider.select((value) => value.isLoading));
 
     loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
 
@@ -104,7 +97,7 @@ class _MonthlyContributionPageState
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Aporte Mensal',
+                    'Dispesas por Tipo',
                     style: AppDefaults.textStyleHeader1,
                   ),
                 ),
@@ -116,6 +109,7 @@ class _MonthlyContributionPageState
               ),
               SliverToBoxAdapter(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () => _showModalNewContribution(context),
@@ -170,8 +164,12 @@ class _MonthlyContributionPageState
                         ),
                       ],
                     ),
-                    child: CardContributionComponent(
-                        id: index, monthlyContribution: list[index]),
+                    child: GestureDetector(
+                      onTap: () => Modular.to
+                          .pushNamed(AppRoutes.expense, arguments: list[index]),
+                      child: CardTypeExpenseComponent(
+                          id: index, expense: list[index]),
+                    ),
                   );
                 }, childCount: list!.length),
               ),

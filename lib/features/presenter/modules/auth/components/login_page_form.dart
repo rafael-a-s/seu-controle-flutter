@@ -44,7 +44,7 @@ class _LoginPageFormState extends ConsumerState<LoginPageForm> {
       final authUser = ref.read(authLoginStateProvider.notifier).state.authUser;
 
       if (authUser != null) {
-        Modular.to.pushNamed(AppRoutes.home);
+        Modular.to.pushNamed(AppRoutes.start);
         saveUserLogged(authUser);
       }
     }

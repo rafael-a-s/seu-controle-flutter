@@ -1,8 +1,8 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/components/animated_bar_bottom.componet.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/model/nav_item.modelc.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/model/rive_model.modelc.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/components/animated_bar_bottom.componet.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/model/nav_item.modelc.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/model/rive_model.modelc.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 

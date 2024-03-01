@@ -11,7 +11,7 @@ import 'package:clean_architeture_flutter/features/presenter/modules/auth/contro
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/intro_login_page.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/login_page.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/auth/pages/sign_up_page.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/home/home.module.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/start.module.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -46,6 +46,6 @@ class AuthModule extends Module {
     r.child("/", child: (_) => const IntroLoginPage());
     r.child("/login", child: (_) => const LoginPage());
     r.child("/sign-up", child: (_) => const SignUpPage());
-    r.module(AppRoutes.home, module: HomeModule());
+    r.module(AppRoutes.start, module: StartModule());
   }
 }

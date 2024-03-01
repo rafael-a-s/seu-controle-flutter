@@ -1,4 +1,4 @@
-import 'package:clean_architeture_flutter/features/presenter/modules/home/model/rive_model.modelc.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/model/rive_model.modelc.dart';
 
 class NavItemModel {
   final String title;

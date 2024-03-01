@@ -1,12 +1,12 @@
 import 'package:clean_architeture_flutter/features/core/components/button.component.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/components/check_box.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/components/check_box.component.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/core/utils/validators.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/remuneration/remuneration.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/enum/type_remuneration_provider.enum.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/remuneration/controller/form_remuneration.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/controller/form_remuneration.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
