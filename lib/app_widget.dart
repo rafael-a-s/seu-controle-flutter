@@ -1,5 +1,7 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
+import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/core/themes/app_themes.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/components/bottom_bar_home.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/theme/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';

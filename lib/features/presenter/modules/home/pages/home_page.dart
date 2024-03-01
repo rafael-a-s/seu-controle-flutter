@@ -1,6 +1,7 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/components/app_bar_home.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/home/components/bottom_bar_home.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_expense.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_monthly_contribution.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/home/components/card_sub_total_monthly.component.dart';
@@ -60,6 +61,7 @@ class _HomePage extends ConsumerState<HomePage> {
 
     return Scaffold(
       backgroundColor: AppColors.second,
+      bottomNavigationBar: const BottomBarHomeComponent(),
       body: Padding(
         padding: AppDefaults.padinngDefault,
         child: SafeArea(
