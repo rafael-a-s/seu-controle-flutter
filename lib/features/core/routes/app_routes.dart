@@ -17,17 +17,20 @@ class AppRoutes {
   /* <---- home -----> */
   static const home = '/home';
 
+  /* <---- finance control -----> */
+  static const financeControl = '$start/financeControl';
+
   /* <---- monthly contribution -----> */
-  static const monthlyContribution = '/monthlyContribution';
+  static const monthlyContribution = '$financeControl/monthlyContribution';
 
   /* <---- remuneration -----> */
-  static const remuneration = '/remuneration';
+  static const remuneration = '$financeControl/remuneration';
 
   /* <---- expense -----> */
-  static const expense = '/expense';
+  static const expense = '$financeControl/expense';
 
   /* <---- type expense -----> */
-  static const typeExpense = '/typeExpense';
+  static const typeExpense = '$financeControl/typeExpense';
 
   /* <---- Profile & Settings -----> */
   static const profile = '/profile';

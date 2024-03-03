@@ -2,6 +2,7 @@ import 'package:clean_architeture_flutter/features/core/constants/constants.dart
 import 'package:clean_architeture_flutter/features/presenter/modules/start/pages/home_page.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/start/pages/profile.page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class StartPage extends StatefulHookConsumerWidget {
@@ -52,7 +53,7 @@ class _StartPage extends ConsumerState<StartPage> {
       body: PageView(
         controller: pageController,
         children: [
-          HomePage(),
+          const HomePage(),
           Container(),
           const ProfilePage(id: "df"),
         ],

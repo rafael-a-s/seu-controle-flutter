@@ -54,7 +54,7 @@ class HomeController extends StateNotifier<HomeState> {
       state = state.copyWith(isLoading: true);
 
       await _getUserLogged();
-      await _getFinanceControlMetrics();
+      await _getHomeMetrics();
 
       state = state.copyWith(isLoading: false);
     } catch (e) {
@@ -74,7 +74,7 @@ class HomeController extends StateNotifier<HomeState> {
     }
   }
 
-  _getFinanceControlMetrics() async {
+  _getHomeMetrics() async {
     try {
       await financeControlMetricsUsecase
           .call(NoParams())

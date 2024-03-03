@@ -5,17 +5,20 @@ import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class AppBarHomeComponent extends StatefulWidget {
+class AppBarFinanceControlComponent extends StatefulWidget {
   final String id;
   final String name;
 
-  const AppBarHomeComponent({required this.id, required this.name, super.key});
+  const AppBarFinanceControlComponent(
+      {required this.id, required this.name, super.key});
 
   @override
-  State<AppBarHomeComponent> createState() => _AppBarHomeComponentState();
+  State<AppBarFinanceControlComponent> createState() =>
+      _AppBarFinanceControlComponentState();
 }
 
-class _AppBarHomeComponentState extends State<AppBarHomeComponent> {
+class _AppBarFinanceControlComponentState
+    extends State<AppBarFinanceControlComponent> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(

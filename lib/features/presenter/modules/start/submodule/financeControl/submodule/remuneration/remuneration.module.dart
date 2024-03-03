@@ -7,9 +7,9 @@ import 'package:clean_architeture_flutter/features/domain/usecases/remuneration/
 import 'package:clean_architeture_flutter/features/domain/usecases/remuneration/delete_remuneration.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/remuneration/edit_remuneration.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/remuneration/get_all_remuneration.usecase.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/controller/form_remuneration.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/controller/remuneration.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/pages/remuneration.page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/remuneration/controller/form_remuneration.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/remuneration/controller/remuneration.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/remuneration/pages/remuneration.page.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

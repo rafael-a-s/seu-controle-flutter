@@ -1,13 +1,13 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/components/app_bar_home.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/start/components/card_expense.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/controller/home.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/components/app_bar_home.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/start/components/card_monthly_contribution.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/start/components/card_sub_total_monthly.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/start/components/card_total_spend_week.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/start/components/card_transaction.component.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/start/components/wage_info.component.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/controller/home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -77,7 +77,7 @@ class _HomePage extends ConsumerState<HomePage> {
                     height: 10,
                   ),
                 ),
-                AppBarHomeComponent(
+                AppBarFinanceControlComponent(
                   id: authUser!.id,
                   name: authUser.name,
                 ),

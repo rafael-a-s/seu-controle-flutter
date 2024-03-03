@@ -7,9 +7,9 @@ import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContri
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/delete_monthly_contribution.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/edit_monthly_contribution.usecase.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/monthlyContribution/get_all_monthly_contribution.usecase.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/monthlyContribution/controller/form_monthly_contribution.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/monthlyContribution/controller/monthly_contribution.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/monthlyContribution/pages/monthly_contribution.page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/monthlyContribution/controller/form_monthly_contribution.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/monthlyContribution/controller/monthly_contribution.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/monthlyContribution/pages/monthly_contribution.page.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

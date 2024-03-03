@@ -1,63 +1,73 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
-import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/typeExpense/type_expense.entity.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/typeExpense/components/card_type_expense.component.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/typeExpense/controller/type_expense.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/typeExpense/pages/form_type_expense.page.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/remuneration/remuneration.entity.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/remuneration/components/card_remuneration.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/remuneration/controller/remuneration.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/remuneration/pages/form_remuneration.page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class TypeExpensePage extends StatefulHookConsumerWidget {
-  const TypeExpensePage({super.key});
+class RemunerationPage extends StatefulHookConsumerWidget {
+  const RemunerationPage({super.key});
 
   @override
-  _TypeExpensePageState createState() => _TypeExpensePageState();
+  _RemunerationPageState createState() => _RemunerationPageState();
 }
 
-class _TypeExpensePageState extends ConsumerState<TypeExpensePage> {
+class _RemunerationPageState extends ConsumerState<RemunerationPage> {
   void _showModalNewContribution(context) {
     showModalBottomSheet(
+      isScrollControlled: true,
+      useSafeArea: true,
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return FormTypeExpensePage(
-          parentContext: bc,
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.75,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25.0),
+              topRight: Radius.circular(25.0),
+            ),
+          ),
+          child: FormRemunerationPage(
+            parentContext: bc,
+          ),
         );
       },
-    ).whenComplete(
-        () => ref.read(typeExpenseStateProvider.notifier).getAllTypeExpense());
+    ).whenComplete(() =>
+        ref.read(remunerationStateProvider.notifier).getAllRemuneration());
   }
 
-  void _showModalEditContribution(context, TypeExpense typeExpense) {
+  void _showModalEditContribution(context, Remuneration remuneration) {
     showModalBottomSheet(
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return FormTypeExpensePage(
+        return FormRemunerationPage(
           parentContext: bc,
-          typeExpense: typeExpense,
+          remuneration: remuneration,
         );
       },
-    ).whenComplete(
-        () => ref.read(typeExpenseStateProvider.notifier).getAllTypeExpense());
+    ).whenComplete(() =>
+        ref.read(remunerationStateProvider.notifier).getAllRemuneration());
   }
 
   void onDelete(String id) async {
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(typeExpenseStateProvider.notifier).deleteTypeExpense(id);
+      ref.read(remunerationStateProvider.notifier).deleteRemuneration(id);
 
       showTopSnackBar(
         Overlay.of(context),
         const CustomSnackBar.success(
-          message: AppMessage.expenseDelete,
+          message: AppMessage.monthlyContributionCreated,
           backgroundColor: AppColors.primary,
         ),
       );
@@ -68,17 +78,17 @@ class _TypeExpensePageState extends ConsumerState<TypeExpensePage> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(typeExpenseStateProvider.notifier).getAllTypeExpense();
+      ref.read(remunerationStateProvider.notifier).getAllRemuneration();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final list = ref
-        .watch(typeExpenseStateProvider.select((value) => value.typeExpense));
+    final list = ref.watch(
+        remunerationStateProvider.select((value) => value.remunerations));
 
     final loading =
-        ref.watch(typeExpenseStateProvider.select((value) => value.isLoading));
+        ref.watch(remunerationStateProvider.select((value) => value.isLoading));
 
     loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
 
@@ -97,7 +107,7 @@ class _TypeExpensePageState extends ConsumerState<TypeExpensePage> {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Dispesas por Tipo',
+                    'Suas Fontes de renda',
                     style: AppDefaults.textStyleHeader1,
                   ),
                 ),
@@ -109,7 +119,6 @@ class _TypeExpensePageState extends ConsumerState<TypeExpensePage> {
               ),
               SliverToBoxAdapter(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () => _showModalNewContribution(context),
@@ -164,12 +173,8 @@ class _TypeExpensePageState extends ConsumerState<TypeExpensePage> {
                         ),
                       ],
                     ),
-                    child: GestureDetector(
-                      onTap: () => Modular.to
-                          .pushNamed(AppRoutes.expense, arguments: list[index]),
-                      child: CardTypeExpenseComponent(
-                          id: index, expense: list[index]),
-                    ),
+                    child: CardRemunerationComponent(
+                        id: index, remuneration: list[index]),
                   );
                 }, childCount: list!.length),
               ),

@@ -3,9 +3,9 @@ import 'package:clean_architeture_flutter/features/core/constants/app_defaults.d
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/typeExpense/type_expense.entity.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/expense/components/card_expense.component.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/expense/controller/expense.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/expense/pages/form_expense.page.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/expense/components/card_expense.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/expense/controller/expense.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/expense/pages/form_expense.page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';

@@ -1,10 +1,10 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/remuneration/remuneration.entity.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/components/card_remuneration.component.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/controller/remuneration.controller.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/remuneration/pages/form_remuneration.page.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/monthlyContribution/monthly_contribution.entity.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/monthlyContribution/components/card_contribution.component.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/monthlyContribution/controller/monthly_contribution.controller.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/monthlyContribution/pages/form_monthly_contribution.page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -13,61 +13,56 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class RemunerationPage extends StatefulHookConsumerWidget {
-  const RemunerationPage({super.key});
+class MonthlyContributionPage extends StatefulHookConsumerWidget {
+  const MonthlyContributionPage({super.key});
 
   @override
-  _RemunerationPageState createState() => _RemunerationPageState();
+  _MonthlyContributionPageState createState() =>
+      _MonthlyContributionPageState();
 }
 
-class _RemunerationPageState extends ConsumerState<RemunerationPage> {
+class _MonthlyContributionPageState
+    extends ConsumerState<MonthlyContributionPage> {
   void _showModalNewContribution(context) {
     showModalBottomSheet(
-      isScrollControlled: true,
-      useSafeArea: true,
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.75,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25.0),
-              topRight: Radius.circular(25.0),
-            ),
-          ),
-          child: FormRemunerationPage(
-            parentContext: bc,
-          ),
+        return FormMonthlyContributionPage(
+          parentContext: bc,
         );
       },
-    ).whenComplete(() =>
-        ref.read(remunerationStateProvider.notifier).getAllRemuneration());
+    ).whenComplete(() => ref
+        .read(monthlyContributionStateProvider.notifier)
+        .getAllMonthlyContribution());
   }
 
-  void _showModalEditContribution(context, Remuneration remuneration) {
+  void _showModalEditContribution(
+      context, MonthlyContribution monthlyContribution) {
     showModalBottomSheet(
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
       builder: (BuildContext bc) {
-        return FormRemunerationPage(
+        return FormMonthlyContributionPage(
           parentContext: bc,
-          remuneration: remuneration,
+          monthlyContribution: monthlyContribution,
         );
       },
-    ).whenComplete(() =>
-        ref.read(remunerationStateProvider.notifier).getAllRemuneration());
+    ).whenComplete(() => ref
+        .read(monthlyContributionStateProvider.notifier)
+        .getAllMonthlyContribution());
   }
 
   void onDelete(String id) async {
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(remunerationStateProvider.notifier).deleteRemuneration(id);
+      ref
+          .read(monthlyContributionStateProvider.notifier)
+          .deleteMonthlyContribution(id);
 
       showTopSnackBar(
         Overlay.of(context),
         const CustomSnackBar.success(
-          message: AppMessage.monthlyContributionCreated,
+          message: AppMessage.monthlyContributionDelete,
           backgroundColor: AppColors.primary,
         ),
       );
@@ -78,17 +73,19 @@ class _RemunerationPageState extends ConsumerState<RemunerationPage> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(remunerationStateProvider.notifier).getAllRemuneration();
+      ref
+          .read(monthlyContributionStateProvider.notifier)
+          .getAllMonthlyContribution();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final list = ref.watch(
-        remunerationStateProvider.select((value) => value.remunerations));
+    final list = ref.watch(monthlyContributionStateProvider
+        .select((value) => value.monthlyContributions));
 
-    final loading =
-        ref.watch(remunerationStateProvider.select((value) => value.isLoading));
+    final loading = ref.watch(
+        monthlyContributionStateProvider.select((value) => value.isLoading));
 
     loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
 
@@ -107,7 +104,7 @@ class _RemunerationPageState extends ConsumerState<RemunerationPage> {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Suas Fontes de renda',
+                    'Aporte Mensal',
                     style: AppDefaults.textStyleHeader1,
                   ),
                 ),
@@ -173,8 +170,8 @@ class _RemunerationPageState extends ConsumerState<RemunerationPage> {
                         ),
                       ],
                     ),
-                    child: CardRemunerationComponent(
-                        id: index, remuneration: list[index]),
+                    child: CardContributionComponent(
+                        id: index, monthlyContribution: list[index]),
                   );
                 }, childCount: list!.length),
               ),

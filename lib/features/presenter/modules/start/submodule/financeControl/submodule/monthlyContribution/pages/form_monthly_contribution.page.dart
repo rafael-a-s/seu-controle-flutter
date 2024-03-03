@@ -3,52 +3,52 @@ import 'package:clean_architeture_flutter/features/core/constants/app_colors.dar
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/core/utils/validators.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/expense/expense.entity.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/expense/controller/form_expense.controller.dart';
+import 'package:clean_architeture_flutter/features/domain/entity/monthlyContribution/monthly_contribution.entity.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/start/submodule/financeControl/submodule/monthlyContribution/controller/form_monthly_contribution.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class FormExpensePage extends StatefulHookConsumerWidget {
+class FormMonthlyContributionPage extends StatefulHookConsumerWidget {
   final BuildContext parentContext;
-  final Expense? expense;
+  final MonthlyContribution? monthlyContribution;
 
-  const FormExpensePage({required this.parentContext, this.expense, super.key});
+  const FormMonthlyContributionPage(
+      {required this.parentContext, this.monthlyContribution, super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _FormExpensePageState createState() => _FormExpensePageState();
+  _FormMonthlyContributionPageState createState() =>
+      _FormMonthlyContributionPageState();
 }
 
-class _FormExpensePageState extends ConsumerState<FormExpensePage> {
+class _FormMonthlyContributionPageState
+    extends ConsumerState<FormMonthlyContributionPage> {
   final _key = GlobalKey<FormState>();
-  final _nameExpense = TextEditingController();
-  final _valueExpense = TextEditingController();
-  final _dayDiscount = TextEditingController();
+  final _nameInvestiment = TextEditingController();
+  final _valueContribution = TextEditingController();
 
   onSubmit() {
     final bool isFormOkay = _key.currentState!.validate();
     if (isFormOkay) {
-      widget.expense!.id != null ? onEdit() : onCreate();
+      widget.monthlyContribution != null ? onEdit() : onCreate();
     }
   }
 
   void onCreate() async {
-    final expense = Expense(
-      name: _nameExpense.text,
-      value: double.parse(_valueExpense.text),
-      dayDiscount: _dayDiscount.text,
-      typeExpense: widget.expense!.typeExpense,
-    );
+    final monthlyContribution = MonthlyContribution(
+        nameInvestiment: _nameInvestiment.text,
+        value: double.parse(_valueContribution.text));
 
-    await ref.read(formExpenseStateProvider.notifier).createExpense(expense);
+    await ref
+        .read(formMonthlyContributionStateProvider.notifier)
+        .createMonthlyContribution(monthlyContribution);
 
     showTopSnackBar(
       Overlay.of(context),
       const CustomSnackBar.success(
-        message: AppMessage.expenseCreated,
+        message: AppMessage.monthlyContributionCreated,
         backgroundColor: AppColors.primary,
       ),
     );
@@ -58,23 +58,19 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
   }
 
   void onEdit() async {
-    final monthlyForEdit = Expense(
-      id: widget.expense!.id,
-      name: _nameExpense.text,
-      value: double.parse(_valueExpense.text),
-      dayDiscount: _dayDiscount.text,
-      typeExpense: widget.expense!.typeExpense,
-    );
+    final monthlyForEdit = MonthlyContribution(
+        id: widget.monthlyContribution!.id,
+        nameInvestiment: _nameInvestiment.text,
+        value: double.parse(_valueContribution.text));
 
     await ref
-        .read(formExpenseStateProvider.notifier)
-        .editExpense(monthlyForEdit);
+        .read(formMonthlyContributionStateProvider.notifier)
+        .editMonthlyContribution(monthlyForEdit);
 
     showTopSnackBar(
-      // ignore: use_build_context_synchronously
       Overlay.of(context),
       const CustomSnackBar.success(
-        message: AppMessage.expenseEdited,
+        message: AppMessage.monthlyContributionEdited,
         backgroundColor: AppColors.primary,
       ),
     );
@@ -84,10 +80,9 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
   }
 
   void mountForm() {
-    if (widget.expense!.id != null) {
-      _nameExpense.text = widget.expense!.name;
-      _valueExpense.text = widget.expense!.value.toString();
-      _dayDiscount.text = widget.expense!.dayDiscount;
+    if (widget.monthlyContribution != null) {
+      _nameInvestiment.text = widget.monthlyContribution!.nameInvestiment;
+      _valueContribution.text = widget.monthlyContribution!.value.toString();
     }
   }
 
@@ -99,8 +94,8 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
 
   @override
   Widget build(BuildContext context) {
-    final loading =
-        ref.watch(formExpenseStateProvider.select((value) => value.isLoading));
+    final loading = ref.watch(formMonthlyContributionStateProvider
+        .select((value) => value.isLoading));
 
     loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
     return Scaffold(
@@ -126,38 +121,28 @@ class _FormExpensePageState extends ConsumerState<FormExpensePage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("Nome da Despesa"),
+                          const Text("Nome do Investimento"),
                           const SizedBox(height: 8),
                           TextFormField(
-                            controller: _nameExpense,
+                            controller: _nameInvestiment,
                             validator: Validators.requiredWithFieldName(
-                                'Nome da Despesa'),
+                                'Nome do Investimento'),
                             textInputAction: TextInputAction.next,
                             decoration:
-                                const InputDecoration(hintText: 'Ex: Netflix'),
+                                const InputDecoration(hintText: 'Ex: Mxr11'),
                           ),
                           const SizedBox(height: 8),
-                          const Text("Valor"),
+                          const Text("Valor do Aporte"),
                           const SizedBox(height: 8),
                           TextFormField(
-                            controller: _valueExpense,
+                            controller: _valueContribution,
                             validator: Validators.positiveNumberWithDot,
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.number,
                             decoration:
-                                const InputDecoration(hintText: 'Ex: 54,99'),
+                                const InputDecoration(hintText: 'Ex: 100'),
                           ),
                           const SizedBox(height: 8),
-                          const Text("Dia do desconto"),
-                          const SizedBox(height: 8),
-                          TextFormField(
-                            controller: _dayDiscount,
-                            validator: Validators.positiveNumberWithDot,
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.number,
-                            decoration:
-                                const InputDecoration(hintText: 'Ex: 02'),
-                          ),
                         ],
                       ),
                       ButtonComponent(onPressed: onSubmit, text: 'Salvar')
