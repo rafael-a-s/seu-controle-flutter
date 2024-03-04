@@ -20,4 +20,6 @@ class AuthUser extends HiveObject {
     this.email,
     this.photoURL,
   });
+
+  List<dynamic> get props => [uid, name, email, photoURL];
 }

@@ -19,9 +19,9 @@ class AuthUserAdapter extends TypeAdapter<AuthUser> {
     };
     return AuthUser(
       uid: fields[0] as String,
-      name: fields[1] as String,
-      email: fields[2] as String? ?? "",
-      photoURL: fields[3] as String? ?? "",
+      name: fields[1] as String? ?? "Sem nome",
+      email: fields[2] as String?,
+      photoURL: fields[3] as String?,
     );
   }
 
