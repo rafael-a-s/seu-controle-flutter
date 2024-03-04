@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../components/dont_have_account_row.dart';
 import '../components/login_header.dart';
-import '../components/login_page_form.dart';
 import '../components/social_logins.dart';
 
 class LoginPage extends StatelessWidget {
@@ -11,7 +10,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -19,7 +18,6 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 LoginPageHeader(),
-                LoginPageForm(),
                 SizedBox(height: AppDefaults.padding),
                 SocialLogins(),
                 DontHaveAccountRow(),

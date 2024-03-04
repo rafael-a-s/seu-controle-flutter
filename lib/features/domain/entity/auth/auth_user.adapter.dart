@@ -17,30 +17,26 @@ class AuthUserAdapter extends TypeAdapter<AuthUser> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    Set<String> roles = (fields[4] as List).cast<String>().toSet();
     return AuthUser(
-      id: fields[0] as String,
+      uid: fields[0] as String,
       name: fields[1] as String,
-      cpf: fields[2] as String,
-      acessToken: fields[3] as String,
-      roles: roles,
+      email: fields[2] as String? ?? "",
+      photoURL: fields[3] as String? ?? "",
     );
   }
 
   @override
   void write(BinaryWriter writer, AuthUser obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.id)
+      ..write(obj.uid)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.cpf)
+      ..write(obj.email)
       ..writeByte(3)
-      ..write(obj.acessToken)
-      ..writeByte(4)
-      ..write(obj.roles.toList());
+      ..write(obj.photoURL);
   }
 
   @override

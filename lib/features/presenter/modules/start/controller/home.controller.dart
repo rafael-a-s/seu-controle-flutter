@@ -25,8 +25,7 @@ class HomeState extends BaseState {
 
   factory HomeState.inital() => HomeState(
         isLoading: false,
-        authUser: AuthUser(
-            id: '', name: '', cpf: '', acessToken: '', roles: <String>{}),
+        authUser: AuthUser(uid: '', name: '', email: '', photoURL: ''),
         financeControlMetric: FinanceControlMetric(),
       );
 

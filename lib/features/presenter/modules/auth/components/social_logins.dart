@@ -1,14 +1,31 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
+import 'package:clean_architeture_flutter/features/presenter/modules/auth/controller/auth_login.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
-class SocialLogins extends StatelessWidget {
-  const SocialLogins({
+class SocialLogins extends StatefulHookConsumerWidget {
+  SocialLogins({
     Key? key,
   }) : super(key: key);
 
   @override
+  _SocialLoginsState createState() => _SocialLoginsState();
+}
+
+class _SocialLoginsState extends ConsumerState<SocialLogins> {
+  _handleGoogleSignIn() {
+    ref.watch(authLoginStateProvider.notifier).login();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final loading =
+        ref.watch(authLoginStateProvider.select((value) => value.isLoading));
+
+    loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
+
     return Padding(
       padding: const EdgeInsets.all(AppDefaults.padding),
       child: Row(
@@ -16,7 +33,7 @@ class SocialLogins extends StatelessWidget {
         children: [
           Expanded(
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () => _handleGoogleSignIn(),
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: Colors.red),
                 padding: const EdgeInsets.symmetric(

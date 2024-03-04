@@ -2,31 +2,25 @@ import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.
 
 class AuthUserModel extends AuthUser {
   AuthUserModel({
-    required super.id,
+    required super.uid,
     required super.name,
-    required super.cpf,
-    required super.acessToken,
-    required super.roles,
+    required super.email,
+    required super.photoURL,
   });
 
   factory AuthUserModel.fromJson(Map<String, dynamic> json) {
-    Set<String> roles =
-        json['roles'].map<String>((value) => value.toString()).toSet();
-
     return AuthUserModel(
-      id: json['id'],
+      uid: json['uid'],
       name: json['name'],
-      cpf: json['cpf'],
-      acessToken: json['acessToken'],
-      roles: roles,
+      email: json['email'],
+      photoURL: json['photoURL'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
+        'uid': uid,
         'name': name,
-        'cpf': cpf,
-        'acessToken': acessToken,
-        'roles': roles,
+        'email': email,
+        'photoURL': photoURL,
       };
 }

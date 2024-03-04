@@ -78,8 +78,8 @@ class _HomePage extends ConsumerState<HomePage> {
                   ),
                 ),
                 AppBarFinanceControlComponent(
-                  id: authUser!.id,
-                  name: authUser.name,
+                  id: authUser!.uid,
+                  name: authUser.name ?? "Uknow",
                 ),
                 const SliverToBoxAdapter(
                   child: SizedBox(

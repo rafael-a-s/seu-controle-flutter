@@ -3,33 +3,21 @@ import 'package:hive/hive.dart';
 @HiveType(typeId: 0)
 class AuthUser extends HiveObject {
   @HiveField(0)
-  final String id;
+  final String uid;
 
   @HiveField(1)
   final String name;
 
   @HiveField(2)
-  final String cpf;
+  final String? email;
 
   @HiveField(3)
-  final String acessToken;
-
-  @HiveField(4)
-  final Set<String> roles;
+  final String? photoURL;
 
   AuthUser({
-    required this.id,
+    required this.uid,
     required this.name,
-    required this.cpf,
-    required this.acessToken,
-    required this.roles,
+    this.email,
+    this.photoURL,
   });
-
-  List<Object> get props => [
-        id,
-        name,
-        cpf,
-        acessToken,
-        roles,
-      ];
 }
