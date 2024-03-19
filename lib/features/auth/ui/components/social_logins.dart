@@ -8,16 +8,16 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-class SocialLogins extends StatefulWidget {
+class SocialLogins extends StatefulWidget{
   SocialLogins({
     Key? key,
   }) : super(key: key);
 
   @override
-  _SocialLoginsState createState() => _SocialLoginsState();
+  State<SocialLogins> createState() => _SocialLoginsState();
 }
 
-class _SocialLoginsState extends State<SocialLogins> {
+class _SocialLoginsState extends State<SocialLogins>{
 
   _handleGoogleSignIn() {
     final bloc = Modular.get<AuthBloc>();
@@ -27,80 +27,84 @@ class _SocialLoginsState extends State<SocialLogins> {
   @override
   Widget build(BuildContext context) {
 
-    final bloc = context.watch<AuthBloc>();
-    final state = bloc.state;
 
-    state is AuthStateLoading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
+    return StreamBuilder<AuthState>(
+      stream: bloc.stream,
+      builder: (context, snapshot) {
+        final loading = snapshot.data is AuthStateLoading;
+        final sucessLogin = snapshot.data is AuthStateSucess;
 
-    state is AuthStateSucess ? Modular.to.pushNamed(AppRoutes.start) : () {};
+        sucessLogin ? Modular.to.pushNamed(AppRoutes.start) : () {};
+        loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
 
-
-    return Padding(
-      padding: const EdgeInsets.all(AppDefaults.padding),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: OutlinedButton(
-              onPressed: () => _handleGoogleSignIn(),
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Colors.red),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDefaults.padding * 2,
-                  vertical: AppDefaults.padding,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AppIcons.googleIconRounded,
-                    width: 24,
+        return  Padding(
+          padding: const EdgeInsets.all(AppDefaults.padding),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () => _handleGoogleSignIn(),
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Colors.red),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDefaults.padding * 2,
+                      vertical: AppDefaults.padding,
+                    ),
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Google',
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        AppIcons.googleIconRounded,
+                        width: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Google',
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: Colors.red,
                           fontWeight: FontWeight.bold,
                         ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(width: AppDefaults.margin),
-          Expanded(
-            child: OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Colors.black),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDefaults.padding * 2,
-                  vertical: AppDefaults.padding,
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AppIcons.appleIconRounded,
-                    width: 24,
+              const SizedBox(width: AppDefaults.margin),
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Colors.black),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDefaults.padding * 2,
+                      vertical: AppDefaults.padding,
+                    ),
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Apple',
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        AppIcons.appleIconRounded,
+                        width: 24,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Apple',
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
