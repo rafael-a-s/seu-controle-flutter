@@ -1,7 +1,7 @@
 import 'package:clean_architeture_flutter/core/state/base_state.dart';
 import 'package:clean_architeture_flutter/core/usecase/usecase.dart';
+import 'package:clean_architeture_flutter/features/auth/interactor/entity/auth_user.entity.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_key_hiver.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
 import 'package:clean_architeture_flutter/features/domain/entity/financeControl/finance_control_metric.entity.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/financeControl/finance_control_metrics.usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';

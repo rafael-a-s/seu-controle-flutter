@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:clean_architeture_flutter/app_module.dart';
 import 'package:clean_architeture_flutter/app_widget.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.adapter.dart';
+import 'package:clean_architeture_flutter/features/auth/interactor/entity/auth_user.adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';

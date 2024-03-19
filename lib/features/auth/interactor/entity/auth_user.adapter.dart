@@ -4,7 +4,7 @@
 // TypeAdapterGenerator
 // **************************************************************************
 
-import 'package:clean_architeture_flutter/features/domain/entity/auth/auth_user.dart';
+import 'package:clean_architeture_flutter/features/auth/interactor/entity/auth_user.entity.dart';
 import 'package:hive/hive.dart';
 
 class AuthUserAdapter extends TypeAdapter<AuthUser> {

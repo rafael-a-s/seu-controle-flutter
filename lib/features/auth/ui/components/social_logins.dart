@@ -1,11 +1,14 @@
+import 'package:clean_architeture_flutter/features/auth/interactor/blocs/auth.bloc.dart';
+import 'package:clean_architeture_flutter/features/auth/interactor/events/auth.event.dart';
+import 'package:clean_architeture_flutter/features/auth/interactor/states/auth_login.state.dart';
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/auth/controller/auth_login.controller.dart';
+import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-class SocialLogins extends StatefulHookConsumerWidget {
+class SocialLogins extends StatefulWidget {
   SocialLogins({
     Key? key,
   }) : super(key: key);
@@ -14,17 +17,23 @@ class SocialLogins extends StatefulHookConsumerWidget {
   _SocialLoginsState createState() => _SocialLoginsState();
 }
 
-class _SocialLoginsState extends ConsumerState<SocialLogins> {
+class _SocialLoginsState extends State<SocialLogins> {
+
   _handleGoogleSignIn() {
-    ref.watch(authLoginStateProvider.notifier).login();
+    final bloc = Modular.get<AuthBloc>();
+    bloc.add(LoginAuthEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    final loading =
-        ref.watch(authLoginStateProvider.select((value) => value.isLoading));
 
-    loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
+    final bloc = context.watch<AuthBloc>();
+    final state = bloc.state;
+
+    state is AuthStateLoading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
+
+    state is AuthStateSucess ? Modular.to.pushNamed(AppRoutes.start) : () {};
+
 
     return Padding(
       padding: const EdgeInsets.all(AppDefaults.padding),
