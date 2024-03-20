@@ -19,6 +19,14 @@ class SocialLogins extends StatefulWidget{
 
 class _SocialLoginsState extends State<SocialLogins>{
 
+  late final bloc;
+
+  @override
+  void initState() {
+    bloc = Modular.get<AuthBloc>();
+    super.initState();
+  }
+
   _handleGoogleSignIn() {
     final bloc = Modular.get<AuthBloc>();
     bloc.add(LoginAuthEvent());
