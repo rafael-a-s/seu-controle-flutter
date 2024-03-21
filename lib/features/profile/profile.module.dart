@@ -14,7 +14,7 @@ class ProfileModule extends Module {
 
   @override
   void binds(Injector i) {
-    i.addInstance(() => ProfileBloc(i.get<HiveService>()));
+    i.addSingleton(() => ProfileBloc(i.get<HiveService>()));
   }
 
 }

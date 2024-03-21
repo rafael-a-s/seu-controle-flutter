@@ -1,4 +1,9 @@
+import 'dart:async';
+
+import 'package:clean_architeture_flutter/features/auth/interactor/blocs/auth.bloc.dart';
+import 'package:clean_architeture_flutter/features/auth/interactor/states/auth_login.state.dart';
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
+import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/core/themes/app_themes.dart';
 import 'package:clean_architeture_flutter/features/presenter/theme/color_schemes.g.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +20,28 @@ class AppWidget extends StatefulWidget {
 }
 
 class AppWidgetState extends State<AppWidget> {
+  late final StreamSubscription _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _subscription = context.read<AuthBloc>().stream.listen(
+          (state) {
+        if (state is AuthStateSucess) {
+          Modular.to.navigate(AppRoutes.start);
+        } else if (state is AuthStateLogout) {
+          Modular.to.navigate(AppRoutes.auth);
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return RefreshConfiguration(

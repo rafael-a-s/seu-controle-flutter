@@ -29,8 +29,12 @@ class AuthDatasourceImpl implements AuthDatasource {
   }
 
   @override
-  Future<AuthState> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<AuthState> logout() async {
+    try {
+      await auth.signOut();
+      return const AuthStateLogout();
+    } catch (e) {
+      return  const AuthStateLogout();
+    }
   }
 }

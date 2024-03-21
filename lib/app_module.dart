@@ -14,6 +14,10 @@ class AppModule extends Module {
   }
 
   @override
+  // TODO: implement imports
+  List<Module> get imports => [AuthModule()];
+
+  @override
   void routes(r) {
     r.module("/", module: OnboardingModule());
     r.module(AppRoutes.start, module: StartModule());
