@@ -3,35 +3,29 @@ import 'package:clean_architeture_flutter/features/core/constants/app_defaults.d
 import 'package:clean_architeture_flutter/features/core/constants/app_images.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
-import 'package:clean_architeture_flutter/features/profile/controller/profile.controller.dart';
+import 'package:clean_architeture_flutter/features/profile/blocs/profile.bloc.dart';
+import 'package:clean_architeture_flutter/features/profile/states/profile.state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class ProfilePage extends StatefulHookConsumerWidget {
-  final String id;
+class ProfilePage extends StatefulWidget {
 
-  const ProfilePage({required this.id, super.key});
+  const ProfilePage({super.key});
 
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends ConsumerState<ProfilePage> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(profileStateProvider.notifier).getUser(widget.id);
-    });
   }
 
   logout() async {
-    await ref.read(profileStateProvider.notifier).logout();
 
     showTopSnackBar(
       Overlay.of(context),
@@ -46,10 +40,14 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final loading =
-        ref.watch(profileStateProvider.select((value) => value.isLoading));
+    final bloc = context.watch<ProfileBloc>();
+    final state = bloc.state;
+    final loading = state is ProfileStateLoading ?? false;
 
-    final user = ref.watch(profileStateProvider.select((value) => value.user));
+    late final user;
+    if(state is ProfileStateGettedUser) {
+      user = (bloc.state as ProfileStateGettedUser).authUser;
+    }
 
     loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
 
@@ -117,7 +115,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         child: Text("Editar Perfil",
                             style: AppDefaults.textPlaceholderStyleDefault),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

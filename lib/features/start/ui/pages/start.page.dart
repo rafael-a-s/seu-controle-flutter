@@ -1,6 +1,6 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
 import 'package:clean_architeture_flutter/features/start/ui/pages/home_page.dart';
-import 'package:clean_architeture_flutter/features/start/ui/pages/profile.page.dart';
+import 'package:clean_architeture_flutter/features/profile/ui/pages/profile.page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -54,7 +54,7 @@ class _StartPage extends ConsumerState<StartPage> {
         children: [
           const HomePage(),
           Container(),
-          const ProfilePage(id: "df"),
+          const ProfilePage(),
         ],
       ),
     );
