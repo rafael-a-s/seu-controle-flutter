@@ -1,4 +1,5 @@
 import 'package:clean_architeture_flutter/features/auth/interactor/blocs/auth.bloc.dart';
+import 'package:clean_architeture_flutter/features/auth/interactor/entity/auth_user.entity.dart';
 import 'package:clean_architeture_flutter/features/auth/interactor/events/auth.event.dart';
 import 'package:clean_architeture_flutter/features/auth/interactor/states/auth_login.state.dart';
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
@@ -40,9 +41,13 @@ class _SocialLoginsState extends State<SocialLogins>{
       stream: bloc.stream,
       builder: (context, snapshot) {
         final loading = snapshot.data is AuthStateLoading;
-        final sucessLogin = snapshot.data is AuthStateSucess;
 
-        sucessLogin ? Modular.to.pushNamed(AppRoutes.start) : () {};
+        if(snapshot.data is AuthStateSucess) {
+          AuthStateSucess state = snapshot.data as AuthStateSucess;
+          AuthUser? authUser = state.authUser;
+          bloc.add(SucessLoginAuthEvent(authUser: authUser));
+        }
+
         loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
 
         return  Padding(

@@ -9,7 +9,9 @@ class AppModule extends Module {
   AppModule();
 
   @override
-  void binds(i) {}
+  void binds(i) {
+
+  }
 
   @override
   void routes(r) {

@@ -5,7 +5,7 @@ class AuthAdapter {
   static AuthUser fromFirebaseUser(User user) {
     return AuthUser(
       uid: user.uid,
-      email: user.email ?? '',
+      email: user.email ?? 'Sem nome',
       name: user.displayName ?? '',
       photoURL: user.photoURL ?? '',
     );

@@ -1,4 +1,3 @@
-import 'package:clean_architeture_flutter/features/auth/interactor/entity/auth_user.entity.dart';
 import 'package:clean_architeture_flutter/features/hive/events/hive.event.dart';
 import 'package:clean_architeture_flutter/features/hive/service/hive.service.dart';
 import 'package:clean_architeture_flutter/features/hive/states/hive.state.dart';
