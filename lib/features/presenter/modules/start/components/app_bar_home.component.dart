@@ -8,9 +8,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 class AppBarFinanceControlComponent extends StatefulWidget {
   final String id;
   final String name;
+  final String photoUrl;
 
   const AppBarFinanceControlComponent(
-      {required this.id, required this.name, super.key});
+      {required this.id,
+      required this.name,
+      required this.photoUrl,
+      super.key});
 
   @override
   State<AppBarFinanceControlComponent> createState() =>
@@ -24,7 +28,10 @@ class _AppBarFinanceControlComponentState
     return SliverAppBar(
       backgroundColor: AppColors.second,
       titleSpacing: 40,
-      leading: Image.asset(AppImages.user_default),
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Image.network(widget.photoUrl),
+      ),
       floating: true,
       title: Padding(
         padding: const EdgeInsets.only(
