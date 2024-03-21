@@ -3,7 +3,7 @@ import 'package:clean_architeture_flutter/features/core/constants/app_defaults.d
 import 'package:clean_architeture_flutter/features/core/constants/app_images.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
-import 'package:clean_architeture_flutter/features/presenter/modules/profile/controller/profile.controller.dart';
+import 'package:clean_architeture_flutter/features/profile/controller/profile.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
