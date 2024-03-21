@@ -5,7 +5,7 @@ import 'package:clean_architeture_flutter/features/data/repository/user_reposito
 import 'package:clean_architeture_flutter/features/domain/repository/user_repository.dart';
 import 'package:clean_architeture_flutter/features/domain/usecases/user/get_user.usecase.dart';
 import 'package:clean_architeture_flutter/features/presenter/modules/profile/controller/profile.controller.dart';
-import 'package:clean_architeture_flutter/features/start/pages/profile.page.dart';
+import 'package:clean_architeture_flutter/features/start/ui/pages/profile.page.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

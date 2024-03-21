@@ -1,8 +1,8 @@
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/start/controller/home.controller.dart';
 import 'package:clean_architeture_flutter/features/start/controller/start.controller.dart';
-import 'package:clean_architeture_flutter/features/start/pages/start.page.dart';
 import 'package:clean_architeture_flutter/features/start/submodule/financeControl/finance_control.module.dart';
+import 'package:clean_architeture_flutter/features/start/ui/pages/start.page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class StartModule extends Module {
