@@ -29,8 +29,11 @@ class _AppBarFinanceControlComponentState
       backgroundColor: AppColors.second,
       titleSpacing: 40,
       leading: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: Image.network(widget.photoUrl),
+        borderRadius: BorderRadius.circular(50),
+        child: widget.photoUrl != "" ? Image.network(
+          widget.photoUrl ?? "",
+          errorBuilder: (context, error, stackTrace) => Text("Erro ao carregar a imagem"),
+        ) : Image.asset(AppImages.user_default),
       ),
       floating: true,
       title: Padding(

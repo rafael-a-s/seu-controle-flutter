@@ -1,4 +1,5 @@
 import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
+import 'package:clean_architeture_flutter/features/home/home.module.dart';
 import 'package:clean_architeture_flutter/features/profile/profile.module.dart';
 import 'package:clean_architeture_flutter/features/start/controller/home.controller.dart';
 import 'package:clean_architeture_flutter/features/start/controller/start.controller.dart';
@@ -17,6 +18,7 @@ class StartModule extends Module {
   List<Module> get imports => [
         FinanceControlModule(),
         ProfileModule(),
+        HomeModule(),
       ];
 
   @override

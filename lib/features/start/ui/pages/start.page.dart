@@ -1,17 +1,16 @@
 import 'package:clean_architeture_flutter/features/core/constants/constants.dart';
-import 'package:clean_architeture_flutter/features/start/ui/pages/home_page.dart';
+import 'package:clean_architeture_flutter/features/home/ui/pages/home_page.dart';
 import 'package:clean_architeture_flutter/features/profile/ui/pages/profile.page.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class StartPage extends StatefulHookConsumerWidget {
+class StartPage extends StatefulWidget {
   const StartPage({Key? key}) : super(key: key);
 
   @override
-  _StartPage createState() => _StartPage();
+  State<StartPage> createState() => _StartPage();
 }
 
-class _StartPage extends ConsumerState<StartPage> {
+class _StartPage extends State<StartPage> {
   final pageController = PageController();
 
   @override
@@ -43,7 +42,7 @@ class _StartPage extends ConsumerState<StartPage> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                label: "Perfifl",
+                label: "Perfil",
               ),
             ],
           );
