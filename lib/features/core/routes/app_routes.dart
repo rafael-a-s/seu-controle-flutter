@@ -21,7 +21,7 @@ class AppRoutes {
   static const financeControl = '$start/financeControl';
 
   /* <---- monthly contribution -----> */
-  static const monthlyContribution = '$financeControl/monthlyContribution';
+  static const monthlyContribution = '/monthlyContribution';
 
   /* <---- remuneration -----> */
   static const remuneration = '$financeControl/remuneration';

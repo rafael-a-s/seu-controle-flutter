@@ -8,6 +8,8 @@ class LoginAuthEvent extends AuthEvent {}
 
 class LogoutAuthEvent extends AuthEvent {}
 
+class GetUserCurrentAuthUserEvent extends AuthEvent {}
+
 class SucessLoginAuthEvent extends AuthEvent {
   final AuthUser authUser;
 

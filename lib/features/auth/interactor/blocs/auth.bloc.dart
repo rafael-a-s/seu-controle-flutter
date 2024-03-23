@@ -14,6 +14,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginAuthEvent>(_loginAuthEvent);
     on<LogoutAuthEvent>(_logoutAuthEvent);
     on<SucessLoginAuthEvent>(_sucessLogin);
+    on<GetUserCurrentAuthUserEvent>(_getUserCurrent);
+  }
+
+  void _getUserCurrent(GetUserCurrentAuthUserEvent event, emit) async {
+    final newState = await datasource.getUser();
+    emit(newState);
   }
 
   void _sucessLogin(SucessLoginAuthEvent event, emit) {

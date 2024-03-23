@@ -22,6 +22,12 @@ class AuthStateSucess implements AuthState {
   AuthStateSucess(this.authUser);
 }
 
+class AuthStateGetCurrentUser implements AuthState {
+  final AuthUser authUser;
+
+  AuthStateGetCurrentUser(this.authUser);
+}
+
 class AuthStateError implements AuthState {
   final String error;
 

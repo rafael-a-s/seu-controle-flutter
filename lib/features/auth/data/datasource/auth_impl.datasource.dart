@@ -4,17 +4,19 @@ import 'package:clean_architeture_flutter/features/auth/interactor/states/auth_l
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthDatasourceImpl implements AuthDatasource {
-
   final FirebaseAuth auth;
   final GoogleAuthProvider googleAuthProvider;
-
 
   AuthDatasourceImpl(this.auth, this.googleAuthProvider);
 
   @override
   AuthState getUser() {
-    // TODO: implement getUser
-    throw UnimplementedError();
+    try {
+      final authUser = AuthAdapter.fromFirebaseUser(auth.currentUser!);
+      return AuthStateGetCurrentUser(authUser);
+    } catch (e) {
+      return AuthStateError("Sua sessão foi comprometida");
+    }
   }
 
   @override
@@ -34,7 +36,7 @@ class AuthDatasourceImpl implements AuthDatasource {
       await auth.signOut();
       return const AuthStateLogout();
     } catch (e) {
-      return  const AuthStateLogout();
+      return const AuthStateLogout();
     }
   }
 }
