@@ -68,14 +68,14 @@ class _FormMonthlyContributionPageState
     Navigator.pop(widget.parentContext);
   }
 
-  void onEdit() async {
+  void onEdit() {
     final monthlyForEdit = MonthlyContribution(
         id: widget.monthlyContribution!.id,
         userUid: _userUid,
         nameInvestiment: _nameInvestiment.text,
         value: double.parse(_valueContribution.text));
 
-    bloc.add(MonthlyContributionEventUpdate());
+    bloc.add(MonthlyContributionEventUpdate(monthlyContribution: monthlyForEdit));
 
     showTopSnackBar(
       Overlay.of(context),

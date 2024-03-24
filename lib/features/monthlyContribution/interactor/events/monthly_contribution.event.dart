@@ -10,5 +10,8 @@ class MonthlyContributionEventCreate implements MonthlyContributionEvent{
   final MonthlyContribution monthlyContribution;
   MonthlyContributionEventCreate({required this.monthlyContribution});
 }
-class MonthlyContributionEventUpdate implements MonthlyContributionEvent{}
+class MonthlyContributionEventUpdate implements MonthlyContributionEvent{
+  final MonthlyContribution monthlyContribution;
+  MonthlyContributionEventUpdate({required this.monthlyContribution});
+}
 class MonthlyContributionEventDelete implements MonthlyContributionEvent{}
