@@ -25,7 +25,7 @@ class MonthlyContributionModule extends Module {
             client: FirebaseFirestore.instance
                 .collection('monthlyContribution')
                 .withConverter<MonthlyContribution>(
-                  fromFirestore: (snapshot, _) => MonthlyContributionAdapter.fromJson(snapshot.data()!),
+                  fromFirestore: (snapshot, _) => MonthlyContributionAdapter.fromJson(snapshot.data()!, snapshot.id),
                   toFirestore: (model, _) => MonthlyContributionAdapter.toJson(model),
                 ),
             api: 'monthly-contribution'));
