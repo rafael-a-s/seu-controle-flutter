@@ -2,19 +2,17 @@ import 'package:clean_architeture_flutter/features/monthlyContribution/interacto
 
 class MonthlyContributionAdapter {
   static MonthlyContribution fromJson(Map<String, dynamic> doc, String id) {
-    final user = doc['user'];
+    //final user = doc['userId'];
     return MonthlyContribution(
       id: id,
-      userUid: user['uid'],
+      userUid: doc['userId'],
       nameInvestiment: doc['name'],
       value: doc['value'],
     );
   }
 
     static toJson(MonthlyContribution entity) => {
-      'user': {
-        'uid': entity.userUid,
-      },
+      'userId': entity.userUid,
       'name': entity.nameInvestiment,
       'value': entity.value,
     };

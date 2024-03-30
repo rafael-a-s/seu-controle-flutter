@@ -12,6 +12,7 @@ import 'package:clean_architeture_flutter/features/monthlyContribution/interacto
 import 'package:clean_architeture_flutter/features/monthlyContribution/interactor/entity/monthly_contribution.entity.dart';
 import 'package:clean_architeture_flutter/features/monthlyContribution/interactor/events/monthly_contribution.event.dart';
 import 'package:clean_architeture_flutter/features/monthlyContribution/interactor/states/monthly_contribution.state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -34,12 +35,10 @@ class _FormMonthlyContributionPageState
     extends State<FormMonthlyContributionPage> {
 
   final bloc = Modular.get<MonthlyContributinoBloc>();
-  final blocAuth = Modular.get<AuthBloc>();
   final _key = GlobalKey<FormState>();
-  late final StreamSubscription _subscriptionAuthBloc;
   final _nameInvestiment = TextEditingController();
   final _valueContribution = TextEditingController();
-  late final _userUid;
+  final _userUid = FirebaseAuth.instance.currentUser!.uid;
 
   onSubmit() {
     final bool isFormOkay = _key.currentState!.validate();
@@ -99,19 +98,7 @@ class _FormMonthlyContributionPageState
   @override
   void initState() {
     super.initState();
-    blocAuth.add(GetUserCurrentAuthUserEvent());
-    _subscriptionAuthBloc = context.read<AuthBloc>().stream.listen((state) {
-      if(state is AuthStateGetCurrentUser) {
-        _userUid = state.authUser.uid;
-      }
-    });
     mountForm();
-  }
-
-  @override
-  void dispose() {
-    _subscriptionAuthBloc.cancel();
-    super.dispose();
   }
 
   @override
