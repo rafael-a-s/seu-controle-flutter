@@ -5,6 +5,7 @@ import 'package:clean_architeture_flutter/features/monthlyContribution/interacto
 import 'package:clean_architeture_flutter/features/monthlyContribution/interactor/datasource/monthly_contribution.datasource.dart';
 import 'package:clean_architeture_flutter/features/monthlyContribution/ui/pages/monthly_contribution.page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'interactor/entity/monthly_contribution.entity.dart';
@@ -23,6 +24,8 @@ class MonthlyContributionModule extends Module {
     i.addSingleton<MonthlyContributionDatasource>(() =>
         MonthlyContributionDatasourceImpl(
             client: FirebaseFirestore.instance
+                .collection('user')
+                .doc(FirebaseAuth.instance.currentUser!.uid)
                 .collection('monthlyContribution')
                 .withConverter<MonthlyContribution>(
                   fromFirestore: (snapshot, _) => MonthlyContributionAdapter.fromJson(snapshot.data()!, snapshot.id),
