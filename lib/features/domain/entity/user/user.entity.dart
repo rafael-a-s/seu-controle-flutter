@@ -1,5 +1,4 @@
 import 'package:clean_architeture_flutter/core/domain/base.entity.dart';
-import 'package:clean_architeture_flutter/features/domain/entity/financeControl/finance_control.entity.dart';
 
 class User extends BaseEntity {
   final String firstName;
@@ -7,7 +6,6 @@ class User extends BaseEntity {
   final String cpf;
   final String email;
   final Set<String> roles;
-  final FinanceControl? financeControl;
 
   User(
       {dynamic id,
@@ -16,7 +14,7 @@ class User extends BaseEntity {
       required this.cpf,
       required this.email,
       required this.roles,
-      this.financeControl})
+      })
       : super(id: id);
 
   List<Object> get props => [
@@ -26,6 +24,5 @@ class User extends BaseEntity {
         cpf,
         email,
         roles,
-        financeControl!,
       ];
 }

@@ -24,13 +24,13 @@ class AppRoutes {
   static const monthlyContribution = '/monthlyContribution';
 
   /* <---- remuneration -----> */
-  static const remuneration = '$financeControl/remuneration';
+  static const remuneration = '/remuneration';
 
   /* <---- expense -----> */
-  static const expense = '$financeControl/expense';
+  static const expense = '/expense';
 
   /* <---- type expense -----> */
-  static const typeExpense = '$financeControl/typeExpense';
+  static const typeExpense = '/typeExpense';
 
   /* <---- Profile & Settings -----> */
   static const profile = '/profile';
