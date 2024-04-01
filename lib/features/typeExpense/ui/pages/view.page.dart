@@ -5,6 +5,7 @@ import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/interactor/blocs/bloc.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/interactor/entity/type_expense.entity.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/interactor/events/event.dart';
+import 'package:clean_architeture_flutter/features/typeExpense/interactor/session/session.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/interactor/states/state.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/ui/components/card_list.component.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/ui/pages/form.page.dart';
@@ -20,13 +21,10 @@ class TypeExpensePage extends StatefulWidget {
   const TypeExpensePage({super.key});
 
   @override
-  State<TypeExpensePage> createState() =>
-      _TypeExpensePageState();
+  State<TypeExpensePage> createState() => _TypeExpensePageState();
 }
 
-class _TypeExpensePageState
-    extends State<TypeExpensePage> {
-
+class _TypeExpensePageState extends State<TypeExpensePage> {
   final bloc = Modular.get<TypeExpenseBloc>();
 
   void _showModalNewContribution(context) {
@@ -41,8 +39,7 @@ class _TypeExpensePageState
     ).whenComplete(() => bloc.add(TypeExpenseEventGetAll()));
   }
 
-  void _showModalEditContribution(
-      context, TypeExpense typeExpense) {
+  void _showModalEditContribution(context, TypeExpense typeExpense) {
     showModalBottomSheet(
       backgroundColor: AppColors.scaffoldWithBoxBackground,
       context: context,
@@ -88,104 +85,108 @@ class _TypeExpensePageState
       body: Padding(
         padding: AppDefaults.padinngDefault,
         child: StreamBuilder<Object>(
-          stream: bloc.stream,
-          builder: (context, snapshot) {
-            final state = snapshot.data;
-            List<TypeExpense> list = [];
-            state is TypeExpenseStateGetted ? list = state.list : list = [];
+            stream: bloc.stream,
+            builder: (context, snapshot) {
+              final state = snapshot.data;
+              List<TypeExpense> list = [];
+              state is TypeExpenseStateGetted ? list = state.list : list = [];
 
-            final loading = state is TypeExpenseStateLoading;
+              final loading = state is TypeExpenseStateLoading;
 
-            loading ? context.loaderOverlay.show() : context.loaderOverlay.hide();
+              loading
+                  ? context.loaderOverlay.show()
+                  : context.loaderOverlay.hide();
 
-            return SafeArea(
-              child: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Despensas',
-                        style: AppDefaults.textStyleHeader1,
+              return SafeArea(
+                child: CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Despensas',
+                          style: AppDefaults.textStyleHeader1,
+                        ),
                       ),
                     ),
-                  ),
-                  const SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 50,
+                    const SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 50,
+                      ),
                     ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => _showModalNewContribution(context),
-                          child: Container(
-                            height: 70,
-                            width: 90,
-                            decoration: const BoxDecoration(
-                              color: AppColors.primary,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
+                    SliverToBoxAdapter(
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () => _showModalNewContribution(context),
+                            child: Container(
+                              height: 70,
+                              width: 90,
+                              decoration: const BoxDecoration(
+                                color: AppColors.primary,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
                               ),
+                              child: const Icon(Icons.add, size: 40),
                             ),
-                            child: const Icon(Icons.add, size: 40),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  const SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 50,
+                    const SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 50,
+                      ),
                     ),
-                  ),
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Modular.to.pushNamed(AppRoutes.expense, arguments: list[index].id);
-                        },
-                        child: Slidable(
-                          key: ValueKey(index),
-                          startActionPane: ActionPane(
-                            motion: const ScrollMotion(),
-                            children: [
-                              SlidableAction(
-                                flex: 2,
-                                onPressed: (context) =>
-                                    _showModalEditContribution(context, list[index]),
-                                backgroundColor: AppColors.second,
-                                foregroundColor: Colors.white,
-                                icon: Icons.edit,
-                                label: 'Editar',
-                              ),
-                            ],
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            TypeExpenseSession().setUid(list[index].id);
+                            Modular.to.pushNamed(AppRoutes.expense);
+                          },
+                          child: Slidable(
+                            key: ValueKey(index),
+                            startActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  flex: 2,
+                                  onPressed: (context) =>
+                                      _showModalEditContribution(
+                                          context, list[index]),
+                                  backgroundColor: AppColors.second,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.edit,
+                                  label: 'Editar',
+                                ),
+                              ],
+                            ),
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (context) =>
+                                      onDelete(list[index].id),
+                                  backgroundColor: AppColors.second,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: 'Excluir',
+                                ),
+                              ],
+                            ),
+                            child: CardListTypeExpenseComponent(
+                                id: index, typeExpense: list[index]),
                           ),
-                          endActionPane: ActionPane(
-                            motion: const ScrollMotion(),
-                            children: [
-                              SlidableAction(
-                                onPressed: (context) => onDelete(list[index].id),
-                                backgroundColor: AppColors.second,
-                                foregroundColor: Colors.white,
-                                icon: Icons.delete,
-                                label: 'Excluir',
-                              ),
-                            ],
-                          ),
-                          child: CardListTypeExpenseComponent(
-                              id: index, typeExpense: list[index]),
-                        ),
-                      );
-                    }, childCount: list!.length),
-                  ),
-                ],
-              ),
-            );
-          }
-        ),
+                        );
+                      }, childCount: list!.length),
+                    ),
+                  ],
+                ),
+              );
+            }),
       ),
     );
   }

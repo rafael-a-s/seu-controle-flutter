@@ -30,6 +30,6 @@ class AppModule extends Module {
     r.module(AppRoutes.monthlyContribution, module: MonthlyContributionModule());
     r.module(AppRoutes.remuneration, module: RemunerationModule());
     r.module(AppRoutes.typeExpense, module: TypeExpenseModule());
-    r.module(AppRoutes.expense, module: ExpenseModule(typeExpenseUid: r.args.data ?? ""));
+    r.module(AppRoutes.expense, module: ExpenseModule());
   }
 }

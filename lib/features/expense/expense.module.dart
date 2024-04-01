@@ -5,15 +5,15 @@ import 'package:clean_architeture_flutter/features/expense/interactor/blocs/bloc
 import 'package:clean_architeture_flutter/features/expense/interactor/datasource/datasource.dart';
 import 'package:clean_architeture_flutter/features/expense/interactor/entity/expense.entity.dart';
 import 'package:clean_architeture_flutter/features/expense/ui/pages/view.page.dart';
+import 'package:clean_architeture_flutter/features/typeExpense/interactor/session/session.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 
 class ExpenseModule extends Module {
-  final String typeExpenseUid;
 
-  ExpenseModule({required this.typeExpenseUid});
+  ExpenseModule();
 
   @override
   // TODO: implement imports
@@ -29,7 +29,7 @@ class ExpenseModule extends Module {
                 .collection('user')
                 .doc(FirebaseAuth.instance.currentUser!.uid)
                 .collection('typeExpense')
-                .doc(typeExpenseUid)
+                .doc(TypeExpenseSession().uid)
                 .collection('expense')
                 .withConverter<Expense>(
                   fromFirestore: (snapshot, _) => ExpenseAdapter.fromJson(snapshot.data()!, snapshot.id),
