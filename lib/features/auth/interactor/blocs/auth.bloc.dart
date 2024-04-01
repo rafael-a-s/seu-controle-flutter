@@ -25,7 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _sucessLogin(SucessLoginAuthEvent event, emit) {
     if(state is AuthStateSucess) {
       hiveService.put(event.authUser);
-      Modular.to.pushNamed(AppRoutes.start);
+      Modular.to.navigate(AppRoutes.start);
     }
   }
 
