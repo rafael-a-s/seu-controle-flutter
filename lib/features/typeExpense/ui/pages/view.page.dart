@@ -1,11 +1,9 @@
 import 'package:clean_architeture_flutter/features/core/constants/app_colors.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_defaults.dart';
 import 'package:clean_architeture_flutter/features/core/constants/app_messages.dart';
-import 'package:clean_architeture_flutter/features/core/routes/app_routes.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/interactor/blocs/bloc.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/interactor/entity/type_expense.entity.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/interactor/events/event.dart';
-import 'package:clean_architeture_flutter/features/typeExpense/interactor/session/session.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/interactor/states/state.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/ui/components/card_list.component.dart';
 import 'package:clean_architeture_flutter/features/typeExpense/ui/pages/form.page.dart';
@@ -142,44 +140,38 @@ class _TypeExpensePageState extends State<TypeExpensePage> {
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () {
-                            TypeExpenseSession().setUid(list[index].id);
-                            Modular.to.pushNamed(AppRoutes.expense);
-                          },
-                          child: Slidable(
-                            key: ValueKey(index),
-                            startActionPane: ActionPane(
-                              motion: const ScrollMotion(),
-                              children: [
-                                SlidableAction(
-                                  flex: 2,
-                                  onPressed: (context) =>
-                                      _showModalEditContribution(
-                                          context, list[index]),
-                                  backgroundColor: AppColors.second,
-                                  foregroundColor: Colors.white,
-                                  icon: Icons.edit,
-                                  label: 'Editar',
-                                ),
-                              ],
-                            ),
-                            endActionPane: ActionPane(
-                              motion: const ScrollMotion(),
-                              children: [
-                                SlidableAction(
-                                  onPressed: (context) =>
-                                      onDelete(list[index].id),
-                                  backgroundColor: AppColors.second,
-                                  foregroundColor: Colors.white,
-                                  icon: Icons.delete,
-                                  label: 'Excluir',
-                                ),
-                              ],
-                            ),
-                            child: CardListTypeExpenseComponent(
-                                id: index, typeExpense: list[index]),
+                        return Slidable(
+                          key: ValueKey(index),
+                          startActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                flex: 2,
+                                onPressed: (context) =>
+                                    _showModalEditContribution(
+                                        context, list[index]),
+                                backgroundColor: AppColors.second,
+                                foregroundColor: Colors.white,
+                                icon: Icons.edit,
+                                label: 'Editar',
+                              ),
+                            ],
                           ),
+                          endActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                onPressed: (context) =>
+                                    onDelete(list[index].id),
+                                backgroundColor: AppColors.second,
+                                foregroundColor: Colors.white,
+                                icon: Icons.delete,
+                                label: 'Excluir',
+                              ),
+                            ],
+                          ),
+                          child: CardListTypeExpenseComponent(
+                              id: index, typeExpense: list[index]),
                         );
                       }, childCount: list!.length),
                     ),

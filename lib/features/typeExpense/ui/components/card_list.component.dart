@@ -21,7 +21,7 @@ class _CardContributionComponentState extends State<CardListTypeExpenseComponent
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Modular.to.pushNamed(AppRoutes.expense),
+      onTap: () => Modular.to.pushNamed(AppRoutes.expense, arguments: widget.typeExpense.id),
       child: Container(
         height: 90,
         margin: const EdgeInsets.only(top: 25),
